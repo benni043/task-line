@@ -25,36 +25,8 @@ export default defineNuxtConfig({
   ],
   css: ["~/assets/css/main.css"],
   nitro: {
-    storage: {
-      todos: {
-        driver: "mongodb",
-        connectionString: `${process.env.MONGODB_CONNECTION}`,
-        databaseName: `${process.env.MONGODB_DB}`,
-        collectionName: "todos",
-      },
-      tags: {
-        driver: "mongodb",
-        connectionString: `${process.env.MONGODB_CONNECTION}`,
-        databaseName: `${process.env.MONGODB_DB}`,
-        collectionName: "tags",
-      },
-      categories: {
-        driver: "mongodb",
-        connectionString: `${process.env.MONGODB_CONNECTION}`,
-        databaseName: `${process.env.MONGODB_DB}`,
-        collectionName: "categories",
-      },
-    },
-    devStorage: {
-      todos: {
-        driver: "memory",
-      },
-      tags: {
-        driver: "memory",
-      },
-      categories: {
-        driver: "memory",
-      },
+    experimental: {
+      database: true,
     },
   },
   vite: {
@@ -74,6 +46,8 @@ export default defineNuxtConfig({
     },
     googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
     jwtSecret: process.env.JWT_SECRET,
+    libsqlUrl: process.env.LIBSQL_URL,
+    libsqlAuth: process.env.LIBSQL_AUTH,
   },
   googleSignIn: {
     clientId: process.env.GOOGLE_CLIENT_ID,
