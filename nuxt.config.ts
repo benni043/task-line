@@ -25,8 +25,36 @@ export default defineNuxtConfig({
   ],
   css: ["~/assets/css/main.css"],
   nitro: {
-    experimental: {
-      database: true,
+    storage: {
+      todos: {
+        base: "todos",
+        driver: "upstash",
+        url: process.env.UPSTASH_URL,
+        token: process.env.UPSTASH_TOKEN,
+      },
+      tags: {
+        base: "tags",
+        driver: "upstash",
+        url: process.env.UPSTASH_URL,
+        token: process.env.UPSTASH_TOKEN,
+      },
+      categories: {
+        base: "categories",
+        driver: "upstash",
+        url: process.env.UPSTASH_URL,
+        token: process.env.UPSTASH_TOKEN,
+      },
+    },
+    devStorage: {
+      todos: {
+        driver: "memory",
+      },
+      tags: {
+        driver: "memory",
+      },
+      categories: {
+        driver: "memory",
+      },
     },
   },
   vite: {

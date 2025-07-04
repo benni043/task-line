@@ -15,6 +15,6 @@ GOOGLE_REDIRECT_URL=<google_redirect_url>
 JWT_SECRET=<jwt_secret>
 JWT_TTL_SECONDS=2592000 // 1Month
 
-LIBSQL_URL=<url>
-LIBSQL_AUTH=<auth_token>
+UPSTASH_URL=<url>
+UPSTASH_TOKEN=<auth_token>
 ```
