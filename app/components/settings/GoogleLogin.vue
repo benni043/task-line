@@ -73,11 +73,7 @@ function logout() {
           <div class="flex gap-1">
             <div class="text-nowrap">{{ t("logout") }}</div>
 
-            <img
-              :src="userImage!"
-              alt="User Profile Img"
-              class="h-6 w-6 rounded-full object-cover"
-            />
+            <img :src="userImage!" class="h-6 w-6 rounded-full object-cover" />
           </div>
         </PopoverTrigger>
 
