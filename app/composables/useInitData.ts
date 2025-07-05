@@ -66,7 +66,7 @@ export async function useInitdata() {
   const focus = useWindowFocus();
 
   watch([visibility, focus], async ([visible, focus]) => {
-    if (visible === "visible" || focus) {
+    if ((visible === "visible" || focus) && token.value) {
       await Init.data();
     }
   });
