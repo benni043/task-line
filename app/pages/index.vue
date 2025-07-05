@@ -7,10 +7,16 @@ import HorizontalNav from "~/components/nav/HorizontalNav.vue";
 import { SplitterGroup, SplitterPanel, SplitterResizeHandle } from "reka-ui";
 
 import { useDevice } from "#imports";
+import { useLoginToken } from "~/composables/login/useLoginToken";
 
 const isSettingsSheetOpen = ref(false);
 const isFilterSheetOpen = ref(false);
 const isNewSheetOpen = ref(false);
+
+const token = useLoginToken();
+if (!token.value) {
+  isSettingsSheetOpen.value = true;
+}
 
 await useInitdata();
 

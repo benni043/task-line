@@ -52,7 +52,7 @@ function logout() {
 </script>
 
 <template>
-  <div v-if="!isLoggedIn" class="flex gap-1 overflow-scroll pt-1 pb-2">
+  <div v-if="!isLoggedIn" class="flex gap-1 overflow-scroll">
     <div class="border-secondary flex h-8 items-center rounded border-1 px-1">
       <button
         class="flex cursor-pointer gap-1"
@@ -64,7 +64,7 @@ function logout() {
       </button>
     </div>
   </div>
-  <div v-if="isLoggedIn" class="flex gap-1 overflow-scroll pt-1 pb-2">
+  <div v-if="isLoggedIn" class="flex gap-1 overflow-scroll">
     <div
       class="border-secondary flex h-8 items-center gap-1 rounded border-1 px-1"
     >

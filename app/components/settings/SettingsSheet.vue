@@ -27,25 +27,26 @@ function onLanguageChange(newLocale: string) {
 
 <template>
   <Sheet :is-open="isOpen" title="Settings Sheet" @close="close">
+    <div class="flex">
+      <div class="p-1 pt-0">
+        <h2 class="text-muted-text text-lg">{{ t("login") }}</h2>
+        <GoogleLogin />
+      </div>
+
+      <div class="p-1 pt-0">
+        <h2 class="text-muted-text text-lg">{{ t("languages") }}</h2>
+        <select
+          class="bg-surface border-secondary h-8 cursor-pointer rounded border px-2 text-white"
+          :value="locale"
+          @change="onLanguageChange(($event.target as HTMLSelectElement).value)"
+        >
+          <option v-for="lang in locales" :key="lang.code" :value="lang.code">
+            {{ t(`languageNames.${lang.code}`) }}
+          </option>
+        </select>
+      </div>
+    </div>
     <Categories />
     <Tags />
-
-    <div class="p-1 pt-0">
-      <h2 class="text-muted-text text-lg">{{ t("login") }}</h2>
-      <GoogleLogin />
-    </div>
-
-    <div class="p-1 pt-0">
-      <h2 class="text-muted-text text-lg">{{ t("languages") }}</h2>
-      <select
-        class="bg-surface border-secondary h-8 cursor-pointer rounded border px-2 text-white"
-        :value="locale"
-        @change="onLanguageChange(($event.target as HTMLSelectElement).value)"
-      >
-        <option v-for="lang in locales" :key="lang.code" :value="lang.code">
-          {{ t(`languageNames.${lang.code}`) }}
-        </option>
-      </select>
-    </div>
   </Sheet>
 </template>
