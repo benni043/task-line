@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { parseDate } from "@internationalized/date";
 import {
-  type DateRange,
   RangeCalendarCell,
   RangeCalendarCellTrigger,
   RangeCalendarGrid,
@@ -15,6 +14,7 @@ import {
   RangeCalendarPrev,
   RangeCalendarRoot,
 } from "reka-ui";
+import type { DateRange } from "reka-ui";
 import type { Timeframe } from "~~/shared/types";
 
 const { t } = useI18n();

@@ -1,4 +1,5 @@
-import { H3Error, type H3Event } from "h3";
+import { H3Error } from "h3";
+import type { H3Event } from "h3";
 import jwt from "jsonwebtoken";
 import type { JwtPayload } from "~~/shared/types";
 
