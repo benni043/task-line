@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { v4 } from "uuid";
+import { filterTodos } from "~/composables/useFilteredTodos";
 import type { Todo, TodoData, UUID } from "~~/shared/types";
 
 export const useTodoStore = defineStore("todos", {
@@ -43,7 +44,7 @@ export const useTodoStore = defineStore("todos", {
       this.data = this.data.filter((todo) => todo.uuid !== uuid);
 
       const fetch = useRequestFetch();
-      await fetch("/api/todos/" + uuid, {
+      await fetch(`/api/todos/${uuid}`, {
         method: "DELETE",
         ...useFetchOptions(),
       }).catch(async (err) => {
@@ -54,13 +55,22 @@ export const useTodoStore = defineStore("todos", {
     },
 
     async addTodo(todoData: TodoData) {
-      const uuid = v4();
-
-      const todos = useFilteredTodos().value;
+      let todos = filterTodos(this.data, {
+        category: todoData.category,
+        tags: todoData.tags,
+        time: "all",
+      });
+      if (todos.length === 0) {
+        todos = filterTodos(this.data, {
+          category: todoData.category,
+          tags: [],
+          time: "all",
+        });
+      }
       const lastTodo = todos[todos.length - 1];
 
       const todo = {
-        uuid,
+        uuid: v4(),
         ...todoData,
       };
 
@@ -105,8 +115,8 @@ export const useTodoStore = defineStore("todos", {
     },
 
     async moveTodo(toMove: UUID, to: UUID) {
-      const dropIndex = this.data.findIndex((todo) => todo.uuid == to);
-      const dragIndex = this.data.findIndex((todo) => todo.uuid == toMove);
+      const dropIndex = this.data.findIndex((todo) => todo.uuid === to);
+      const dragIndex = this.data.findIndex((todo) => todo.uuid === toMove);
 
       const draged = this.data.splice(dragIndex, 1)[0]!;
       this.data.splice(dropIndex, 0, draged);
@@ -136,7 +146,7 @@ export const useTodoStore = defineStore("todos", {
     },
     isCategoryUsed(state) {
       return (categoryUuid: UUID): boolean =>
-        state.data.find((todo) => todo.category == categoryUuid) !== undefined;
+        state.data.find((todo) => todo.category === categoryUuid) !== undefined;
     },
   },
 });

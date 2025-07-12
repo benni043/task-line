@@ -17,8 +17,8 @@
     "lint:eslint": "eslint .",
     "lint:prettier": "prettier . --check",
     "lint:typecheck": "nuxi typecheck",
-    "lintfull": "bun lint && bun lint:typecheck",
-    "lintfix": "eslint . --fix && prettier --write --list-different ."
+    "lint:full": "bun lint && bun lint:typecheck",
+    "lint:fix": "eslint . --fix && prettier --write --list-different ."
   },
   "dependencies": {
     "@internationalized/date": "=3.7.0",

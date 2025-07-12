@@ -11,7 +11,7 @@ export default defineNuxtConfig({
       link: [{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
     },
   },
-  ssr: process.env.TAURI_USED === "true" ? false : true,
+  ssr: process.env.TAURI_USED !== "true",
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
   modules: [
