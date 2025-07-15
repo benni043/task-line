@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { v4 } from "uuid";
 import { filterTodos } from "~/composables/useFilteredTodos";
+import { updateOrInsertAfterTodo } from "~~/shared/array";
 import type { Todo, TodoData, UUID } from "~~/shared/types";
 
 export const useTodoStore = defineStore("todos", {
@@ -74,7 +75,7 @@ export const useTodoStore = defineStore("todos", {
         ...todoData,
       };
 
-      this.data.push(todo);
+      updateOrInsertAfterTodo(this.data, todo, lastTodo?.uuid);
 
       const fetch = useRequestFetch();
       await fetch("/api/todos", {

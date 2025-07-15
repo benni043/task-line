@@ -1,4 +1,5 @@
 import type { H3Error } from "h3";
+import { updateOrInsertAfterTodo } from "~~/shared/array";
 import type { Todo, UUID } from "~~/shared/types";
 
 function getKey(userId: string): string {
@@ -46,20 +47,7 @@ export const Todos = {
     const storage = useStorage();
     const todos = await Todos.getAll(userId);
 
-    const index = todos.findIndex((value) => value.uuid === todo.uuid);
-    const previousIndex = previous
-      ? todos.findIndex((value) => value.uuid === previous)
-      : undefined;
-
-    if (index === -1) {
-      if (previousIndex !== undefined) {
-        todos.splice(previousIndex + 1, 0, todo);
-      } else {
-        todos.push(todo);
-      }
-    } else {
-      todos[index] = todo;
-    }
+    updateOrInsertAfterTodo(todos, todo, previous);
 
     await storage.set(getKey(userId), todos);
 
