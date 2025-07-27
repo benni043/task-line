@@ -10,6 +10,7 @@ import type { Timeframe, UUID } from "~~/shared/types";
 import TagSelect from "../utils/input/TagSelect.vue";
 import DateSelect from "./DateSelect.vue";
 import CategorySelect from "../utils/input/CategorySelect.vue";
+import NoteSelect from "./NoteSelect.vue";
 
 const { t } = useI18n();
 
@@ -51,12 +52,8 @@ const note = defineModel<string>("note", { required: true });
       </TabsTrigger>
     </TabsList>
 
-    <TabsContent value="notes" class="flex flex-1 flex-col py-2">
-      <textarea
-        v-model="note"
-        class="border-secondary w-full flex-1 resize-none rounded border-1 pl-1"
-        :placeholder="t('note')"
-      />
+    <TabsContent value="notes" class="relative flex flex-1 flex-col py-2">
+      <NoteSelect v-model:note="note" />
     </TabsContent>
 
     <TabsContent value="labels" class="pt-2">
