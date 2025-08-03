@@ -54,13 +54,16 @@ export default defineNuxtConfig({
     },
     devStorage: {
       todos: {
-        driver: "memory",
+        driver: "fs",
+        base: ".nuxt/storage/todos",
       },
       tags: {
-        driver: "memory",
+        driver: "fs",
+        base: ".nuxt/storage/tags",
       },
       categories: {
-        driver: "memory",
+        driver: "fs",
+        base: ".nuxt/storage/categories",
       },
     },
   },

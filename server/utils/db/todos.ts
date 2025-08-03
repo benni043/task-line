@@ -9,10 +9,7 @@ function getKey(userId: string): string {
 export const Todos = {
   async getAll(userId: string): Promise<Todo[]> {
     const storage = useStorage();
-    return (
-      (await storage.get<Todo[]>(getKey(userId))) ??
-      (import.meta.dev ? getTestTodos(10) : [])
-    );
+    return (await storage.get<Todo[]>(getKey(userId))) ?? [];
   },
 
   async move(

@@ -7,10 +7,7 @@ export const Labels = {
     getKey: (id: string) => string,
   ): Promise<Label[]> {
     const storage = useStorage();
-    return (
-      (await storage.get<Label[]>(getKey(userId))) ??
-      (import.meta.dev ? getTestLabels() : [])
-    );
+    return (await storage.get<Label[]>(getKey(userId))) ?? [];
   },
   async updateOrAdd(
     userId: string,
