@@ -4,8 +4,8 @@ import { Todo } from "~~/shared/types";
 
 export const Body = z.object({
   data: Todo,
-  position: z.union([z.literal("top"), z.literal("bottom")]),
-  previousId: z.string().uuid().optional(),
+  position: z.literal(["top", "bottom"]),
+  previousId: z.uuid().optional(),
 });
 
 export default defineAuthenticatedEventHandler(
@@ -17,8 +17,8 @@ export default defineAuthenticatedEventHandler(
     const todo = await Todos.updateOrAdd(
       token.sub,
       body.data,
-      body.previousId as "top" | "bottom",
       body.position,
+      body.previousId,
     );
     if (todo instanceof H3Error) throw todo;
 

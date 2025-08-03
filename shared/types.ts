@@ -2,28 +2,27 @@ import { z } from "zod";
 
 export type UUID = string;
 
-/** iso formatted strings */
 export const TimeframeSchema = z.object({
-  start: z.string().date(),
-  end: z.string().date(),
+  start: z.iso.date(),
+  end: z.iso.date(),
 });
 
 export type Timeframe = z.infer<typeof TimeframeSchema>;
 
 export const Todo = z.object({
-  uuid: z.string().uuid(),
+  uuid: z.uuid(),
   title: z.string().min(1),
   note: z.string(),
   timeframe: TimeframeSchema.optional(),
-  tags: z.array(z.string().uuid()),
-  category: z.string().uuid().optional(),
+  tags: z.array(z.uuid()),
+  category: z.uuid().optional(),
 });
 
 export type Todo = z.infer<typeof Todo>;
 export type TodoData = Omit<Todo, "uuid">;
 
 export const Label = z.object({
-  uuid: z.string().uuid(),
+  uuid: z.uuid(),
   name: z.string().min(1),
   color: z.string().startsWith("#").length(7),
 });
