@@ -55,15 +55,15 @@ export default defineNuxtConfig({
     devStorage: {
       todos: {
         driver: "fs",
-        base: ".nuxt/storage/todos",
+        base: "storage/todos",
       },
       tags: {
         driver: "fs",
-        base: ".nuxt/storage/tags",
+        base: "storage/tags",
       },
       categories: {
         driver: "fs",
-        base: ".nuxt/storage/categories",
+        base: "storage/categories",
       },
     },
   },
