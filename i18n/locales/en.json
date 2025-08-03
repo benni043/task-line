@@ -19,5 +19,8 @@
   "languageNames": {
     "de": "German",
     "en": "English"
-  }
+  },
+  "insertionPoint": "Insertion Point",
+  "top": "Top",
+  "bottom": "Bottom"
 }

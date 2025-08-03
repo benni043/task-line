@@ -3,6 +3,7 @@ import type { Todo, UUID } from "./types";
 export function updateOrInsertAfterTodo(
   data: Todo[],
   insert: Todo,
+  position: "top" | "bottom",
   previous?: UUID,
 ): Todo[] {
   const index = data.findIndex((value) => value.uuid === insert.uuid);
@@ -12,9 +13,14 @@ export function updateOrInsertAfterTodo(
 
   if (index === -1) {
     if (previousIndex !== undefined) {
-      data.splice(previousIndex + 1, 0, insert);
+      const offset = position === "top" ? 0 : 1;
+      data.splice(previousIndex + offset, 0, insert);
     } else {
-      data.push(insert);
+      if (position === "top") {
+        data.unshift(insert);
+      } else {
+        data.push(insert);
+      }
     }
   } else {
     data[index] = insert;

@@ -56,6 +56,8 @@ export const useTodoStore = defineStore("todos", {
     },
 
     async addTodo(todoData: TodoData) {
+      const { settings } = useSettings();
+
       let todos = filterTodos(this.data, {
         category: todoData.category,
         tags: todoData.tags,
@@ -68,20 +70,28 @@ export const useTodoStore = defineStore("todos", {
           time: "all",
         });
       }
-      const lastTodo = todos[todos.length - 1];
+
+      const lastTodo =
+        todos[settings.value.insertionPoint === "top" ? 0 : todos.length - 1];
 
       const todo = {
         uuid: v4(),
         ...todoData,
       };
 
-      updateOrInsertAfterTodo(this.data, todo, lastTodo?.uuid);
+      updateOrInsertAfterTodo(
+        this.data,
+        todo,
+        settings.value.insertionPoint,
+        lastTodo?.uuid,
+      );
 
       const fetch = useRequestFetch();
       await fetch("/api/todos", {
         method: "POST",
         body: {
           data: todo,
+          position: settings.value.insertionPoint,
           previousId: lastTodo?.uuid,
         },
         ...useFetchOptions(),
