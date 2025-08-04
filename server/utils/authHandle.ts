@@ -1,4 +1,5 @@
 import type { EventHandlerRequest, H3Event } from "h3";
+import { Auth } from "~~/shared/auth";
 import type { JwtPayload } from "~~/shared/types";
 
 export function defineAuthenticatedEventHandler<T>(

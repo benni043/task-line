@@ -4,6 +4,30 @@ import jwt from "jsonwebtoken";
 import type { JwtPayload } from "~~/shared/types";
 
 export const Auth = {
+  create(id: string, email: string, picture: string): string {
+    const runtimeConfig = useRuntimeConfig();
+
+    return Auth.createRaw(
+      id,
+      email,
+      picture,
+      (runtimeConfig.public.jwtTTL + "s") as `${number}s`,
+      runtimeConfig.jwtSecret,
+    );
+  },
+
+  createRaw(
+    id: string,
+    email: string,
+    picture: string,
+    ttl: `${number}s`,
+    secret: string,
+  ): string {
+    return jwt.sign({ sub: id, email, picture } as JwtPayload, secret, {
+      expiresIn: ttl,
+    });
+  },
+
   get(event: H3Event): undefined | JwtPayload | H3Error {
     const token = getCookie(event, "token");
 

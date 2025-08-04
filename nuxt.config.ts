@@ -23,12 +23,13 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     "@nuxt/icon",
-    "@pinia/nuxt",
-    "@vueuse/nuxt",
     "@nuxt/eslint",
-    "nuxt-vue3-google-signin",
+    "@nuxt/test-utils/module",
     "@nuxtjs/device",
     "@nuxtjs/i18n",
+    "@pinia/nuxt",
+    "@vueuse/nuxt",
+    "nuxt-vue3-google-signin",
   ],
   css: ["~/assets/css/main.css"],
   nitro: {
@@ -84,8 +85,6 @@ export default defineNuxtConfig({
     },
     googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
     jwtSecret: process.env.JWT_SECRET,
-    libsqlUrl: process.env.LIBSQL_URL,
-    libsqlAuth: process.env.LIBSQL_AUTH,
   },
   googleSignIn: {
     clientId: process.env.GOOGLE_CLIENT_ID,

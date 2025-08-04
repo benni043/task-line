@@ -1,5 +1,6 @@
 import type { JwtValidation } from "#shared/types";
 import { H3Error } from "h3";
+import { Auth } from "#shared/auth";
 
 export default defineEventHandler(async (event): Promise<JwtValidation> => {
   const jwt = Auth.get(event);
