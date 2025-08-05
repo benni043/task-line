@@ -40,6 +40,7 @@ function onLanguageChange(newLocale: string) {
         <div class="p-1 pt-0">
           <h2 class="text-muted-text text-lg">{{ t("languages") }}</h2>
           <select
+            data-testid="language-select"
             class="bg-surface border-secondary h-8 cursor-pointer rounded border px-2 text-white"
             :value="locale"
             @change="

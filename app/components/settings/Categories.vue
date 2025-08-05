@@ -27,10 +27,10 @@ function isUsed(category: LabelType): boolean {
 </script>
 
 <template>
-  <div class="p-1 pt-0">
+  <div data-testid="add-category" class="p-1 pt-0">
     <h2 class="text-muted-text text-lg">{{ t("categories") }}</h2>
     <AddLabel @add="onAddCategory" />
-    <div>
+    <div data-testid="category-list">
       <div
         v-for="category in categoryStore.data"
         :key="category.uuid"

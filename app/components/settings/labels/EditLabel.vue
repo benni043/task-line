@@ -56,12 +56,14 @@ function onClick() {
     </PopoverTrigger>
     <PopoverPortal>
       <PopoverContent
+        data-testid="edit-label-modal"
         class="bg-popover z-50 mx-2 flex flex-col gap-2 rounded-lg p-2 drop-shadow-lg/30"
         side="top"
         :side-offset="5"
       >
         <input
           v-model="label.name"
+          data-testid="edit-label-name-input"
           class="border-secondary-popover h-8 w-36 rounded border-1 pl-1"
           :placeholder="t('name')"
           type="text"
@@ -79,11 +81,13 @@ function onClick() {
           </button>
           <input
             v-model="label.color"
+            data-testid="edit-label-color-input"
             class="h-full w-full cursor-pointer rounded-sm"
             type="color"
           />
         </div>
         <button
+          data-testid="edit-label-save-button"
           class="bg-primary hover:bg-primary-hover border-secondary-popover disabled:bg-popover flex h-8 cursor-pointer items-center justify-center rounded border-1 px-0.5 transition-colors"
           :disabled="!isValid"
           @click="onClick"
