@@ -15,7 +15,7 @@ export default defineConfig<ConfigOptions>({
   fullyParallel: true,
   forbidOnly: !!isCI,
   retries: isCI ? 2 : 0,
-  workers: isCI ? 1 : undefined,
+  workers: isCI ? 1 : 4,
   reporter: "html",
   use: {
     trace: "on-first-retry",

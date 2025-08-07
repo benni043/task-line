@@ -24,7 +24,7 @@ function dropHandler(event: DragEvent, uuid: UUID) {
 </script>
 
 <template>
-  <div class="flex justify-center">
+  <div class="flex justify-center" data-testid="todos-container">
     <div
       class="max-h-[calc(100dvh-5.75rem)] w-dvw max-w-200 overflow-scroll px-1 md:max-h-[calc(100dvh-2.5rem)]"
     >

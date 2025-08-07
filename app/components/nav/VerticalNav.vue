@@ -39,6 +39,7 @@ const isNewSheetOpen = defineModel<boolean>("isNewSheetOpen");
     </div>
 
     <button
+      data-testid="new-todo-button"
       class="bg-primary hover:bg-primary-hover relative m-1 flex aspect-square h-10 cursor-pointer items-center justify-center rounded transition-colors"
       @click="isNewSheetOpen = true"
     >

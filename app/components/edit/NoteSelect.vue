@@ -32,6 +32,7 @@ onMounted(async () => {
     <textarea
       v-if="isEditing"
       v-model="note"
+      data-testid="note-input"
       class="border-secondary h-full w-full resize-none rounded border-1 pl-1"
       :placeholder="t('note')"
     />

@@ -64,6 +64,7 @@ const isValid = computed(() => {
 <template>
   <Sheet :is-open="isOpen" title="New Todo Sheet" @close="close">
     <form
+      data-testid="new-todo-sheet"
       class="flex h-full flex-col justify-between"
       @submit.prevent="onSubmitForm"
     >
@@ -77,6 +78,7 @@ const isValid = computed(() => {
       <div class="flex h-10 gap-1">
         <button
           type="button"
+          data-testid="submit-new-todo-button"
           :disabled="!isValid"
           class="bg-primary hover:bg-primary-hover disabled:bg-secondary flex flex-1 cursor-pointer items-center justify-center rounded transition-colors"
           @click="onAddTodo()"
@@ -85,6 +87,7 @@ const isValid = computed(() => {
         </button>
         <button
           type="button"
+          data-testid="submit-another-new-todo-button"
           :disabled="!isValid"
           class="bg-primary hover:bg-primary-hover disabled:bg-secondary flex w-min cursor-pointer items-center justify-center gap-1 rounded px-2 text-sm transition-colors"
           @click="onAddTodoNoClose"

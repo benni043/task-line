@@ -53,7 +53,7 @@ function onCategoryPress(category: LabelType) {
 </script>
 
 <template>
-  <div class="relative flex flex-col justify-center">
+  <div data-testid="todo" class="relative flex flex-col justify-center">
     <div class="flex items-center gap-1 pt-2 pb-1">
       <button class="cursor-pointer" :disabled="checking" @click="onCheck()">
         <div
@@ -78,7 +78,7 @@ function onCategoryPress(category: LabelType) {
         >
           <icon
             v-if="data.note ?? '' != ''"
-            class=""
+            data-testid="note-icon"
             size="20"
             name="material-symbols:note-outline"
           />
