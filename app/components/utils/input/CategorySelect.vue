@@ -23,7 +23,7 @@ function isSelected(category: LabelType): boolean {
 </script>
 
 <template>
-  <div class="overflow-scroll">
+  <div class="overflow-auto">
     <Label
       v-for="category in categoryStore.data"
       :key="category.uuid"

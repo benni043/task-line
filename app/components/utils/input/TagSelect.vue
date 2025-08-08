@@ -38,7 +38,7 @@ const tags = computed(() => {
 </script>
 
 <template>
-  <div class="overflow-scroll">
+  <div class="overflow-auto">
     <Label
       v-for="tag in tags"
       :key="tag.uuid"

@@ -26,7 +26,7 @@ function dropHandler(event: DragEvent, uuid: UUID) {
 <template>
   <div class="flex justify-center" data-testid="todos-container">
     <div
-      class="max-h-[calc(100dvh-5.75rem)] w-dvw max-w-200 overflow-scroll px-1 md:max-h-[calc(100dvh-2.5rem)]"
+      class="max-h-[calc(100dvh-5.75rem)] w-dvw max-w-200 overflow-auto px-1 md:max-h-[calc(100dvh-2.5rem)]"
     >
       <TransitionGroup
         leave-to-class="max-h-0! opacity-0 scale-y-0"
