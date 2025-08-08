@@ -92,7 +92,7 @@ function clear() {
       <RangeCalendarGrid
         v-for="month in grid"
         :key="month.value.toString()"
-        class="flex flex-1 flex-col gap-1"
+        class="flex flex-1 flex-col gap-2"
       >
         <RangeCalendarGridHead>
           <RangeCalendarGridRow class="flex">
@@ -118,7 +118,7 @@ function clear() {
               class="flex-1"
             >
               <RangeCalendarCellTrigger
-                class="border-secondary data-[outside-view]:text-muted-text data-[selected]:bg-secondary data-[today]:text-primary flex h-full w-full cursor-pointer items-center justify-center rounded border-1"
+                class="border-secondary data-[outside-view]:text-muted-text data-[selected]:bg-secondary data-[today]:text-primary data-[selection-end]:bg-secondary-hover data-[selection-start]:bg-secondary-hover flex h-full w-full cursor-pointer items-center justify-center rounded-md border-1"
                 :day="weekDate"
                 :month="month.value"
               />
