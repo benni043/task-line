@@ -4,7 +4,7 @@ import { Todo } from "~~/shared/types";
 
 export const Body = z.object({
   data: Todo,
-  position: z.literal(["top", "bottom"]),
+  position: z.literal(["top", "bottom"]).optional(),
   previousId: z.uuid().optional(),
 });
 

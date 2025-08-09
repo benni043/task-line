@@ -39,13 +39,13 @@ export const Todos = {
   async updateOrAdd(
     userId: string,
     todo: Todo,
-    position: "top" | "bottom",
+    position?: "top" | "bottom",
     previous?: UUID,
   ): Promise<Todo | H3Error> {
     const storage = useStorage();
     const todos = await Todos.getAll(userId);
 
-    updateOrInsertAfterTodo(todos, todo, position, previous);
+    updateOrInsertAfterTodo(todos, todo, position ?? "top", previous);
 
     await storage.set(getKey(userId), todos);
 
