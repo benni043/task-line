@@ -1,18 +1,21 @@
-FROM node:latest AS build
+# Build stage
+FROM node:22-alpine AS build
 WORKDIR /app
 
-COPY package.json .
-RUN npm i
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
 COPY . .
 
-RUN npm run build
+RUN pnpm run build
 
-# Run
-FROM node:latest
+# Run stage
+FROM node:22-alpine
 WORKDIR /app
 
 COPY --from=build /app/.output /app/.output
 
 EXPOSE 3000
-CMD [ "node", ".output/server/index.mjs" ]
+CMD ["node", ".output/server/index.mjs"]

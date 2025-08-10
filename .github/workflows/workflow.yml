@@ -10,9 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
 
-      - run: bun install
-      - run: bun lint:prettier
-      - run: bun lint:eslint
-      - run: bun lint:typecheck
+      - run: pnpm install
+      - run: pnpm lint:prettier
+      - run: pnpm lint:eslint
+      - run: pnpm lint:typecheck
