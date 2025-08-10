@@ -1,6 +1,7 @@
-import type { Page } from "@playwright/test";
+import type { Locator, Page } from "@playwright/test";
 import { v4 } from "uuid";
 import { Auth } from "~~/shared/auth";
+import { expect } from "@nuxt/test-utils/playwright";
 
 export async function setAuthCookie(page: Page) {
   await page.context().addCookies([
@@ -20,4 +21,39 @@ export async function setAuthCookie(page: Page) {
       sameSite: "Lax",
     },
   ]);
+}
+
+export async function addTodo(page: Page, title: string, note?: string) {
+  await page.getByTestId("new-todo-button").click();
+  await expect(page.getByTestId("new-todo-sheet").first()).toBeVisible();
+
+  fillTodo(page, title, note);
+
+  await page.getByTestId("submit-new-todo-button").click();
+  const response = await page.waitForResponse("/api/todos");
+  expect(response.status()).toBe(200);
+}
+
+export async function editTodo(
+  page: Page,
+  todo: Locator,
+  title: string,
+  note?: string,
+) {
+  await todo.click();
+  await expect(page.getByTestId("edit-todo-sheet").first()).toBeVisible();
+
+  fillTodo(page, title, note);
+
+  await page.getByTestId("submit-edit-todo-button").click();
+  const response = await page.waitForResponse("/api/todos");
+  expect(response.status()).toBe(200);
+}
+
+export async function fillTodo(page: Page, title: string, note?: string) {
+  await page.getByTestId("title-input").fill(title);
+
+  if (note) {
+    await page.getByTestId("note-input").fill(note);
+  }
 }

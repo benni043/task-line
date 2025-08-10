@@ -1,16 +1,11 @@
 import { test, expect } from "@nuxt/test-utils/playwright";
-import { setAuthCookie } from "./utils";
+import { addTodo, setAuthCookie } from "./utils";
 
 test("can add todo", async ({ page, goto }) => {
   await setAuthCookie(page);
   await goto("/", { waitUntil: "hydration" });
 
-  await page.getByTestId("new-todo-button").click();
-  await expect(page.getByTestId("new-todo-sheet").first()).toBeVisible();
-
-  await page.getByTestId("title-input").fill("new Todo");
-
-  await page.getByTestId("submit-new-todo-button").click();
+  await addTodo(page, "new Todo");
 
   // check todo creation
   await expect(page.getByTestId("todos-container").first()).toBeVisible();
@@ -48,13 +43,7 @@ test("can add todo with notes", async ({ page, goto }) => {
   await setAuthCookie(page);
   await goto("/", { waitUntil: "hydration" });
 
-  await page.getByTestId("new-todo-button").click();
-  await expect(page.getByTestId("new-todo-sheet").first()).toBeVisible();
-
-  await page.getByTestId("title-input").fill("new Todo");
-  await page.getByTestId("note-input").fill("some notes");
-
-  await page.getByTestId("submit-new-todo-button").click();
+  await addTodo(page, "new Todo", "some notes");
 
   // check todo creation
   await expect(page.getByTestId("todos-container")).toBeVisible();

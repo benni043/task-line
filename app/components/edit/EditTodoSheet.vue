@@ -49,6 +49,7 @@ const isValid = computed(() => {
 <template>
   <Sheet :is-open="isOpen" title="Edit Todo Sheet" @close="close">
     <form
+      data-testid="edit-todo-sheet"
       class="flex h-full flex-col justify-between"
       @submit.prevent="onSaveTodo"
     >
@@ -61,6 +62,7 @@ const isValid = computed(() => {
       />
       <button
         type="submit"
+        data-testid="submit-edit-todo-button"
         :disabled="!isValid"
         class="bg-primary hover:bg-primary-hover disabled:bg-secondary flex aspect-square h-10 cursor-pointer items-center justify-center rounded transition-colors"
       >
