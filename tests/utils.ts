@@ -27,7 +27,7 @@ export async function addTodo(page: Page, title: string, note?: string) {
   await page.getByTestId("new-todo-button").click();
   await expect(page.getByTestId("new-todo-sheet").first()).toBeVisible();
 
-  fillTodo(page, title, note);
+  await fillTodo(page, title, note);
 
   await page.getByTestId("submit-new-todo-button").click();
   const response = await page.waitForResponse("/api/todos");
@@ -43,7 +43,7 @@ export async function editTodo(
   await todo.click();
   await expect(page.getByTestId("edit-todo-sheet").first()).toBeVisible();
 
-  fillTodo(page, title, note);
+  await fillTodo(page, title, note);
 
   await page.getByTestId("submit-edit-todo-button").click();
   const response = await page.waitForResponse("/api/todos");

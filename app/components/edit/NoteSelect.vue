@@ -21,6 +21,7 @@ onMounted(async () => {
 <template>
   <button
     class="top 0 hover:bg-secondary-hover bg-secondary absolute right-0 h-7 w-7 cursor-pointer rounded"
+    type="button"
     @click.prevent="isEditing = !isEditing"
   >
     <div class="flex h-full items-center justify-center">

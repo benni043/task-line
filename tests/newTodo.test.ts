@@ -1,11 +1,32 @@
 import { test, expect } from "@nuxt/test-utils/playwright";
-import { addTodo, setAuthCookie } from "./utils";
+import { addTodo, fillTodo, setAuthCookie } from "./utils";
 
 test("can add todo", async ({ page, goto }) => {
   await setAuthCookie(page);
   await goto("/", { waitUntil: "hydration" });
 
   await addTodo(page, "new Todo");
+
+  // check todo creation
+  await expect(page.getByTestId("todos-container").first()).toBeVisible();
+  await expect(page.getByTestId("todos-container").first()).toHaveText(
+    "new Todo",
+  );
+});
+
+test("can add todo via enter", async ({ page, goto }) => {
+  await setAuthCookie(page);
+  await goto("/", { waitUntil: "hydration" });
+
+  await page.getByTestId("new-todo-button").click();
+  await expect(page.getByTestId("new-todo-sheet").first()).toBeVisible();
+
+  await fillTodo(page, "new Todo");
+
+  await page.keyboard.down("Enter");
+
+  const response = await page.waitForResponse("/api/todos");
+  expect(response.status()).toBe(200);
 
   // check todo creation
   await expect(page.getByTestId("todos-container").first()).toBeVisible();
