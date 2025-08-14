@@ -29,8 +29,9 @@ export async function addTodo(page: Page, title: string, note?: string) {
 
   await fillTodo(page, title, note);
 
+  const responsePromise = page.waitForResponse("/api/todos");
   await page.getByTestId("submit-new-todo-button").click();
-  const response = await page.waitForResponse("/api/todos");
+  const response = await responsePromise;
   expect(response.status()).toBe(200);
 }
 
@@ -45,8 +46,9 @@ export async function editTodo(
 
   await fillTodo(page, title, note);
 
+  const responsePromise = page.waitForResponse("/api/todos");
   await page.getByTestId("submit-edit-todo-button").click();
-  const response = await page.waitForResponse("/api/todos");
+  const response = await responsePromise;
   expect(response.status()).toBe(200);
 }
 

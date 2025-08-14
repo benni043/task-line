@@ -32,42 +32,6 @@ export default defineNuxtConfig({
     "nuxt-vue3-google-signin",
   ],
   css: ["~/assets/css/main.css"],
-  nitro: {
-    storage: {
-      todos: {
-        base: "todos",
-        driver: "upstash",
-        url: process.env.UPSTASH_URL,
-        token: process.env.UPSTASH_TOKEN,
-      },
-      tags: {
-        base: "tags",
-        driver: "upstash",
-        url: process.env.UPSTASH_URL,
-        token: process.env.UPSTASH_TOKEN,
-      },
-      categories: {
-        base: "categories",
-        driver: "upstash",
-        url: process.env.UPSTASH_URL,
-        token: process.env.UPSTASH_TOKEN,
-      },
-    },
-    devStorage: {
-      todos: {
-        driver: "fs",
-        base: "storage/todos",
-      },
-      tags: {
-        driver: "fs",
-        base: "storage/tags",
-      },
-      categories: {
-        driver: "fs",
-        base: "storage/categories",
-      },
-    },
-  },
   vite: {
     plugins: [tailwindcss()],
     clearScreen: false,
@@ -85,6 +49,11 @@ export default defineNuxtConfig({
     },
     googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
     jwtSecret: process.env.JWT_SECRET,
+    upstash: {
+      url: process.env.UPSTASH_URL,
+      token: process.env.UPSTASH_TOKEN,
+    },
+    NUXT_ENV: process.env.NUXT_ENV,
   },
   googleSignIn: {
     clientId: process.env.GOOGLE_CLIENT_ID,

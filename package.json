@@ -19,7 +19,7 @@
     "lint:typecheck": "nuxi typecheck",
     "lint:full": "npm run lint && npm run lint:typecheck",
     "lint:fix": "eslint . --fix && prettier --write --list-different .",
-    "test": "playwright test"
+    "test": "cross-env NUXT_ENV=test playwright test"
   },
   "dependencies": {
     "@internationalized/date": "=3.7.0",
@@ -38,6 +38,7 @@
     "reka-ui": "^2.4.1",
     "std-env": "^3.9.0",
     "tailwindcss": "^4.1.11",
+    "unstorage": "^1.16.1",
     "uuid": "^11.1.0",
     "vaul-vue": "^0.4.1",
     "vue": "^3.5.18",
@@ -54,6 +55,7 @@
     "@tauri-apps/cli": "^2.7.1",
     "@types/jsonwebtoken": "^9.0.10",
     "@vueuse/nuxt": "^13.6.0",
+    "cross-env": "^10.0.0",
     "eslint": "^9.32.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.3",
