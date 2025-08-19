@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@internationalized/date':
-        specifier: ^3.7.0
+        specifier: '=3.7.0'
         version: 3.7.0
       '@nuxt/icon':
         specifier: ^1.15.0
