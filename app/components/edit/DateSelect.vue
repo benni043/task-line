@@ -40,17 +40,19 @@ if (timeframe.value) {
 }
 
 watch(dateRange, (value) => {
-  //todo - correcly handle deselection and single day selection - https://github.com/unovue/reka-ui/issues/1820
-
-  if (value.end == undefined || value.start == undefined) {
+  if (value.end == undefined && value.start == undefined) {
     timeframe.value = undefined;
-    return;
+  } else if (value.end == undefined) {
+    timeframe.value = {
+      start: value.start!.toString(),
+      end: value.start!.toString(),
+    };
+  } else {
+    timeframe.value = {
+      start: value.start!.toString(),
+      end: value.end!.toString(),
+    };
   }
-
-  timeframe.value = {
-    start: value.start!.toString(),
-    end: value.end!.toString(),
-  };
 });
 
 function clear() {
