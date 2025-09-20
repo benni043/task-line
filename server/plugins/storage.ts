@@ -4,7 +4,7 @@ import memoryDriver from "unstorage/drivers/memory";
 
 export default defineNitroPlugin(() => {
   let env = useRuntimeConfig().NUXT_ENV;
-  if (env === undefined || env == "") {
+  if (env === undefined || env === "") {
     env = process.env.NODE_ENV ?? "";
   }
 

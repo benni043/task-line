@@ -1,7 +1,6 @@
 import { OAuth2Client } from "google-auth-library";
 import jwt from "jsonwebtoken";
 import type { JwtPayload, JwtToken } from "#shared/types";
-import { Auth } from "#shared/auth";
 
 const runtimeConfig = useRuntimeConfig();
 const oAuthClient = new OAuth2Client(
@@ -18,7 +17,7 @@ export default defineEventHandler(async (event): Promise<JwtToken> => {
     const result = await oAuthClient.getToken(code);
     const decode = jwt.decode(result.res?.data.id_token) as JwtPayload;
 
-    const token = Auth.create(decode?.sub, decode?.email, decode?.picture);
+    const token = AuthApi.create(decode?.sub, decode?.email, decode?.picture);
 
     return { token: token };
   } catch (err) {
