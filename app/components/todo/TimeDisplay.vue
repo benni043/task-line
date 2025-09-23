@@ -20,19 +20,22 @@ const time = computed(() => {
   };
 });
 
-const cappedStart = computed(() => {
-  return Math.max(time.value.start, sanitizeDate(new Date()).getTime());
-});
-
-const cappedEnd = computed(() => {
+function capTime(time: number): number {
   return Math.min(
-    time.value.end,
+    Math.max(time, sanitizeDate(new Date()).getTime()),
     addDays(sanitizeDate(new Date()), 7).getTime(),
   );
+}
+
+const cappedTime = computed(() => {
+  return {
+    start: capTime(time.value.start),
+    end: capTime(time.value.end),
+  };
 });
 
 const width = computed(() => {
-  const timeDiff = cappedEnd.value - cappedStart.value;
+  const timeDiff = cappedTime.value.end - cappedTime.value.start;
   const numberOfDays = timeDiff / (24 * 60 * 60 * 1000.0);
   const percentage = numberOfDays / 7.0;
   return percentage;
@@ -42,7 +45,7 @@ const offset = computed(() => {
   const now = new Date();
   now.setHours(0, 0, 0, 0);
 
-  const timeDiff = cappedStart.value - now.getTime();
+  const timeDiff = cappedTime.value.start - now.getTime();
   const numberOfDays = timeDiff / (24 * 60 * 60 * 1000.0);
   const percentage = numberOfDays / 7.0;
   return percentage;
