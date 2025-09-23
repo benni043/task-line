@@ -44,43 +44,45 @@ onMounted(async () => {
 <style>
 @reference "~/assets/css/main.css";
 
-.markdown h1 {
-  @apply mt-6 mb-4 text-3xl leading-tight font-bold;
-}
-.markdown h2 {
-  @apply mt-6 mb-3 text-2xl leading-snug font-semibold;
-}
-.markdown h3 {
-  @apply mt-5 mb-2 text-xl leading-snug font-semibold;
-}
-.markdown h4 {
-  @apply mt-4 mb-2 text-lg font-medium;
-}
-.markdown p {
-  @apply mb-4 text-base leading-relaxed;
-}
-.markdown a {
-  @apply text-primary hover:underline;
-}
-.markdown ul {
-  @apply mb-4 list-inside list-disc space-y-1;
-}
-.markdown ol {
-  @apply mb-4 list-inside list-decimal space-y-1;
-}
-.markdown blockquote {
-  @apply my-4 border-l-4 border-gray-300 pl-4 text-gray-700 italic;
-}
-.markdown code {
-  @apply rounded bg-gray-100 px-1 py-0.5 font-mono text-sm;
-}
-.markdown pre {
-  @apply overflow-x-auto rounded bg-gray-900 p-4 text-sm text-gray-100;
-}
-.markdown img {
-  @apply my-4 rounded-lg;
-}
-.markdown hr {
-  @apply my-6 border-t border-gray-300;
+.markdown {
+  h1 {
+    @apply mt-6 mb-4 text-3xl leading-tight font-bold;
+  }
+  h2 {
+    @apply mt-6 mb-3 text-2xl leading-snug font-semibold;
+  }
+  h3 {
+    @apply mt-5 mb-2 text-xl leading-snug font-semibold;
+  }
+  h4 {
+    @apply mt-4 mb-2 text-lg font-medium;
+  }
+  p {
+    @apply mb-4 text-base leading-relaxed;
+  }
+  a {
+    @apply text-primary hover:underline;
+  }
+  ul {
+    @apply mb-4 list-inside list-disc space-y-1;
+  }
+  ol {
+    @apply mb-4 list-inside list-decimal space-y-1;
+  }
+  blockquote {
+    @apply text-background border-secondary my-4 border-l-4 pl-4 italic;
+  }
+  code {
+    @apply inline font-mono text-sm;
+  }
+  pre {
+    @apply bg-background overflow-x-auto rounded p-4 text-sm;
+  }
+  img {
+    @apply my-4 rounded-lg;
+  }
+  hr {
+    @apply border-secondary my-6 border-t;
+  }
 }
 </style>
