@@ -46,10 +46,6 @@ const category = computed(() => {
 
   return categoryStore.getByUUID(props.data.category);
 });
-
-function onCategoryPress(category: LabelType) {
-  filter.value.category = category.uuid;
-}
 </script>
 
 <template>
@@ -57,7 +53,11 @@ function onCategoryPress(category: LabelType) {
     <div class="flex items-center gap-1 pt-2 pb-1">
       <button class="cursor-pointer" :disabled="checking" @click="onCheck()">
         <div
-          class="border-secondary m-1 flex h-8 w-8 items-center justify-center rounded-xl border-2"
+          class="border-secondary m-1 flex h-8 w-8 items-center justify-center rounded-xl border-2 transition-all"
+          :style="{
+            'border-color': category?.color,
+          }"
+          :title="category?.name"
         >
           <transition
             class="transition-opacity duration-500"
@@ -85,14 +85,6 @@ function onCategoryPress(category: LabelType) {
           {{ data.title }}
         </button>
         <div class="flex gap-1">
-          <Label
-            v-if="category != undefined"
-            :label="category!"
-            type="category"
-            :is-selected="false"
-            class="text-xs"
-            @press="onCategoryPress(category!)"
-          />
           <Label
             v-for="tag in tags"
             :key="tag?.uuid"
