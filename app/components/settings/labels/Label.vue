@@ -9,7 +9,7 @@ import {
 import type { Label } from "~~/shared/types";
 import EditLabel from "./EditLabel.vue";
 
-const props = defineProps<{ label: Label; isUsed: boolean }>();
+const props = defineProps<{ label: Label; isUsed: boolean; count?: number }>();
 const emit = defineEmits<{ save: [Label]; delete: [Label] }>();
 
 function onSaveLabel(label: Label) {

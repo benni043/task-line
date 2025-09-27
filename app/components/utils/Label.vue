@@ -5,6 +5,7 @@ const props = defineProps<{
   label: Label;
   isSelected: boolean;
   type: "tag" | "category";
+  count?: number;
 }>();
 const emits = defineEmits(["press"]);
 
@@ -30,5 +31,6 @@ const fontColor = computed(() => {
     @click="emits('press')"
   >
     {{ label.name }}
+    <span v-if="count" class="border-l-1 pl-1">{{ count }}</span>
   </button>
 </template>
