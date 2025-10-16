@@ -1,26 +1,9 @@
 <script setup lang="ts">
-import type { UUID } from "~~/shared/types";
 import { useFilteredTodos } from "~/composables/useFilteredTodos";
-
-const todoStore = useTodoStore();
 
 const filterdTodos = useFilteredTodos();
 
-function startDrag(event: DragEvent, uuid: UUID) {
-  event.dataTransfer!.setData("text", uuid);
-  (event.target as HTMLElement).dataset.dragged = "true";
-}
-
-function endDrag(event: DragEvent) {
-  delete (event.target as HTMLElement).dataset.dragged;
-}
-
-function dropHandler(event: DragEvent, uuid: UUID) {
-  event.preventDefault();
-  const dragedUUID = event.dataTransfer!.getData("text");
-
-  todoStore.moveTodo(dragedUUID, uuid);
-}
+const { startDrag, endDrag, dropOnTodoHandler } = useTodoDragging();
 </script>
 
 <template>
@@ -51,7 +34,7 @@ function dropHandler(event: DragEvent, uuid: UUID) {
           "
           @drop="
             (event: DragEvent) => {
-              dropHandler(event, todo.uuid);
+              dropOnTodoHandler(event, todo.uuid);
             }
           "
         />
