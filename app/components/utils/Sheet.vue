@@ -35,13 +35,15 @@ const useModal = useMediaQuery("(min-width: 40rem)");
         <DrawerContent
           class="bg-surface fixed bottom-0 z-30 flex h-96 w-dvw flex-col gap-2 rounded-t-lg p-1 pt-2 drop-shadow-lg"
         >
-          <div class="h-full overflow-auto">
+          <div class="h-full">
             <VisuallyHidden>
               <DrawerTitle>{{ title }}</DrawerTitle>
               <DrawerDescription>{{ title }}</DrawerDescription>
             </VisuallyHidden>
             <DrawerHandle class="" />
-            <slot />
+            <div class="h-full overflow-auto pt-2">
+              <slot />
+            </div>
           </div>
         </DrawerContent>
       </DrawerPortal>
