@@ -23,7 +23,6 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     "@nuxt/icon",
-    "@nuxt/eslint",
     "@nuxt/test-utils/module",
     "@nuxtjs/device",
     "@nuxtjs/i18n",

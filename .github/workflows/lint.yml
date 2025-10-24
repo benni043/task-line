@@ -1,4 +1,4 @@
-name: my-workflow
+name: lint
 on:
   push:
     branches: [main]
@@ -19,6 +19,5 @@ jobs:
           cache: pnpm
 
       - run: pnpm install
-      - run: pnpm lint:prettier
-      - run: pnpm lint:eslint
+      - run: pnpm biome ci
       - run: pnpm lint:typecheck
