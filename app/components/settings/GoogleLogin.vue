@@ -1,5 +1,4 @@
 <script setup lang="ts">
-	import type { ImplicitFlowSuccessResponse } from "vue3-google-signin";
 	import {
 		PopoverArrow,
 		PopoverContent,
@@ -7,6 +6,7 @@
 		PopoverRoot,
 		PopoverTrigger,
 	} from "reka-ui";
+	import type { ImplicitFlowSuccessResponse } from "vue3-google-signin";
 	import { useLoginImageUrl } from "~/composables/login/useLoginImageUrl";
 	import { useLoginToken } from "~/composables/login/useLoginToken";
 

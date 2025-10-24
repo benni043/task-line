@@ -1,8 +1,8 @@
 import type { EventHandlerRequest, H3Event } from "h3";
-import { H3Error, getCookie } from "h3";
+import { getCookie, H3Error } from "h3";
 import jwt from "jsonwebtoken";
-import type { JwtPayload } from "~~/shared/types";
 import { Auth } from "~~/shared/auth";
+import type { JwtPayload } from "~~/shared/types";
 
 export function defineAuthenticatedEventHandler<T>(
 	handler: (

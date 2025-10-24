@@ -1,8 +1,8 @@
 <script setup lang="ts">
 	import { useTagStore } from "~/stores/labels/useTagStore";
-	import CustomLabel from "./labels/Label.vue";
 	import type { Label as LabelType } from "~~/shared/types";
 	import AddLabel from "./labels/AddLabel.vue";
+	import CustomLabel from "./labels/Label.vue";
 
 	const { t } = useI18n();
 

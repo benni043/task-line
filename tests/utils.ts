@@ -1,7 +1,7 @@
+import { expect } from "@nuxt/test-utils/playwright";
 import type { Locator, Page } from "@playwright/test";
 import { v4 } from "uuid";
 import { Auth } from "~~/shared/auth";
-import { expect } from "@nuxt/test-utils/playwright";
 
 export async function setAuthCookie(page: Page) {
 	await page.context().addCookies([

@@ -1,4 +1,4 @@
-import { test, expect } from "@nuxt/test-utils/playwright";
+import { expect, test } from "@nuxt/test-utils/playwright";
 import { addTodo, fillTodo, setAuthCookie } from "./utils";
 
 test("can add todo", async ({ page, goto }) => {

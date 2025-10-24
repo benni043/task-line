@@ -1,8 +1,8 @@
 <script setup lang="ts">
-	import type { Label as LabelType, UUID } from "~~/shared/types";
-	import CustomLabel from "../Label.vue";
 	import { useFilteredTodos } from "~/composables/useFilteredTodos";
 	import { useTagStore } from "~/stores/labels/useTagStore";
+	import type { Label as LabelType, UUID } from "~~/shared/types";
+	import CustomLabel from "../Label.vue";
 
 	const activeTags = defineModel<UUID[]>("tags", { required: true });
 

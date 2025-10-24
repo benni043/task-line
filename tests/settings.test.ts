@@ -1,4 +1,4 @@
-import { test, expect } from "@nuxt/test-utils/playwright";
+import { expect, test } from "@nuxt/test-utils/playwright";
 import { setAuthCookie } from "./utils";
 
 test("can open settings", async ({ page, goto }) => {

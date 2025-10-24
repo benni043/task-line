@@ -1,10 +1,10 @@
 <script setup lang="ts">
+	import type { Locale } from "vue-i18n";
+	import { useI18n } from "vue-i18n";
 	import Sheet from "../utils/Sheet.vue";
 	import Categories from "./Categories.vue";
 	import GoogleLogin from "./GoogleLogin.vue";
 	import Tags from "./Tags.vue";
-	import { useI18n } from "vue-i18n";
-	import type { Locale } from "vue-i18n";
 
 	const { t } = useI18n();
 

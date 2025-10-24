@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { RadioGroupRoot, RadioGroupItem } from "reka-ui";
+	import { RadioGroupItem, RadioGroupRoot } from "reka-ui";
 
 	const { t } = useI18n();
 

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 	import {
-		PopoverTrigger,
-		PopoverRoot,
-		PopoverPortal,
 		PopoverArrow,
 		PopoverContent,
+		PopoverPortal,
+		PopoverRoot,
+		PopoverTrigger,
 	} from "reka-ui";
 	import type { Label } from "~~/shared/types";
 	import EditLabel from "./EditLabel.vue";

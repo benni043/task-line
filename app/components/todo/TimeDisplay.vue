@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { parseDate, getLocalTimeZone } from "@internationalized/date";
+	import { getLocalTimeZone, parseDate } from "@internationalized/date";
 	import type { Timeframe } from "~~/shared/types";
 
 	const props = defineProps<{ timeframe: Timeframe }>();

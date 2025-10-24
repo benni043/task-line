@@ -7,9 +7,9 @@
 		TabsTrigger,
 	} from "reka-ui";
 	import type { Timeframe, UUID } from "~~/shared/types";
+	import CategorySelect from "../utils/input/CategorySelect.vue";
 	import TagSelect from "../utils/input/TagSelect.vue";
 	import DateSelect from "./DateSelect.vue";
-	import CategorySelect from "../utils/input/CategorySelect.vue";
 	import NoteSelect from "./NoteSelect.vue";
 
 	const { t } = useI18n();

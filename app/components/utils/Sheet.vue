@@ -2,20 +2,20 @@
 	import {
 		DialogContent,
 		DialogDescription,
+		DialogOverlay,
 		DialogPortal,
 		DialogRoot,
 		DialogTitle,
 		VisuallyHidden,
-		DialogOverlay,
 	} from "reka-ui";
 	import {
-		DrawerRoot,
-		DrawerPortal,
-		DrawerOverlay,
 		DrawerContent,
-		DrawerHandle,
-		DrawerTitle,
 		DrawerDescription,
+		DrawerHandle,
+		DrawerOverlay,
+		DrawerPortal,
+		DrawerRoot,
+		DrawerTitle,
 	} from "vaul-vue";
 
 	defineProps<{ isOpen: boolean; title: string }>();

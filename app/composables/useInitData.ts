@@ -1,6 +1,6 @@
+import { useCategoryStore } from "~/stores/labels/useCategoryStore";
 import { useTagStore } from "~/stores/labels/useTagStore";
 import { useLoginToken } from "./login/useLoginToken";
-import { useCategoryStore } from "~/stores/labels/useCategoryStore";
 
 export async function useInitdata() {
 	const todoStore = useTodoStore();

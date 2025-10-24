@@ -1,9 +1,9 @@
 <script setup lang="ts">
-	import { ref, computed } from "vue";
-	import Sheet from "../utils/Sheet.vue";
-	import TitleSelect from "./TitleSelect.vue";
+	import { computed, ref } from "vue";
 	import type { TodoData } from "~~/shared/types";
+	import Sheet from "../utils/Sheet.vue";
 	import DataSelect from "./DataSelect.vue";
+	import TitleSelect from "./TitleSelect.vue";
 
 	const { t } = useI18n();
 

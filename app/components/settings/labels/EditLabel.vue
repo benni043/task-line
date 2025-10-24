@@ -1,10 +1,10 @@
 <script setup lang="ts">
 	import {
+		PopoverArrow,
 		PopoverContent,
 		PopoverPortal,
 		PopoverRoot,
 		PopoverTrigger,
-		PopoverArrow,
 	} from "reka-ui";
 	import type { Label } from "~~/shared/types";
 

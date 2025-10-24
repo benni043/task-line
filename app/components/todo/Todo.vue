@@ -1,9 +1,9 @@
 <script setup lang="ts">
+	import { useCategoryStore } from "~/stores/labels/useCategoryStore";
+	import { useTagStore } from "~/stores/labels/useTagStore";
 	import type { Label as LabelType, Todo } from "~~/shared/types";
 	import CustomLabel from "../utils/Label.vue";
 	import TimeDisplay from "./TimeDisplay.vue";
-	import { useTagStore } from "~/stores/labels/useTagStore";
-	import { useCategoryStore } from "~/stores/labels/useCategoryStore";
 
 	const props = defineProps<{ data: Todo }>();
 

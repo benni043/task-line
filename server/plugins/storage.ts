@@ -1,6 +1,6 @@
-import upstashDriver from "unstorage/drivers/upstash";
 import fsDriver from "unstorage/drivers/fs";
 import memoryDriver from "unstorage/drivers/memory";
+import upstashDriver from "unstorage/drivers/upstash";
 
 export default defineNitroPlugin(() => {
 	let env = useRuntimeConfig().NUXT_ENV;
