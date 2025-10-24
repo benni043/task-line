@@ -31,7 +31,7 @@
 	});
 
 	const isValid = computed(() => {
-		return label.value.name != "" && label.value.color != "";
+		return label.value.name !== "" && label.value.color !== "";
 	});
 
 	function onRandomizeColor() {

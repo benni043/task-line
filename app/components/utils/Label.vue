@@ -20,7 +20,7 @@
 <template>
 	<button
 		type="button"
-		class="cursor-pointer rounded border-1 px-1 text-nowrap transition-all"
+		class="cursor-pointer rounded border px-1 text-nowrap transition-all"
 		:class="{
       'border-secondary': type == 'tag',
     }"
@@ -31,6 +31,6 @@
 		@click="emits('press')"
 	>
 		{{ label.name }}
-		<span v-if="count" class="border-l-1 pl-1">{{ count }}</span>
+		<span v-if="count" class="border-l pl-1">{{ count }}</span>
 	</button>
 </template>

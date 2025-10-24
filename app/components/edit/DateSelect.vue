@@ -40,9 +40,9 @@
 	}
 
 	watch(dateRange, (value) => {
-		if (value.end == undefined && value.start == undefined) {
+		if (value.end === undefined && value.start === undefined) {
 			timeframe.value = undefined;
-		} else if (value.end == undefined) {
+		} else if (value.end === undefined) {
 			timeframe.value = {
 				start: value.start!.toString(),
 				end: value.start!.toString(),

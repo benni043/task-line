@@ -20,8 +20,8 @@ export const Todos = {
 		const storage = useStorage();
 		const todos = await Todos.getAll(userId);
 
-		const targetIndex = todos.findIndex((todo) => todo.uuid == to);
-		const movedIndex = todos.findIndex((todo) => todo.uuid == toMove);
+		const targetIndex = todos.findIndex((todo) => todo.uuid === to);
+		const movedIndex = todos.findIndex((todo) => todo.uuid === toMove);
 
 		if (targetIndex === -1 || movedIndex === -1)
 			return createError({
@@ -57,7 +57,7 @@ export const Todos = {
 		const todos = await Todos.getAll(userId);
 
 		const index = todos.findIndex((value) => value.uuid === uuid);
-		if (index == -1)
+		if (index === -1)
 			return createError({
 				status: 404,
 				statusMessage: "Not Found",

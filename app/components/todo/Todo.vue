@@ -42,7 +42,7 @@
 	}
 	const category = computed(() => {
 		if (!props.data.category) return undefined;
-		if (filter.value.category == props.data.category) return undefined;
+		if (filter.value.category === props.data.category) return undefined;
 
 		return categoryStore.getByUUID(props.data.category);
 	});

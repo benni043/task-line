@@ -38,7 +38,7 @@ export const Labels = {
 		const labels = await Labels.getAll(userId, getKey);
 
 		const index = labels.findIndex((value) => value.uuid === uuid);
-		if (index == -1)
+		if (index === -1)
 			return createError({
 				status: 404,
 				statusMessage: "Not Found",

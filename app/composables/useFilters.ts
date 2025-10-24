@@ -20,10 +20,10 @@ export function useFilter() {
 	});
 
 	const isFiltering = computed(() => {
-		if (filter.value.time != "all") return true;
-		if (filter.value.category != undefined) return true;
+		if (filter.value.time !== "all") return true;
+		if (filter.value.category !== undefined) return true;
 
-		return filter.value.tags.length != 0;
+		return filter.value.tags.length !== 0;
 	});
 
 	return { filter, isFiltering };

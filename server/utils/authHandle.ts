@@ -24,7 +24,7 @@ export const AuthApi = {
 			id,
 			email,
 			picture,
-			(runtimeConfig.public.jwtTTL + "s") as `${number}s`,
+			`${runtimeConfig.public.jwtTTL}s` as `${number}s`,
 			runtimeConfig.jwtSecret,
 		);
 	},

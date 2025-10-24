@@ -11,7 +11,7 @@
 	const todoStore = useTodoStore();
 
 	function onPress(category: UUID) {
-		if (activeCategory.value == category) {
+		if (activeCategory.value === category) {
 			activeCategory.value = undefined;
 		} else {
 			activeCategory.value = category;
@@ -19,7 +19,7 @@
 	}
 
 	function isSelected(category: LabelType): boolean {
-		return activeCategory.value == category.uuid;
+		return activeCategory.value === category.uuid;
 	}
 
 	const categoryCount = computed(() => {

@@ -37,7 +37,7 @@
 				class="inline-block pr-1 pb-1"
 			>
 				<CustomLabel
-					class="border-secondary flex items-center gap-0.5 rounded border-1 pl-1"
+					class="border-secondary flex items-center gap-0.5 rounded border pl-1"
 					:style="{ color: tag.color }"
 					:label="tag"
 					:is-used="isUsed(tag)"

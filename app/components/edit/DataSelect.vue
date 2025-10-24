@@ -30,7 +30,7 @@
 			class="border-secondary relative flex justify-around border-b py-1"
 		>
 			<TabsIndicator
-				class="bg-primary absolute bottom-0 left-0 h-[1px] w-(--reka-tabs-indicator-size) translate-x-(--reka-tabs-indicator-position) translate-y-[1px] rounded-full duration-300"
+				class="bg-primary absolute bottom-0 left-0 h-px w-(--reka-tabs-indicator-size) translate-x-(--reka-tabs-indicator-position) translate-y-px rounded-full duration-300"
 			>
 				<div/>
 			</TabsIndicator>
