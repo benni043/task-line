@@ -1,13 +1,13 @@
 <script setup lang="ts">
-const { t } = useI18n();
-const title = defineModel<string>("title");
+	const { t } = useI18n();
+	const title = defineModel<string>("title");
 </script>
 
 <template>
-  <input
-    v-model="title"
-    data-testid="title-input"
-    :placeholder="t('title')"
-    class="border-secondary rounded border-2 pl-1 text-xl"
-  />
+	<input
+		v-model="title"
+		data-testid="title-input"
+		:placeholder="t('title')"
+		class="border-secondary rounded border-2 pl-1 text-xl"
+	>
 </template>

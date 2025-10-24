@@ -5,159 +5,159 @@ import { updateOrInsertAfterTodo } from "~~/shared/array";
 import type { Todo, TodoData, UUID } from "~~/shared/types";
 
 export const useTodoStore = defineStore("todos", {
-  state: (): { data: Todo[]; sse: EventSource | undefined } => ({
-    data: [],
-    sse: undefined,
-  }),
-  actions: {
-    async fetch() {
-      const fetch = useRequestFetch();
-      const data = await fetch("/api/todos", { ...useFetchOptions() }).catch(
-        async (err) => {
-          //todo - show in toast
-          console.warn(err);
-          return [];
-        },
-      );
+	state: (): { data: Todo[]; sse: EventSource | undefined } => ({
+		data: [],
+		sse: undefined,
+	}),
+	actions: {
+		async fetch() {
+			const fetch = useRequestFetch();
+			const data = await fetch("/api/todos", { ...useFetchOptions() }).catch(
+				async (err) => {
+					//todo - show in toast
+					console.warn(err);
+					return [];
+				},
+			);
 
-      this.data = data;
-    },
-    reset() {
-      this.data = [];
-      this.stopSSE();
-    },
+			this.data = data;
+		},
+		reset() {
+			this.data = [];
+			this.stopSSE();
+		},
 
-    async initSSE() {
-      this.stopSSE();
-      this.sse = new EventSource("/api/todos/sse");
+		async initSSE() {
+			this.stopSSE();
+			this.sse = new EventSource("/api/todos/sse");
 
-      this.sse.onmessage = (event) => {
-        const todos = JSON.parse(event.data);
-        this.data = todos;
-      };
-    },
-    stopSSE() {
-      if (!this.sse) return;
-      this.sse.close();
-    },
+			this.sse.onmessage = (event) => {
+				const todos = JSON.parse(event.data);
+				this.data = todos;
+			};
+		},
+		stopSSE() {
+			if (!this.sse) return;
+			this.sse.close();
+		},
 
-    async removeTodo(uuid: UUID) {
-      this.data = this.data.filter((todo) => todo.uuid !== uuid);
+		async removeTodo(uuid: UUID) {
+			this.data = this.data.filter((todo) => todo.uuid !== uuid);
 
-      const fetch = useRequestFetch();
-      await fetch(`/api/todos/${uuid}`, {
-        method: "DELETE",
-        ...useFetchOptions(),
-      }).catch(async (err) => {
-        //todo - show in toast
-        console.warn(err);
-        await this.fetch();
-      });
-    },
+			const fetch = useRequestFetch();
+			await fetch(`/api/todos/${uuid}`, {
+				method: "DELETE",
+				...useFetchOptions(),
+			}).catch(async (err) => {
+				//todo - show in toast
+				console.warn(err);
+				await this.fetch();
+			});
+		},
 
-    async addTodo(todoData: TodoData) {
-      const { settings } = useSettings();
+		async addTodo(todoData: TodoData) {
+			const { settings } = useSettings();
 
-      let todos = filterTodos(this.data, {
-        category: todoData.category,
-        tags: todoData.tags,
-        time: "all",
-      });
-      if (todos.length === 0) {
-        todos = filterTodos(this.data, {
-          category: todoData.category,
-          tags: [],
-          time: "all",
-        });
-      }
+			let todos = filterTodos(this.data, {
+				category: todoData.category,
+				tags: todoData.tags,
+				time: "all",
+			});
+			if (todos.length === 0) {
+				todos = filterTodos(this.data, {
+					category: todoData.category,
+					tags: [],
+					time: "all",
+				});
+			}
 
-      const lastTodo =
-        todos[settings.value.insertionPoint === "top" ? 0 : todos.length - 1];
+			const lastTodo =
+				todos[settings.value.insertionPoint === "top" ? 0 : todos.length - 1];
 
-      const todo = {
-        uuid: v4(),
-        ...todoData,
-      };
+			const todo = {
+				uuid: v4(),
+				...todoData,
+			};
 
-      updateOrInsertAfterTodo(
-        this.data,
-        todo,
-        settings.value.insertionPoint,
-        lastTodo?.uuid,
-      );
+			updateOrInsertAfterTodo(
+				this.data,
+				todo,
+				settings.value.insertionPoint,
+				lastTodo?.uuid,
+			);
 
-      const fetch = useRequestFetch();
-      await fetch("/api/todos", {
-        method: "POST",
-        body: {
-          data: todo,
-          position: settings.value.insertionPoint,
-          previousId: lastTodo?.uuid,
-        },
-        ...useFetchOptions(),
-      }).catch(async (err) => {
-        //todo - show in toast
-        console.warn(err);
-        await this.fetch();
-      });
-    },
+			const fetch = useRequestFetch();
+			await fetch("/api/todos", {
+				method: "POST",
+				body: {
+					data: todo,
+					position: settings.value.insertionPoint,
+					previousId: lastTodo?.uuid,
+				},
+				...useFetchOptions(),
+			}).catch(async (err) => {
+				//todo - show in toast
+				console.warn(err);
+				await this.fetch();
+			});
+		},
 
-    async updateTodo(uuid: UUID, todoData: TodoData) {
-      const todo = {
-        uuid,
-        ...todoData,
-      };
+		async updateTodo(uuid: UUID, todoData: TodoData) {
+			const todo = {
+				uuid,
+				...todoData,
+			};
 
-      const index = this.data.findIndex((value) => value.uuid === uuid);
-      this.data[index] = todo;
+			const index = this.data.findIndex((value) => value.uuid === uuid);
+			this.data[index] = todo;
 
-      const fetch = useRequestFetch();
-      await fetch("/api/todos", {
-        method: "POST",
-        body: {
-          data: todo,
-        },
-        ...useFetchOptions(),
-      }).catch(async (err) => {
-        //todo - show in toast
-        console.warn(err);
-        await this.fetch();
-      });
-    },
+			const fetch = useRequestFetch();
+			await fetch("/api/todos", {
+				method: "POST",
+				body: {
+					data: todo,
+				},
+				...useFetchOptions(),
+			}).catch(async (err) => {
+				//todo - show in toast
+				console.warn(err);
+				await this.fetch();
+			});
+		},
 
-    async moveTodo(toMove: UUID, to: UUID) {
-      const dropIndex = this.data.findIndex((todo) => todo.uuid === to);
-      const dragIndex = this.data.findIndex((todo) => todo.uuid === toMove);
+		async moveTodo(toMove: UUID, to: UUID) {
+			const dropIndex = this.data.findIndex((todo) => todo.uuid === to);
+			const dragIndex = this.data.findIndex((todo) => todo.uuid === toMove);
 
-      const draged = this.data.splice(dragIndex, 1)[0]!;
-      this.data.splice(dropIndex, 0, draged);
+			const draged = this.data.splice(dragIndex, 1)[0]!;
+			this.data.splice(dropIndex, 0, draged);
 
-      const fetch = useRequestFetch();
-      await fetch("/api/todos/move", {
-        method: "POST",
-        body: {
-          toMove,
-          to,
-        },
-        ...useFetchOptions(),
-      }).catch(async (err) => {
-        //todo - show in toast
-        console.warn(err);
-        await this.fetch();
-      });
-    },
-  },
-  getters: {
-    getTodoById(state) {
-      return (uuid: UUID) => state.data.find((todo) => todo.uuid === uuid);
-    },
-    isTagUsed(state) {
-      return (tagUuid: UUID): boolean =>
-        state.data.find((todo) => todo.tags.includes(tagUuid)) !== undefined;
-    },
-    isCategoryUsed(state) {
-      return (categoryUuid: UUID): boolean =>
-        state.data.find((todo) => todo.category === categoryUuid) !== undefined;
-    },
-  },
+			const fetch = useRequestFetch();
+			await fetch("/api/todos/move", {
+				method: "POST",
+				body: {
+					toMove,
+					to,
+				},
+				...useFetchOptions(),
+			}).catch(async (err) => {
+				//todo - show in toast
+				console.warn(err);
+				await this.fetch();
+			});
+		},
+	},
+	getters: {
+		getTodoById(state) {
+			return (uuid: UUID) => state.data.find((todo) => todo.uuid === uuid);
+		},
+		isTagUsed(state) {
+			return (tagUuid: UUID): boolean =>
+				state.data.find((todo) => todo.tags.includes(tagUuid)) !== undefined;
+		},
+		isCategoryUsed(state) {
+			return (categoryUuid: UUID): boolean =>
+				state.data.find((todo) => todo.category === categoryUuid) !== undefined;
+		},
+	},
 });

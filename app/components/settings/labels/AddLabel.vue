@@ -1,29 +1,29 @@
 <script setup lang="ts">
-import type { Label } from "~~/shared/types";
-import EditLabel from "./EditLabel.vue";
+	import type { Label } from "~~/shared/types";
+	import EditLabel from "./EditLabel.vue";
 
-const { t } = useI18n();
+	const { t } = useI18n();
 
-const defaultLabel = ref({
-  uuid: "",
-  color: "#009966",
-  name: "",
-});
+	const defaultLabel = ref({
+		uuid: "",
+		color: "#009966",
+		name: "",
+	});
 
-const emit = defineEmits<{ add: [Label] }>();
+	const emit = defineEmits<{ add: [Label] }>();
 
-function onAddTag(label: Label) {
-  emit("add", label);
-}
+	function onAddTag(label: Label) {
+		emit("add", label);
+	}
 </script>
 <template>
-  <EditLabel :default-label="defaultLabel" @save="onAddTag">
-    <div
-      data-testid="add-label-button"
-      class="border-secondary flex cursor-pointer items-center gap-1 rounded border-1 px-1"
-    >
-      <Icon name="material-symbols:add-2-rounded" size="20" />
-      {{ t("new") }}
-    </div>
-  </EditLabel>
+	<EditLabel :default-label="defaultLabel" @save="onAddTag">
+		<div
+			data-testid="add-label-button"
+			class="border-secondary flex cursor-pointer items-center gap-1 rounded border-1 px-1"
+		>
+			<Icon name="material-symbols:add-2-rounded" size="20"/>
+			{{ t("new") }}
+		</div>
+	</EditLabel>
 </template>

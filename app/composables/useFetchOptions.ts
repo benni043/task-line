@@ -1,5 +1,5 @@
 export function useFetchOptions() {
-  const config = useRuntimeConfig();
+	const config = useRuntimeConfig();
 
-  return { baseURL: config.public.baseURL };
+	return { baseURL: config.public.baseURL };
 }

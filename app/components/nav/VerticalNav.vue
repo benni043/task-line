@@ -1,49 +1,49 @@
 <script setup lang="ts">
-import TimeSelect from "../filter/TimeSelect.vue";
-import CategorySelect from "../utils/input/CategorySelect.vue";
-import TagSelect from "../utils/input/TagSelect.vue";
+	import TimeSelect from "../filter/TimeSelect.vue";
+	import CategorySelect from "../utils/input/CategorySelect.vue";
+	import TagSelect from "../utils/input/TagSelect.vue";
 
-const { t } = useI18n();
+	const { t } = useI18n();
 
-const { filter } = useFilter();
+	const { filter } = useFilter();
 
-const isSettingsSheetOpen = defineModel<boolean>("isSettingsSheetOpen");
-const isNewSheetOpen = defineModel<boolean>("isNewSheetOpen");
+	const isSettingsSheetOpen = defineModel<boolean>("isSettingsSheetOpen");
+	const isNewSheetOpen = defineModel<boolean>("isNewSheetOpen");
 </script>
 
 <template>
-  <div class="bg-surface left-0 flex h-dvh w-full flex-col justify-between">
-    <div>
-      <button
-        data-testid="settings-button"
-        class="bg-secondary hover:bg-secondary-hover relative m-1 flex aspect-square h-10 cursor-pointer items-center justify-center rounded transition-colors"
-        @click="isSettingsSheetOpen = true"
-      >
-        <Icon name="material-symbols:settings-outline-rounded" size="24" />
-      </button>
+	<div class="bg-surface left-0 flex h-dvh w-full flex-col justify-between">
+		<div>
+			<button
+				data-testid="settings-button"
+				class="bg-secondary hover:bg-secondary-hover relative m-1 flex aspect-square h-10 cursor-pointer items-center justify-center rounded transition-colors"
+				@click="isSettingsSheetOpen = true"
+			>
+				<Icon name="material-symbols:settings-outline-rounded" size="24"/>
+			</button>
 
-      <div class="p-1 pt-0">
-        <h2 class="text-muted-text text-lg">{{ t("categories") }}</h2>
-        <CategorySelect v-model:category="filter.category" />
-      </div>
+			<div class="p-1 pt-0">
+				<h2 class="text-muted-text text-lg">{{ t("categories") }}</h2>
+				<CategorySelect v-model:category="filter.category"/>
+			</div>
 
-      <div class="p-1 pt-0">
-        <h2 class="text-muted-text text-lg">{{ t("tags") }}</h2>
-        <TagSelect v-model:tags="filter.tags" :show-all="false" />
-      </div>
+			<div class="p-1 pt-0">
+				<h2 class="text-muted-text text-lg">{{ t("tags") }}</h2>
+				<TagSelect v-model:tags="filter.tags" :show-all="false"/>
+			</div>
 
-      <div class="p-1">
-        <h2 class="text-muted-text text-lg">{{ t("time") }}</h2>
-        <TimeSelect v-model:time="filter.time" />
-      </div>
-    </div>
+			<div class="p-1">
+				<h2 class="text-muted-text text-lg">{{ t("time") }}</h2>
+				<TimeSelect v-model:time="filter.time"/>
+			</div>
+		</div>
 
-    <button
-      data-testid="new-todo-button"
-      class="bg-primary hover:bg-primary-hover relative m-1 flex aspect-square h-10 cursor-pointer items-center justify-center rounded transition-colors"
-      @click="isNewSheetOpen = true"
-    >
-      <Icon name="material-symbols:add-2-rounded" size="24" />
-    </button>
-  </div>
+		<button
+			data-testid="new-todo-button"
+			class="bg-primary hover:bg-primary-hover relative m-1 flex aspect-square h-10 cursor-pointer items-center justify-center rounded transition-colors"
+			@click="isNewSheetOpen = true"
+		>
+			<Icon name="material-symbols:add-2-rounded" size="24"/>
+		</button>
+	</div>
 </template>

@@ -1,33 +1,33 @@
 <script setup lang="ts">
-import TagSelect from "./utils/input/TagSelect.vue";
-import CategorySelect from "./utils/input/CategorySelect.vue";
-import Sheet from "./utils/Sheet.vue";
-import TimeSelect from "./filter/TimeSelect.vue";
+	import TagSelect from "./utils/input/TagSelect.vue";
+	import CategorySelect from "./utils/input/CategorySelect.vue";
+	import Sheet from "./utils/Sheet.vue";
+	import TimeSelect from "./filter/TimeSelect.vue";
 
-const isOpen = defineModel<boolean>("isOpen", { required: true });
+	const isOpen = defineModel<boolean>("isOpen", { required: true });
 
-const { t } = useI18n();
+	const { t } = useI18n();
 
-const { filter } = useFilter();
+	const { filter } = useFilter();
 
-function close() {
-  isOpen.value = false;
-}
+	function close() {
+		isOpen.value = false;
+	}
 </script>
 
 <template>
-  <Sheet :is-open="isOpen" title="Filter Sheet" @close="close">
-    <div class="p-1 pt-0">
-      <h2 class="text-muted-text text-lg">{{ t("categories") }}</h2>
-      <CategorySelect v-model:category="filter.category" />
-    </div>
-    <div class="p-1 pt-0">
-      <h2 class="text-muted-text text-lg">{{ t("tags") }}</h2>
-      <TagSelect v-model:tags="filter.tags" :show-all="false" />
-    </div>
-    <div class="p-1">
-      <h2 class="text-muted-text text-lg">{{ t("time") }}</h2>
-      <TimeSelect v-model:time="filter.time" />
-    </div>
-  </Sheet>
+	<Sheet :is-open="isOpen" title="Filter Sheet" @close="close">
+		<div class="p-1 pt-0">
+			<h2 class="text-muted-text text-lg">{{ t("categories") }}</h2>
+			<CategorySelect v-model:category="filter.category"/>
+		</div>
+		<div class="p-1 pt-0">
+			<h2 class="text-muted-text text-lg">{{ t("tags") }}</h2>
+			<TagSelect v-model:tags="filter.tags" :show-all="false"/>
+		</div>
+		<div class="p-1">
+			<h2 class="text-muted-text text-lg">{{ t("time") }}</h2>
+			<TimeSelect v-model:time="filter.time"/>
+		</div>
+	</Sheet>
 </template>

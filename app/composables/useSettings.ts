@@ -1,10 +1,10 @@
 export type Settings = {
-  insertionPoint: "top" | "bottom";
+	insertionPoint: "top" | "bottom";
 };
 
 export function useSettings() {
-  const settings = useLocalStorage<Settings>("settings", {
-    insertionPoint: "bottom",
-  });
-  return { settings };
+	const settings = useLocalStorage<Settings>("settings", {
+		insertionPoint: "bottom",
+	});
+	return { settings };
 }
