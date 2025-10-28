@@ -44,6 +44,7 @@ export default defineNuxtConfig({
 			baseURL: process.env.BASE_URL ?? "",
 			googleClientId: process.env.GOOGLE_CLIENT_ID,
 			googleRedirectUrl: process.env.GOOGLE_REDIRECT_URL,
+      googleSignIn: { clientId: process.env.GOOGLE_CLIENT_ID },
 			jwtTTL: process.env.JWT_TTL_SECONDS,
 		},
 		googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -53,9 +54,6 @@ export default defineNuxtConfig({
 			token: process.env.UPSTASH_TOKEN,
 		},
 		NUXT_ENV: process.env.NUXT_ENV,
-	},
-	googleSignIn: {
-		clientId: process.env.GOOGLE_CLIENT_ID,
 	},
 	i18n: {
 		strategy: "prefix",
