@@ -14,36 +14,45 @@
 <template>
 	<div class="bg-surface left-0 flex h-dvh w-full flex-col justify-between">
 		<div>
-			<button
-				data-testid="settings-button"
-				class="bg-secondary hover:bg-secondary-hover relative m-1 flex aspect-square h-10 cursor-pointer items-center justify-center rounded transition-colors"
-				@click="isSettingsSheetOpen = true"
-			>
-				<Icon name="material-symbols:settings-outline-rounded" size="24"/>
-			</button>
-
 			<div class="p-1 pt-0">
-				<h2 class="text-muted-text text-lg">{{ t("categories") }}</h2>
+				<h2 class="text-muted-text flex items-center gap-0.5">
+					<Icon name="material-symbols:grid-view-rounded"/>
+					{{ t("categories") }}
+				</h2>
 				<CategorySelect v-model:category="filter.category"/>
 			</div>
 
 			<div class="p-1 pt-0">
-				<h2 class="text-muted-text text-lg">{{ t("tags") }}</h2>
+				<h2 class="text-muted-text flex items-center gap-0.5">
+					<Icon name="material-symbols:bookmark"/>
+					{{ t("tags") }}
+				</h2>
 				<TagSelect v-model:tags="filter.tags" :show-all="false"/>
 			</div>
 
 			<div class="p-1">
-				<h2 class="text-muted-text text-lg">{{ t("time") }}</h2>
+				<h2 class="text-muted-text flex items-center gap-0.5">
+					<Icon name="material-symbols:clock-loader-40"/>
+					{{ t("time") }}
+				</h2>
 				<TimeSelect v-model:time="filter.time"/>
 			</div>
 		</div>
-
-		<button
-			data-testid="new-todo-button"
-			class="bg-primary hover:bg-primary-hover relative m-1 flex aspect-square h-10 cursor-pointer items-center justify-center rounded transition-colors"
-			@click="isNewSheetOpen = true"
-		>
-			<Icon name="material-symbols:add-2-rounded" size="24"/>
-		</button>
+		<div class="flex m-1 gap-1">
+			<button
+				data-testid="settings-button"
+				class="bg-secondary hover:bg-secondary-hover relative flex aspect-square h-10 cursor-pointer items-center justify-center rounded transition-colors"
+				@click="isSettingsSheetOpen = true"
+			>
+				<Icon name="material-symbols:settings-outline-rounded" size="24"/>
+			</button>
+			<button
+				data-testid="new-todo-button"
+				class="bg-primary hover:bg-primary-hover relative flex flex-1 aspect-square h-10 cursor-pointer items-center justify-center rounded transition-colors"
+				@click="isNewSheetOpen = true"
+			>
+				<Icon name="material-symbols:add-2-rounded" size="24"/>
+			</button>
+		</div>
 	</div>
 </template>

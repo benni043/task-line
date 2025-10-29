@@ -24,7 +24,7 @@
 	//todo - improve splitterWidth - https://github.com/unovue/reka-ui/issues/836
 	const windowSize = useWindowSize();
 	const splitMinSize = computed(() => {
-		const SideBarWidth = 200;
+		const SideBarWidth = 220;
 		return (SideBarWidth / windowSize.width.value) * 100;
 	});
 </script>
