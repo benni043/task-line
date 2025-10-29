@@ -9,7 +9,6 @@
 
 	const checking = ref(false);
 	const todoStore = useTodoStore();
-	const editBus = useEditTodoEventBus();
 
 	function onCheck() {
 		checking.value = true;
@@ -46,6 +45,14 @@
 
 		return categoryStore.getByUUID(props.data.category);
 	});
+
+	const localeRoute = useLocaleRoute();
+
+	async function onOpenTodo() {
+		await navigateTo(
+			localeRoute({ name: "index", query: { uuid: props.data.uuid } }),
+		);
+	}
 </script>
 
 <template>
@@ -74,7 +81,7 @@
 			<div class="flex w-full flex-col">
 				<button
 					class="flex cursor-pointer items-center text-left text-lg"
-					@click="() => editBus.emit(data.uuid)"
+					@click="onOpenTodo"
 				>
 					<icon
 						v-if="data.note ?? '' != ''"

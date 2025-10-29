@@ -19,26 +19,36 @@
 	const todoStore = useTodoStore();
 	const { getTodoById } = storeToRefs(todoStore);
 
-	useEditTodoEventBus().on((selectedUuid) => {
-		uuid.value = selectedUuid;
-		const todo = getTodoById.value(selectedUuid)!;
+	const route = useRoute();
+	watch(
+		() => route.query.uuid,
+		() => {
+			if (!route.query.uuid) return;
 
-		todoData.value.title = todo.title;
-		todoData.value.note = todo.note;
-		todoData.value.tags = [...todo.tags];
-		todoData.value.category = todo.category;
-		todoData.value.timeframe = todo.timeframe;
+			uuid.value = route.query.uuid as UUID;
+			const todo = getTodoById.value(uuid.value)!;
 
-		isOpen.value = true;
-	});
+			todoData.value.title = todo.title;
+			todoData.value.note = todo.note;
+			todoData.value.tags = [...todo.tags];
+			todoData.value.category = todo.category;
+			todoData.value.timeframe = todo.timeframe;
 
-	function onSaveTodo() {
+			isOpen.value = true;
+		},
+		{ immediate: true },
+	);
+
+	async function onSaveTodo() {
 		todoStore.updateTodo(uuid.value, todoData.value);
-		close();
+		await close();
 	}
 
-	function close() {
+	const localeRoute = useLocaleRoute();
+
+	async function close() {
 		isOpen.value = false;
+		await navigateTo(localeRoute({ name: "index" }));
 	}
 
 	const isValid = computed(() => {

@@ -14,10 +14,7 @@ test("can switch language", async ({ page, goto }) => {
 	await goto("/", { waitUntil: "hydration" });
 	await page.getByTestId("settings-button").click();
 
-	await expect(page).toHaveURL("/en");
-
 	await page.getByTestId("language-select").selectOption("de");
-
 	await expect(page).toHaveURL("/de");
 });
 

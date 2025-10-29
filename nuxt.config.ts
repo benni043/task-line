@@ -56,10 +56,11 @@ export default defineNuxtConfig({
 		NUXT_ENV: process.env.NUXT_ENV,
 	},
 	i18n: {
-		strategy: "no_prefix",
+		strategy: "prefix_and_default",
 		locales: [
 			{ code: "en", name: "English", file: "en.json" },
 			{ code: "de", name: "German", file: "de.json" },
 		],
+		defaultLocale: "en",
 	},
 });
