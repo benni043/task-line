@@ -19,9 +19,9 @@
 	const { locale, locales, setLocale } = useI18n();
 	const supportedLocales = locales.value.map((l) => l.code);
 
-	function onLanguageChange(newLocale: string) {
+	async function onLanguageChange(newLocale: string) {
 		if ((supportedLocales as string[]).includes(newLocale)) {
-			setLocale(newLocale as Locale);
+			await setLocale(newLocale as Locale);
 		} else {
 			console.error("Unknown locale");
 		}

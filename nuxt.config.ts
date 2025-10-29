@@ -56,16 +56,10 @@ export default defineNuxtConfig({
 		NUXT_ENV: process.env.NUXT_ENV,
 	},
 	i18n: {
-		strategy: "prefix",
+		strategy: "no_prefix",
 		locales: [
 			{ code: "en", name: "English", file: "en.json" },
 			{ code: "de", name: "German", file: "de.json" },
 		],
-		defaultLocale: "en",
-		detectBrowserLanguage: {
-			useCookie: true,
-			cookieKey: "i18n_redirected",
-			redirectOn: "root",
-		},
 	},
 });
