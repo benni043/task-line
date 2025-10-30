@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import { useFilteredTodos } from "~/composables/useFilteredTodos";
-	import { useTagStore } from "~/stores/labels/useTagStore";
+	import { useTagStore } from "~/stores/useTagStore";
 	import type { Label as LabelType, UUID } from "~~/shared/types";
 	import CustomLabel from "../Label.vue";
 

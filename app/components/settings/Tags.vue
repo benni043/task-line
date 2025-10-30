@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { useTagStore } from "~/stores/labels/useTagStore";
+	import { useTagStore } from "~/stores/useTagStore";
 	import type { Label as LabelType } from "~~/shared/types";
 	import AddLabel from "./labels/AddLabel.vue";
 	import CustomLabel from "./labels/Label.vue";

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import { useCategoryStore } from "~/stores/labels/useCategoryStore";
+	import { useCategoryStore } from "~/stores/useCategoryStore";
 	import type { Label as LabelType, UUID } from "~~/shared/types";
 	import CustomLabel from "../Label.vue";
 

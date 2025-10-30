@@ -1,5 +1,5 @@
-import { useCategoryStore } from "~/stores/labels/useCategoryStore";
-import { useTagStore } from "~/stores/labels/useTagStore";
+import { useCategoryStore } from "~/stores/useCategoryStore";
+import { useTagStore } from "~/stores/useTagStore";
 import { useLoginToken } from "./login/useLoginToken";
 
 export async function useInitdata() {
