@@ -2,7 +2,7 @@
 	import { useTagStore } from "~/stores/useTagStore";
 	import type { Label as LabelType } from "~~/shared/types";
 	import AddLabel from "./labels/AddLabel.vue";
-	import CustomLabel from "./labels/Label.vue";
+	import Tag from "./labels/Tag.vue";
 
 	const { t } = useI18n();
 
@@ -36,10 +36,8 @@
 				:key="tag.uuid"
 				class="inline-block pr-1 pb-1"
 			>
-				<CustomLabel
-					class="border-secondary flex items-center gap-0.5 rounded border pl-1"
-					:style="{ color: tag.color }"
-					:label="tag"
+				<Tag
+					:tag="tag"
 					:is-used="isUsed(tag)"
 					@save="onSaveTag"
 					@delete="onDeleteTag"

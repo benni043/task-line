@@ -6,31 +6,20 @@
 		PopoverRoot,
 		PopoverTrigger,
 	} from "reka-ui";
-	import type { Label } from "~~/shared/types";
-	import EditLabel from "./EditLabel.vue";
 
-	const props = defineProps<{
-		label: Label;
+	defineProps<{
 		isUsed: boolean;
-		count?: number;
 	}>();
-	const emit = defineEmits<{ save: [Label]; delete: [Label] }>();
-
-	function onSaveLabel(label: Label) {
-		label.uuid = props.label.uuid;
-		emit("save", label);
-	}
+	const emit = defineEmits<{ delete: [] }>();
 
 	function onDeleteLabel() {
-		emit("delete", props.label);
+		emit("delete");
 	}
 </script>
 <template>
 	<div>
 		<div class="text-nowrap">
-			<EditLabel :default-label="props.label" @save="onSaveLabel">
-				<div class="cursor-pointer">{{ label.name }}</div>
-			</EditLabel>
+			<slot/>
 		</div>
 		<PopoverRoot>
 			<PopoverTrigger class="h-6">

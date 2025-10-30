@@ -1,8 +1,8 @@
 <script setup lang="ts">
 	import { useCategoryStore } from "~/stores/useCategoryStore";
 	import type { Label as LabelType } from "~~/shared/types";
-	import AddLabel from "./labels/AddLabel.vue";
-	import CustomLabel from "./labels/Label.vue";
+	import AddCategory from "./labels/AddCategory.vue";
+	import Category from "./labels/Category.vue";
 
 	const { t } = useI18n();
 
@@ -29,17 +29,15 @@
 <template>
 	<div data-testid="add-category" class="p-1 pt-0">
 		<h2 class="text-muted-text text-lg">{{ t("categories") }}</h2>
-		<AddLabel @add="onAddCategory"/>
+		<AddCategory @add="onAddCategory"/>
 		<div data-testid="category-list">
 			<div
 				v-for="category in categoryStore.data"
 				:key="category.uuid"
 				class="inline-block pr-1 pb-1"
 			>
-				<CustomLabel
-					class="flex items-center gap-0.5 rounded border pl-1"
-					:style="{ color: category.color }"
-					:label="category"
+				<Category
+					:category="category"
 					:is-used="isUsed(category)"
 					@save="onSaveCategory"
 					@delete="onDeleteCategory"

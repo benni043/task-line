@@ -52,7 +52,7 @@
 <template>
 	<PopoverRoot v-model:open="open">
 		<PopoverTrigger>
-			<slot/>
+			<slot name="display"/>
 		</PopoverTrigger>
 		<PopoverPortal>
 			<PopoverContent
@@ -64,11 +64,11 @@
 				<input
 					v-model="label.name"
 					data-testid="edit-label-name-input"
-					class="border-secondary-popover h-8 w-36 rounded border-1 pl-1"
+					class="border-secondary-popover h-8 w-36 rounded border pl-1"
 					:placeholder="t('name')"
 					type="text"
 				>
-				<div class="border-secondary-popover flex h-8 rounded border-1">
+				<div class="border-secondary-popover flex h-8 rounded border">
 					<button
 						class="flex aspect-square cursor-pointer items-center justify-center"
 						@click="onRandomizeColor"
@@ -86,9 +86,10 @@
 						type="color"
 					>
 				</div>
+				<slot name="edit"/>
 				<button
 					data-testid="edit-label-save-button"
-					class="bg-primary hover:bg-primary-hover border-secondary-popover disabled:bg-popover flex h-8 cursor-pointer items-center justify-center rounded border-1 px-0.5 transition-colors"
+					class="bg-primary hover:bg-primary-hover border-secondary-popover disabled:bg-popover flex h-8 cursor-pointer items-center justify-center rounded border px-0.5 transition-colors"
 					:disabled="!isValid"
 					@click="onClick"
 				>
