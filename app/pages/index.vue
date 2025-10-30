@@ -40,7 +40,7 @@
 				<SplitterPanel
 					:default-size="splitMinSize"
 					:min-size="splitMinSize"
-					class="min-w-[200px]"
+					class="min-w-[220px]"
 				>
 					<VerticalNav
 						v-model:is-settings-sheet-open="isSettingsSheetOpen"

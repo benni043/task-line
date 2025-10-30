@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import { useCategoryStore } from "~/stores/useCategoryStore";
 	import type { Label as LabelType, UUID } from "~~/shared/types";
-	import CustomLabel from "../Label.vue";
+	import CategoryLabel from "./CategoryLabel.vue";
 
 	const activeCategory = defineModel<UUID | undefined>("category", {
 		required: true,
@@ -35,16 +35,18 @@
 </script>
 
 <template>
-	<div class="overflow-auto">
-		<CustomLabel
-			v-for="category in categoryStore.data"
-			:key="category.uuid"
-			:label="category"
-			:count="categoryCount.get(category.uuid)"
-			:is-selected="isSelected(category)"
-			type="category"
-			class="mr-1 mb-1"
-			@press="onPress(category.uuid)"
-		/>
+	<div class="@container">
+		<div class="grid grid-cols-1 @sm:grid-cols-2 @md:grid-cols-3">
+			<CategoryLabel
+				v-for="category in categoryStore.data"
+				:key="category.uuid"
+				:label="category"
+				:count="categoryCount.get(category.uuid)"
+				:is-selected="isSelected(category)"
+				type="category"
+				class="mr-1 mb-1"
+				@press="onPress(category.uuid)"
+			/>
+		</div>
 	</div>
 </template>

@@ -2,7 +2,7 @@
 	import { useCategoryStore } from "~/stores/useCategoryStore";
 	import { useTagStore } from "~/stores/useTagStore";
 	import type { Label as LabelType, Todo } from "~~/shared/types";
-	import CustomLabel from "../utils/Label.vue";
+	import TagLabel from "../utils/label/TagLabel.vue";
 	import TimeDisplay from "./TimeDisplay.vue";
 
 	const props = defineProps<{ data: Todo }>();
@@ -92,7 +92,7 @@
 					{{ data.title }}
 				</button>
 				<div class="flex gap-1">
-					<CustomLabel
+					<TagLabel
 						v-for="tag in tags"
 						:key="tag?.uuid"
 						:label="tag"

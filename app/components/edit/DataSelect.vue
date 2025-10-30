@@ -7,8 +7,8 @@
 		TabsTrigger,
 	} from "reka-ui";
 	import type { Timeframe, UUID } from "~~/shared/types";
-	import CategorySelect from "../utils/input/CategorySelect.vue";
-	import TagSelect from "../utils/input/TagSelect.vue";
+	import CategorySelect from "../utils/label/CategorySelect.vue";
+	import TagSelect from "../utils/label/TagSelect.vue";
 	import DateSelect from "./DateSelect.vue";
 	import NoteSelect from "./NoteSelect.vue";
 
@@ -59,10 +59,10 @@
 		</TabsContent>
 
 		<TabsContent value="labels" class="pt-2">
-			<h2 class="text-muted-text text-lg">{{ t("tags") }}</h2>
-			<TagSelect v-model:tags="tags" :show-all="true"/>
 			<h2 class="text-muted-text text-lg">{{ t("categories") }}</h2>
 			<CategorySelect v-model:category="category"/>
+			<h2 class="text-muted-text text-lg">{{ t("tags") }}</h2>
+			<TagSelect v-model:tags="tags" :show-all="true"/>
 		</TabsContent>
 
 		<TabsContent class="flex flex-1 flex-col justify-center" value="date">

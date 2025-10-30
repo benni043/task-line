@@ -2,7 +2,7 @@
 	import { useFilteredTodos } from "~/composables/useFilteredTodos";
 	import { useTagStore } from "~/stores/useTagStore";
 	import type { Label as LabelType, UUID } from "~~/shared/types";
-	import CustomLabel from "../Label.vue";
+	import TagLabel from "./TagLabel.vue";
 
 	const activeTags = defineModel<UUID[]>("tags", { required: true });
 
@@ -39,7 +39,7 @@
 
 <template>
 	<div class="overflow-auto">
-		<CustomLabel
+		<TagLabel
 			v-for="tag in tags"
 			:key="tag.uuid"
 			:label="tag"

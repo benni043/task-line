@@ -20,7 +20,7 @@
 	<EditLabel :default-label="defaultLabel" @save="onAddTag">
 		<div
 			data-testid="add-label-button"
-			class="border-secondary flex cursor-pointer items-center gap-1 rounded border-1 px-1"
+			class="border-secondary flex cursor-pointer items-center gap-1 rounded border px-1"
 		>
 			<Icon name="material-symbols:add-2-rounded" size="20"/>
 			{{ t("new") }}
