@@ -1,13 +1,20 @@
 <script setup lang="ts">
-	import type { Label } from "~~/shared/types";
+	import type { Label, Category } from "~~/shared/types";
 	import EditLabel from "./EditLabel.vue";
 
-	defineProps<{ defaultLabel: Label }>();
+	const { t } = useI18n();
 
-	const emit = defineEmits<{ save: [Label] }>();
+	const props = defineProps<{ defaultLabel: Category }>();
+
+	const emit = defineEmits<{ save: [Category] }>();
+
+	const icon = ref(props.defaultLabel.icon);
 
 	function onClick(label: Label) {
-		emit("save", label);
+		const category = label as Category;
+		category.icon = icon.value;
+
+		emit("save", category);
 	}
 </script>
 <template>
@@ -15,6 +22,14 @@
 		<template #display>
 			<slot/>
 		</template>
-		<template #edit>Category</template>
+		<template #edit>
+			<input
+				v-model="icon"
+				data-testid="edit-label-icon-input"
+				class="border-secondary-popover h-8 w-36 rounded border pl-1"
+				:placeholder="t('icon')"
+				type="text"
+			>
+		</template>
 	</EditLabel>
 </template>

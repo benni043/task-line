@@ -1,5 +1,5 @@
 import type { H3Error } from "h3";
-import type { Label, UUID } from "~~/shared/types";
+import type { Category, UUID } from "~~/shared/types";
 import { Labels } from "./labels";
 
 function getKey(userId: string): string {
@@ -7,13 +7,16 @@ function getKey(userId: string): string {
 }
 
 export const Categories = {
-	async getAll(userId: string): Promise<Label[]> {
+	async getAll(userId: string): Promise<Category[]> {
 		return Labels.getAll(userId, getKey);
 	},
-	async updateOrAdd(userId: string, tag: Label): Promise<Label | H3Error> {
-		return Labels.updateOrAdd(userId, tag, getKey);
+	async updateOrAdd(
+		userId: string,
+		category: Category,
+	): Promise<Category | H3Error> {
+		return Labels.updateOrAdd(userId, category, getKey);
 	},
-	async delete(userId: string, uuid: UUID): Promise<Label | H3Error> {
+	async delete(userId: string, uuid: UUID): Promise<Category | H3Error> {
 		return Labels.delete(userId, uuid, getKey);
 	},
 };

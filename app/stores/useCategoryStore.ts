@@ -1,15 +1,15 @@
 import { v4 } from "uuid";
-import type { Label, UUID } from "~~/shared/types";
+import type { Category, UUID } from "~~/shared/types";
 
 export const useCategoryStore = defineStore("categories", {
-	state: (): { data: Label[]; sse: EventSource | undefined } => ({
+	state: (): { data: Category[]; sse: EventSource | undefined } => ({
 		data: [],
 		sse: undefined,
 	}),
 	actions: {
 		async fetch() {
 			const fetch = useRequestFetch();
-			const data = await fetch<Label[]>(`/api/categories`, {
+			const data = await fetch<Category[]>(`/api/categories`, {
 				...useFetchOptions(),
 			}).catch(async (err) => {
 				//todo - show in toast
@@ -51,11 +51,12 @@ export const useCategoryStore = defineStore("categories", {
 				await this.fetch();
 			});
 		},
-		async add(name: string, color: string) {
+		async add(name: string, color: string, icon: string) {
 			const label = {
 				uuid: v4(),
 				name,
 				color,
+				icon,
 			};
 
 			this.data.unshift(label);
@@ -72,11 +73,12 @@ export const useCategoryStore = defineStore("categories", {
 			});
 		},
 
-		async update(uuid: UUID, color: string, name: string) {
+		async update(uuid: UUID, color: string, name: string, icon: string) {
 			const label = {
 				uuid,
 				color,
 				name,
+				icon,
 			};
 
 			const index = this.data.findIndex((value) => value.uuid === uuid);

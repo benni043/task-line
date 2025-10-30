@@ -2,18 +2,18 @@ import type { H3Error } from "h3";
 import type { Label, UUID } from "~~/shared/types";
 
 export const Labels = {
-	async getAll(
+	async getAll<T extends Label>(
 		userId: string,
 		getKey: (id: string) => string,
-	): Promise<Label[]> {
+	): Promise<T[]> {
 		const storage = useStorage();
-		return (await storage.get<Label[]>(getKey(userId))) ?? [];
+		return (await storage.get<T[]>(getKey(userId))) ?? [];
 	},
-	async updateOrAdd(
+	async updateOrAdd<T extends Label>(
 		userId: string,
-		label: Label,
+		label: T,
 		getKey: (id: string) => string,
-	): Promise<Label | H3Error> {
+	): Promise<T | H3Error> {
 		const storage = useStorage();
 		const labels = await Labels.getAll(userId, getKey);
 
@@ -29,13 +29,13 @@ export const Labels = {
 
 		return label;
 	},
-	async delete(
+	async delete<T extends Label>(
 		userId: string,
 		uuid: UUID,
 		getKey: (id: string) => string,
-	): Promise<Label | H3Error> {
+	): Promise<T | H3Error> {
 		const storage = useStorage();
-		const labels = await Labels.getAll(userId, getKey);
+		const labels = await Labels.getAll<T>(userId, getKey);
 
 		const index = labels.findIndex((value) => value.uuid === uuid);
 		if (index === -1)

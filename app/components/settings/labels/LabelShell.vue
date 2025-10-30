@@ -18,7 +18,7 @@
 </script>
 <template>
 	<div>
-		<div class="text-nowrap">
+		<div class="text-nowrap flex">
 			<slot/>
 		</div>
 		<PopoverRoot>

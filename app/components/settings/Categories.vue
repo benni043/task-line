@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import { useCategoryStore } from "~/stores/useCategoryStore";
-	import type { Label as LabelType } from "~~/shared/types";
 	import AddCategory from "./labels/AddCategory.vue";
+	import type { Category as CategoryType } from "~~/shared/types";
 	import Category from "./labels/Category.vue";
 
 	const { t } = useI18n();
@@ -9,19 +9,24 @@
 	const categoryStore = useCategoryStore();
 	const todoStore = useTodoStore();
 
-	function onAddCategory(category: LabelType) {
-		categoryStore.add(category.name, category.color);
+	function onAddCategory(category: CategoryType) {
+		categoryStore.add(category.name, category.color, category.icon);
 	}
 
-	function onSaveCategory(Category: LabelType) {
-		categoryStore.update(Category.uuid, Category.color, Category.name);
+	function onSaveCategory(category: CategoryType) {
+		categoryStore.update(
+			category.uuid,
+			category.color,
+			category.name,
+			category.icon,
+		);
 	}
 
-	function onDeleteCategory(Category: LabelType) {
-		categoryStore.delete(Category.uuid);
+	function onDeleteCategory(category: CategoryType) {
+		categoryStore.delete(category.uuid);
 	}
 
-	function isUsed(category: LabelType): boolean {
+	function isUsed(category: CategoryType): boolean {
 		return todoStore.isCategoryUsed(category.uuid);
 	}
 </script>

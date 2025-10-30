@@ -6,7 +6,6 @@ export const TimeframeSchema = z.object({
 	start: z.iso.date(),
 	end: z.iso.date(),
 });
-
 export type Timeframe = z.infer<typeof TimeframeSchema>;
 
 export const Todo = z.object({
@@ -17,7 +16,6 @@ export const Todo = z.object({
 	tags: z.array(z.uuid()),
 	category: z.uuid().optional(),
 });
-
 export type Todo = z.infer<typeof Todo>;
 export type TodoData = Omit<Todo, "uuid">;
 
@@ -26,8 +24,12 @@ export const Label = z.object({
 	name: z.string().min(1),
 	color: z.string().startsWith("#").length(7),
 });
-
 export type Label = z.infer<typeof Label>;
+
+export const Category = Label.extend({
+	icon: z.string(),
+});
+export type Category = z.infer<typeof Category>;
 
 export type JwtValidation = {
 	success: boolean;

@@ -1,13 +1,15 @@
 <script setup lang="ts">
-	import type { Label } from "~~/shared/types";
+	import type { Category } from "~~/shared/types";
 
-	defineProps<{
-		label: Label;
+	const props = defineProps<{
+		label: Category;
 		isSelected: boolean;
 		type: "tag" | "category";
 		count?: number;
 	}>();
 	const emits = defineEmits(["press"]);
+
+	const icon = computed(() => props.label.icon || "material-symbols:bookmark");
 </script>
 <template>
 	<button
@@ -21,7 +23,7 @@
 				:style="{
           color: label.color,
         }"
-				name="material-symbols:bookmark"
+				:name="icon"
 				size="24"
 			/>
 			{{ label.name }}
