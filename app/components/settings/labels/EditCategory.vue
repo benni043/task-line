@@ -1,5 +1,5 @@
 <script setup lang="ts">
-	import type { Label, Category } from "~~/shared/types";
+	import type { Category, Label } from "~~/shared/types";
 	import EditLabel from "./EditLabel.vue";
 
 	const { t } = useI18n();
