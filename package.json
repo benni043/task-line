@@ -32,7 +32,7 @@
 		"reka-ui": "^2.6.0",
 		"std-env": "^3.10.0",
 		"tailwindcss": "^4.1.17",
-		"unstorage": "^1.17.2",
+		"unstorage": "1.17.1",
 		"uuid": "^13.0.0",
 		"vaul-vue": "^0.4.1",
 		"vue": "^3.5.24",
