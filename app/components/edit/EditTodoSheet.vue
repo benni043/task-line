@@ -41,7 +41,6 @@
 
 	async function onSaveTodo() {
 		todoStore.updateTodo(uuid.value, todoData.value);
-		await close();
 	}
 
 	const localeRoute = useLocaleRoute();
