@@ -19,6 +19,8 @@
 	const todoStore = useTodoStore();
 	const { getTodoById } = storeToRefs(todoStore);
 
+	const showSaveIcon = ref(true);
+
 	const route = useRoute();
 	watch(
 		() => route.query.uuid,
@@ -41,6 +43,11 @@
 
 	async function onSaveTodo() {
 		todoStore.updateTodo(uuid.value, todoData.value);
+
+		showSaveIcon.value = false;
+		setTimeout(() => {
+			showSaveIcon.value = true;
+		}, 1000);
 	}
 
 	const localeRoute = useLocaleRoute();
@@ -75,7 +82,12 @@
 				:disabled="!isValid"
 				class="bg-primary hover:bg-primary-hover disabled:bg-secondary flex aspect-square h-10 cursor-pointer items-center justify-center rounded transition-colors"
 			>
-				<Icon name="material-symbols:save-rounded" size="24"/>
+				<Icon
+					v-if="showSaveIcon"
+					name="material-symbols:save-rounded"
+					size="24"
+				/>
+				<Icon v-else name="material-symbols:check-rounded" size="24"/>
 			</button>
 		</form>
 	</Sheet>
