@@ -12,8 +12,8 @@
 
 	const { t } = useI18n();
 
-	const id = useLoginID();
-	const userImage = useLoginImageUrl();
+	const id = await useLoginID();
+	const userImage = await useLoginImageUrl();
 
 	const isLoggedIn = computed(() => {
 		return !!id.value;

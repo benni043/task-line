@@ -1,7 +1,7 @@
 import { useLoginSession } from "./useLoginSession";
 
-export function useLoginImageUrl() {
-	const session = useLoginSession();
+export async function useLoginImageUrl() {
+	const session = await useLoginSession();
 
 	return computed(() => {
 		return session.value?.user?.image;

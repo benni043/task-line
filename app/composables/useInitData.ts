@@ -1,8 +1,7 @@
 import { useCategoryStore } from "~/stores/useCategoryStore";
 import { useTagStore } from "~/stores/useTagStore";
-import { useLoginID } from "./login/useLoginID";
 
-export async function useInitdata() {
+export async function useInitdata(id: Ref<string | undefined>) {
 	const todoStore = useTodoStore();
 	const tagStore = useTagStore();
 	const categoryStore = useCategoryStore();
@@ -31,8 +30,6 @@ export async function useInitdata() {
 		tagStore.reset();
 		categoryStore.reset();
 	}
-
-	const id = useLoginID();
 
 	onMounted(async () => {
 		watch(id, async () => {

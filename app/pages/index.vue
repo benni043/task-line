@@ -5,21 +5,19 @@
 	import HorizontalNav from "~/components/nav/HorizontalNav.vue";
 	import VerticalNav from "~/components/nav/VerticalNav.vue";
 	import Todos from "~/components/todo/Todos.vue";
+	import { useLoginID } from "~/composables/login/useLoginID";
 	import { useInitdata } from "~/composables/useInitData";
 
 	const isSettingsSheetOpen = ref(false);
 	const isFilterSheetOpen = ref(false);
 	const isNewSheetOpen = ref(false);
 
-	async function checkLogIn() {
-		const session = await authClient.getSession();
-		if (!session.data) {
-			isSettingsSheetOpen.value = true;
-		}
+	const id = await useLoginID();
+	if (!id) {
+		isSettingsSheetOpen.value = true;
 	}
-	checkLogIn();
 
-	await useInitdata();
+	await useInitdata(id);
 
 	const { isMobile } = useDevice();
 
