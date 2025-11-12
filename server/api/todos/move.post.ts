@@ -6,7 +6,7 @@ export type moveTodoBody = {
 	to: UUID;
 };
 
-export default defineAuthenticatedEventHandler(async (event, token) => {
+export default defineAuthenticatedEventHandler(async (event, session) => {
 	const body = await readValidatedBody<moveTodoBody>(event, (data) => {
 		const body = data as moveTodoBody;
 		if (!body.toMove || !body.to)
@@ -17,8 +17,8 @@ export default defineAuthenticatedEventHandler(async (event, token) => {
 			});
 	});
 
-	const todo = await Todos.move(token.sub, body.toMove, body.to);
+	const todo = await Todos.move(session.userId, body.toMove, body.to);
 	if (todo instanceof H3Error) throw todo;
 
-	TodoEventStream.sendUpdate(token.sub);
+	TodoEventStream.sendUpdate(session.userId);
 });

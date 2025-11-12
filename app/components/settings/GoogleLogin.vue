@@ -6,59 +6,34 @@
 		PopoverRoot,
 		PopoverTrigger,
 	} from "reka-ui";
-	import type { ImplicitFlowSuccessResponse } from "vue3-google-signin";
+	import { useLoginID } from "~/composables/login/useLoginID";
 	import { useLoginImageUrl } from "~/composables/login/useLoginImageUrl";
-	import { useLoginToken } from "~/composables/login/useLoginToken";
+	import { authClient } from "~/utils/auth";
 
 	const { t } = useI18n();
 
-	const token = useLoginToken();
+	const id = useLoginID();
 	const userImage = useLoginImageUrl();
 
 	const isLoggedIn = computed(() => {
-		return !!token.value;
+		return !!id.value;
 	});
 
-	const { isReady, login } = useCodeClient({
-		onSuccess: handleLoginSuccess,
-		onError: handleLoginError,
-	});
-
-	async function handleLoginSuccess(response: ImplicitFlowSuccessResponse) {
-		const code = response.code;
-
-		const res = await $fetch("/api/auth/", {
-			method: "POST",
-			body: { code },
-			...useFetchOptions(),
-		}).catch(async (err) => {
-			//todo - show in toast
-			console.warn(err);
-			return undefined;
+	async function login() {
+		const data = await authClient.signIn.social({
+			provider: "google",
 		});
-
-		if (res) {
-			token.value = res.token;
-		}
 	}
 
-	async function handleLoginError() {
-		console.error("Login failed");
-	}
-
-	function logout() {
-		token.value = undefined;
+	async function logout() {
+		await authClient.signOut();
 	}
 </script>
 
 <template>
 	<div v-if="!isLoggedIn" class="flex gap-1">
-		<div class="border-secondary flex h-8 items-center rounded border-1 px-1">
-			<button
-				class="flex cursor-pointer gap-1"
-				:disabled="!isReady"
-				@click="() => login()"
-			>
+		<div class="border-secondary flex h-8 items-center rounded border px-1">
+			<button class="flex cursor-pointer gap-1" @click="() => login()">
 				{{ t("login") }}
 				<img src="/img/google_logo.svg" alt="Google Logo">
 			</button>
@@ -66,7 +41,7 @@
 	</div>
 	<div v-if="isLoggedIn" class="flex gap-1">
 		<div
-			class="border-secondary flex h-8 items-center gap-1 rounded border-1 px-1"
+			class="border-secondary flex h-8 items-center gap-1 rounded border px-1"
 		>
 			<PopoverRoot>
 				<PopoverTrigger class="h-6 cursor-pointer">
@@ -83,11 +58,7 @@
 						side="top"
 						:side-offset="5"
 					>
-						<button
-							class="h-6 cursor-pointer"
-							:disabled="!isReady"
-							@click="logout()"
-						>
+						<button class="h-6 cursor-pointer" @click="logout()">
 							{{ t("logout") }}
 						</button>
 

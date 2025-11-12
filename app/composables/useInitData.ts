@@ -1,6 +1,6 @@
 import { useCategoryStore } from "~/stores/useCategoryStore";
 import { useTagStore } from "~/stores/useTagStore";
-import { useLoginToken } from "./login/useLoginToken";
+import { useLoginID } from "./login/useLoginID";
 
 export async function useInitdata() {
 	const todoStore = useTodoStore();
@@ -32,40 +32,22 @@ export async function useInitdata() {
 		categoryStore.reset();
 	}
 
-	const token = useLoginToken();
+	const id = useLoginID();
 
 	onMounted(async () => {
-		if (token.value) {
-			Init.client();
-
-			const fetch = useRequestFetch();
-			const data = await fetch("/api/auth/renew", {
-				...useFetchOptions(),
-			}).catch(async (err) => {
-				//todo - show in toast
-				console.warn(err);
-				return undefined;
-			});
-
-			if (data) {
-				token.value = data.token;
-			}
-		}
-
-		watch(token, async () => {
-			if (token.value) Init.all();
+		watch(id, async () => {
+			if (id.value) Init.all();
 			else reset();
 		});
 	});
 
 	await callOnce(async () => {
-		if (token.value) await Init.data();
+		if (id.value) await Init.data();
 	});
 
 	const focus = useWindowFocus();
-
 	watch([focus], async ([focus]) => {
-		if (focus && token.value) {
+		if (focus && id.value) {
 			await Init.data();
 		}
 	});

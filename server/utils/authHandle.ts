@@ -1,70 +1,38 @@
+import type { Session } from "better-auth";
 import type { EventHandlerRequest, H3Event } from "h3";
-import { getCookie, H3Error } from "h3";
-import jwt from "jsonwebtoken";
-import { Auth } from "~~/shared/auth";
-import type { JwtPayload } from "~~/shared/types";
+import { H3Error } from "h3";
+import { auth } from "../auth";
 
 export function defineAuthenticatedEventHandler<T>(
 	handler: (
 		event: H3Event<EventHandlerRequest>,
-		user: JwtPayload,
+		session: Session,
 	) => T | Promise<T>,
 ) {
-	return defineEventHandler((event): T | Promise<T> => {
-		const token = AuthApi.getOrThrow(event);
-		return handler(event, token);
+	return defineEventHandler(async (event): Promise<T> => {
+		const session = await AuthApi.getOrThrow(event);
+		return handler(event, session);
 	});
 }
 
 export const AuthApi = {
-	create(id: string, email: string, picture: string): string {
-		const runtimeConfig = useRuntimeConfig();
+	async get(event: H3Event): Promise<Session | H3Error> {
+		const result = await auth.api.getSession(event);
 
-		return Auth.createRaw(
-			id,
-			email,
-			picture,
-			`${runtimeConfig.public.jwtTTL}s` as `${number}s`,
-			runtimeConfig.jwtSecret,
-		);
+		if (!result) {
+			return createError({ statusCode: 400, statusMessage: "No Session set" });
+		}
+
+		return result.session;
 	},
 
-	get(event: H3Event): undefined | JwtPayload | H3Error {
-		const token = getCookie(event, "token");
+	async getOrThrow(event: H3Event): Promise<Session> {
+		const session = await AuthApi.get(event);
 
-		if (!token) {
-			return createError({ statusCode: 400, statusMessage: "No JwtToken set" });
+		if (session instanceof H3Error) {
+			throw session;
 		}
 
-		try {
-			const runtimeConfig = useRuntimeConfig();
-
-			return jwt.verify(token, runtimeConfig.jwtSecret) as JwtPayload;
-		} catch {
-			return undefined;
-		}
-	},
-
-	getOrError(event: H3Event): JwtPayload | H3Error {
-		const token = AuthApi.get(event);
-
-		if (!token) {
-			return createError({
-				statusCode: 401,
-				statusMessage: "Invalid JwtToken",
-			});
-		}
-
-		return token;
-	},
-
-	getOrThrow(event: H3Event): JwtPayload {
-		const token = AuthApi.getOrError(event);
-
-		if (token instanceof H3Error) {
-			throw token;
-		}
-
-		return token;
+		return session;
 	},
 };

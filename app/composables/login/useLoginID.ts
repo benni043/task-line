@@ -1,9 +1,9 @@
 import { useLoginSession } from "./useLoginSession";
 
-export function useLoginImageUrl() {
+export function useLoginID() {
 	const session = useLoginSession();
 
 	return computed(() => {
-		return session.value?.user?.image;
+		return session.value?.user?.id;
 	});
 }

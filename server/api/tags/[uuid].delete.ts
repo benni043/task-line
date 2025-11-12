@@ -2,7 +2,7 @@ import { H3Error } from "h3";
 import type { Label, UUID } from "~~/shared/types";
 
 export default defineAuthenticatedEventHandler(
-	async (event, token): Promise<Label> => {
+	async (event, session): Promise<Label> => {
 		const uuid: UUID | undefined = getRouterParam(event, "uuid");
 
 		if (!uuid)
@@ -12,10 +12,10 @@ export default defineAuthenticatedEventHandler(
 				message: `no uuid set - uuid:'${uuid}'`,
 			});
 
-		const tag = await Tags.delete(token.sub, uuid);
+		const tag = await Tags.delete(session.userId, uuid);
 		if (tag instanceof H3Error) throw tag;
 
-		TagEventStream.sendUpdate(token.sub);
+		TagEventStream.sendUpdate(session.userId);
 		return tag;
 	},
 );

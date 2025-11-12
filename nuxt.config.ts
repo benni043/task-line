@@ -28,7 +28,6 @@ export default defineNuxtConfig({
 		"@nuxtjs/i18n",
 		"@pinia/nuxt",
 		"@vueuse/nuxt",
-		"nuxt-vue3-google-signin",
 	],
 	css: ["~/assets/css/main.css"],
 	vite: {

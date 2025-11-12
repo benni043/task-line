@@ -1,6 +1,6 @@
-export default defineAuthenticatedEventHandler(async (event, token) => {
+export default defineAuthenticatedEventHandler(async (event, session) => {
 	const eventStream = createEventStream(event);
-	CategorieEventStream.addStream(token.sub, eventStream);
+	CategorieEventStream.addStream(session.userId, eventStream);
 
 	return eventStream.send();
 });
