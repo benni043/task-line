@@ -1,8 +1,7 @@
 import { expect } from "@nuxt/test-utils/playwright";
 import type { Locator, Page } from "@playwright/test";
-import { v4 } from "uuid";
 
-export async function setAuthCookie(page: Page) {
+export async function setAuthCookie(_page: Page) {
 	throw new Error("not implemented");
 
 	//await page.context().addCookies([

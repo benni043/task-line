@@ -41,13 +41,7 @@ export default defineNuxtConfig({
 	runtimeConfig: {
 		public: {
 			baseURL: process.env.BASE_URL ?? "",
-			googleClientId: process.env.GOOGLE_CLIENT_ID,
-			googleRedirectUrl: process.env.GOOGLE_REDIRECT_URL,
-			googleSignIn: { clientId: process.env.GOOGLE_CLIENT_ID },
-			jwtTTL: process.env.JWT_TTL_SECONDS,
 		},
-		googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
-		jwtSecret: process.env.JWT_SECRET,
 		upstash: {
 			url: process.env.UPSTASH_URL,
 			token: process.env.UPSTASH_TOKEN,

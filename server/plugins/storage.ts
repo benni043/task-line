@@ -37,19 +37,19 @@ function defineDevelopmentStorage() {
 	storage.mount(
 		"todos",
 		fsDriver({
-			base: "storage/todos",
+			base: ".data/todos",
 		}),
 	);
 	storage.mount(
 		"tags",
 		fsDriver({
-			base: "storage/tags",
+			base: ".data/tags",
 		}),
 	);
 	storage.mount(
 		"categories",
 		fsDriver({
-			base: "storage/categories",
+			base: ".data/categories",
 		}),
 	);
 }
