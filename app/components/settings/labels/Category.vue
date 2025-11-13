@@ -28,7 +28,7 @@
 			<div class="cursor-pointer flex gap-1 justify-center h-full">
 				<Icon
 					:style="{ color: category.color }"
-					:name="category.icon ?? 'material-symbols:bookmark'"
+					:name="category.icon || 'material-symbols:bookmark'"
 					size="24"
 				/>
 				{{ category.name }}
