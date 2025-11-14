@@ -1,5 +1,6 @@
 <script setup lang="ts">
 	import { SplitterGroup, SplitterPanel, SplitterResizeHandle } from "reka-ui";
+	import { onMounted } from "vue";
 	import { useDevice } from "#imports";
 	import NewTodoSheet from "~/components/edit/NewTodoSheet.vue";
 	import HorizontalNav from "~/components/nav/HorizontalNav.vue";
@@ -13,11 +14,14 @@
 	const isNewSheetOpen = ref(false);
 
 	const id = await useLoginID();
-	if (!id) {
-		isSettingsSheetOpen.value = true;
-	}
-
 	await useInitdata(id);
+
+	onMounted(async () => {
+		const session = (await authClient.getSession()).data;
+		if (!session) {
+			isSettingsSheetOpen.value = true;
+		}
+	});
 
 	const { isMobile } = useDevice();
 
