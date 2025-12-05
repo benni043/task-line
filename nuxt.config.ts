@@ -18,7 +18,7 @@ export default defineNuxtConfig({
 			],
 		},
 	},
-	ssr: process.env.TAURI_USED !== "true",
+	ssr: true,
 	compatibilityDate: "2024-11-01",
 	devtools: { enabled: true },
 	modules: [
@@ -33,7 +33,7 @@ export default defineNuxtConfig({
 	vite: {
 		plugins: [tailwindcss()],
 		clearScreen: false,
-		envPrefix: ["VITE_", "TAURI_"],
+		envPrefix: ["VITE_"],
 		server: {
 			strictPort: true,
 		},

@@ -25,7 +25,3 @@ playwright-report
 .env
 .env.*
 !.env.example
-
-# Tauri
-/src-tauri/target
-/src-tauri/gen/schemas

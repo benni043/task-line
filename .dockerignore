@@ -17,6 +17,3 @@ logs
 .DS_Store
 .fleet
 .idea
-
-# Tauri
-src-tauri

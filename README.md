@@ -5,7 +5,6 @@ A simple to-do app focused on tasks that can be completed within a specific time
 ## .env example
 
 ```dotenv
-TAURI_USED=false
 BASE_URL="http://localhost:3000"
 
 GOOGLE_CLIENT_ID=<google_client_id>
