@@ -2,7 +2,7 @@ import { H3Error } from "h3";
 import type { Todo, UUID } from "~~/shared/types";
 
 export default defineAuthenticatedEventHandler(
-	async (event, session): Promise<Todo> => {
+	async (event, userId): Promise<Todo> => {
 		const uuid: UUID | undefined = getRouterParam(event, "uuid");
 
 		if (!uuid)
@@ -12,10 +12,10 @@ export default defineAuthenticatedEventHandler(
 				message: `no uuid set - uuid:'${uuid}'`,
 			});
 
-		const todo = await Todos.delete(session.userId, uuid);
+		const todo = await Todos.delete(userId, uuid);
 		if (todo instanceof H3Error) throw todo;
 
-		TodoEventStream.sendUpdate(session.userId);
+		TodoEventStream.sendUpdate(userId);
 		return todo;
 	},
 );

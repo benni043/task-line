@@ -17,9 +17,17 @@
 	const open = ref(false);
 	const name = ref("");
 	const isValid = computed(() => name.value.trim().length > 0);
+	const tempKeyValues = ref<{ id: string; key: string }[]>([]);
 
 	async function onCreateKey() {
-		await authClient.apiKey.create({ name: name.value });
+		const key = await authClient.apiKey.create({ name: name.value });
+
+		if (key.error || !key.data) {
+			console.error(key.error);
+			return;
+		}
+
+		tempKeyValues.value.push({ id: key.data.id, key: key.data.key });
 
 		open.value = false;
 		name.value = "";
@@ -32,10 +40,16 @@
 		refresh();
 	}
 
-	async function onCopyKey(keyId: string) {
-		await navigator.clipboard.writeText(keyId);
+	function hasTempKey(keyId: string) {
+		return tempKeyValues.value.some((k) => k.id === keyId);
 	}
 
+	async function onCopyKey(keyId: string) {
+		const key = tempKeyValues.value.find((k) => k.id === keyId);
+		if (!key) return;
+
+		await navigator.clipboard.writeText(key.key);
+	}
 </script>
 
 <template>
@@ -93,12 +107,15 @@
 				{{key.name ?? "Unnamed"}}
 				<span class="text-muted-text"> - {{ key.id }}</span>
 				<div>
-				<button @click="onCopyKey(key.id)" class="h-6 cursor-pointer">
-					<Icon name="material-symbols:content-copy-outline-rounded" size="20"/>
-				</button>
-				<button @click="onDeleteKey(key.id)" class="h-6 cursor-pointer">
-					<Icon name="material-symbols:delete-outline-rounded" size="20"/>
-				</button>
+					<button v-if="hasTempKey(key.id)" @click="onCopyKey(key.id)" class="h-6 cursor-pointer">
+						<Icon
+							name="material-symbols:content-copy-outline-rounded"
+							size="20"
+						/>
+					</button>
+					<button @click="onDeleteKey(key.id)" class="h-6 cursor-pointer">
+						<Icon name="material-symbols:delete-outline-rounded" size="20"/>
+					</button>
 				</div>
 			</div>
 		</div>

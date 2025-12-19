@@ -1,4 +1,3 @@
-import type { Session } from "better-auth";
 import type { EventHandlerRequest, H3Event } from "h3";
 import { H3Error } from "h3";
 import { auth } from "./auth";
@@ -6,28 +5,47 @@ import { auth } from "./auth";
 export function defineAuthenticatedEventHandler<T>(
 	handler: (
 		event: H3Event<EventHandlerRequest>,
-		session: Session,
+		userId: string,
 	) => T | Promise<T>,
 ) {
 	return defineEventHandler(async (event): Promise<T> => {
-		const session = await AuthApi.getOrThrow(event);
-		return handler(event, session);
+		const userId = await AuthApi.getUserIdOrThrow(event);
+		return handler(event, userId);
 	});
 }
 
 export const AuthApi = {
-	async get(event: H3Event): Promise<Session | H3Error> {
-		const result = await auth.api.getSession(event);
+	async getUserId(event: H3Event): Promise<string | H3Error> {
+		const token = event.headers.get("Authorization")?.split(" ")[1];
 
-		if (!result) {
-			return createError({ statusCode: 400, statusMessage: "No Session set" });
+		if (token) {
+			const data = await auth.api.verifyApiKey({ body: { key: token } });
+
+			if (!data.key?.userId) {
+				console.warn(data.error, token);
+				return createError({
+					statusCode: 400,
+					statusMessage: "Invalid API Key",
+				});
+			}
+
+			return data.key.userId;
+		} else {
+			const result = await auth.api.getSession(event);
+
+			if (!result) {
+				return createError({
+					statusCode: 400,
+					statusMessage: "No Session set",
+				});
+			}
+
+			return result.session.userId;
 		}
-
-		return result.session;
 	},
 
-	async getOrThrow(event: H3Event): Promise<Session> {
-		const session = await AuthApi.get(event);
+	async getUserIdOrThrow(event: H3Event): Promise<string> {
+		const session = await AuthApi.getUserId(event);
 
 		if (session instanceof H3Error) {
 			throw session;

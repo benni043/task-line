@@ -9,20 +9,20 @@ export const Body = z.object({
 });
 
 export default defineAuthenticatedEventHandler(
-	async (event, session): Promise<Todo> => {
+	async (event, userId): Promise<Todo> => {
 		const body = await readValidatedBody(event, (data) => {
 			return Body.parse(data);
 		});
 
 		const todo = await Todos.updateOrAdd(
-			session.userId,
+			userId,
 			body.data,
 			body.position,
 			body.previousId,
 		);
 		if (todo instanceof H3Error) throw todo;
 
-		TodoEventStream.sendUpdate(session.userId);
+		TodoEventStream.sendUpdate(userId);
 		return todo;
 	},
 );
