@@ -11,5 +11,11 @@ export const auth = betterAuth({
 			prompt: "select_account",
 		},
 	},
-	plugins: [apiKey()],
+	plugins: [
+		apiKey({
+			rateLimit: {
+				enabled: false,
+			},
+		}),
+	],
 });
