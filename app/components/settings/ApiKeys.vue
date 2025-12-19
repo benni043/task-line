@@ -107,7 +107,11 @@
 				{{key.name ?? "Unnamed"}}
 				<span class="text-muted-text"> - {{ key.id }}</span>
 				<div>
-					<button v-if="hasTempKey(key.id)" @click="onCopyKey(key.id)" class="h-6 cursor-pointer">
+					<button
+						v-if="hasTempKey(key.id)"
+						@click="onCopyKey(key.id)"
+						class="h-6 cursor-pointer"
+					>
 						<Icon
 							name="material-symbols:content-copy-outline-rounded"
 							size="20"
