@@ -8,7 +8,7 @@
 	} from "reka-ui";
 	import { useLoginID } from "~/composables/login/useLoginID";
 	import { useLoginImageUrl } from "~/composables/login/useLoginImageUrl";
-	import { authClient } from "~/utils/auth";
+	import { authClient } from "~/utils/authClient";
 
 	const { t } = useI18n();
 

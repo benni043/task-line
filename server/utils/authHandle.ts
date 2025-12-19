@@ -1,7 +1,7 @@
 import type { Session } from "better-auth";
 import type { EventHandlerRequest, H3Event } from "h3";
 import { H3Error } from "h3";
-import { auth } from "../auth";
+import { auth } from "./auth";
 
 export function defineAuthenticatedEventHandler<T>(
 	handler: (
