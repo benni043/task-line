@@ -18,38 +18,38 @@
 		"auth:generate": "better-auth generate --config=./server/utils/auth.ts"
 	},
 	"dependencies": {
-		"@internationalized/date": "^3.10.0",
-		"@nuxt/icon": "^2.1.0",
+		"@internationalized/date": "^3.10.1",
+		"@nuxt/icon": "^2.1.1",
 		"@nuxtjs/i18n": "^10.2.1",
 		"@pinia/nuxt": "^0.11.3",
-		"@tailwindcss/vite": "^4.1.17",
-		"@upstash/redis": "^1.35.7",
+		"@tailwindcss/vite": "^4.1.18",
+		"@upstash/redis": "^1.35.8",
 		"better-auth": "^1.4.7",
 		"h3": "^1.15.4",
 		"jsonwebtoken": "^9.0.3",
 		"marked": "^17.0.1",
-		"nuxt": "^4.2.1",
+		"nuxt": "^4.2.2",
 		"pinia": "^3.0.4",
 		"reka-ui": "^2.6.1",
 		"std-env": "^3.10.0",
-		"tailwindcss": "^4.1.17",
+		"tailwindcss": "^4.1.18",
 		"unstorage": "1.17.3",
 		"uuid": "^13.0.0",
 		"vaul-vue": "^0.4.1",
-		"vue": "^3.5.25",
-		"vue-router": "^4.6.3",
-		"zod": "^4.1.13"
+		"vue": "^3.5.26",
+		"vue-router": "^4.6.4",
+		"zod": "^4.2.1"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.3.8",
-		"@iconify-json/material-symbols": "^1.2.49",
+		"@better-auth/cli": "^1.4.7",
+		"@biomejs/biome": "^2.3.10",
+		"@iconify-json/material-symbols": "^1.2.50",
 		"@nuxt/test-utils": "^3.21.0",
-		"@nuxtjs/device": "^3.2.4",
+		"@nuxtjs/device": "^4.0.0",
 		"@playwright/test": "^1.57.0",
 		"@vueuse/nuxt": "^14.1.0",
 		"cross-env": "^10.1.0",
 		"typescript": "^5.9.3",
-		"vue-tsc": "^3.1.5",
-		"@better-auth/cli": "^1.4.7"
+		"vue-tsc": "^3.1.8"
 	}
 }
