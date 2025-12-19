@@ -22,5 +22,7 @@
 	},
 	"insertionPoint": "Insertion Point",
 	"top": "Top",
-	"bottom": "Bottom"
+	"bottom": "Bottom",
+	"apiKeys": "API Keys",
+	"create": "Create"
 }

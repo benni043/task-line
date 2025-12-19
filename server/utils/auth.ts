@@ -1,5 +1,6 @@
 import { DatabaseSync } from "node:sqlite";
 import { betterAuth } from "better-auth";
+import { apiKey } from "better-auth/plugins";
 
 export const auth = betterAuth({
 	database: new DatabaseSync("./.data/sqlite.db"),
@@ -10,4 +11,5 @@ export const auth = betterAuth({
 			prompt: "select_account",
 		},
 	},
+	plugins: [apiKey()],
 });

@@ -22,5 +22,7 @@
 	},
 	"insertionPoint": "Einfügepunkt",
 	"top": "Oben",
-	"bottom": "Unten"
+	"bottom": "Unten",
+	"apiKeys": "API Schlüssel",
+	"create": "Erstellen"
 }

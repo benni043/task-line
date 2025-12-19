@@ -2,6 +2,7 @@
 	import type { Locale } from "vue-i18n";
 	import { useI18n } from "vue-i18n";
 	import Sheet from "../utils/Sheet.vue";
+	import ApiKeys from "./ApiKeys.vue";
 	import Categories from "./Categories.vue";
 	import GoogleLogin from "./GoogleLogin.vue";
 	import Tags from "./Tags.vue";
@@ -66,6 +67,7 @@
 			</div>
 			<Categories/>
 			<Tags/>
+			<ApiKeys/>
 		</div>
 	</Sheet>
 </template>
