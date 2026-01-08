@@ -69,7 +69,7 @@
 			class="flex h-full flex-col justify-between"
 			@submit.prevent="onSaveTodo"
 		>
-			<TitleSelect v-model:title="todoData.title"/>
+			<TitleSelect v-model:title="todoData.title" />
 			<DataSelect
 				v-model:timeframe="todoData.timeframe"
 				v-model:tags="todoData.tags"
@@ -87,7 +87,7 @@
 					name="material-symbols:save-rounded"
 					size="24"
 				/>
-				<Icon v-else name="material-symbols:check-rounded" size="24"/>
+				<Icon v-else name="material-symbols:check-rounded" size="24" />
 			</button>
 		</form>
 	</Sheet>

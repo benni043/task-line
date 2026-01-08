@@ -68,7 +68,7 @@
 			class="flex h-full flex-col justify-between"
 			@submit.prevent="onSubmitForm"
 		>
-			<TitleSelect v-model:title="todoData.title"/>
+			<TitleSelect v-model:title="todoData.title" />
 			<DataSelect
 				v-model:timeframe="todoData.timeframe"
 				v-model:tags="todoData.tags"
@@ -83,7 +83,7 @@
 					class="bg-primary hover:bg-primary-hover disabled:bg-secondary flex flex-1 cursor-pointer items-center justify-center rounded transition-colors"
 					@click="onAddTodo()"
 				>
-					<Icon name="material-symbols:add-2-rounded" size="24"/>
+					<Icon name="material-symbols:add-2-rounded" size="24" />
 				</button>
 				<button
 					type="button"
@@ -92,7 +92,7 @@
 					class="bg-primary hover:bg-primary-hover disabled:bg-secondary flex w-min cursor-pointer items-center justify-center gap-1 rounded px-2 text-sm transition-colors"
 					@click="onAddTodoNoClose"
 				>
-					<Icon name="material-symbols:add-2-rounded" size="20"/>
+					<Icon name="material-symbols:add-2-rounded" size="20" />
 					{{ t("another") }}
 				</button>
 			</div>

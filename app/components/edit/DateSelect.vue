@@ -83,11 +83,11 @@
 				</button>
 				<div class="flex items-center justify-between gap-2">
 					<RangeCalendarPrev class="flex cursor-pointer">
-						<Icon name="material-symbols:chevron-left-rounded" size="24"/>
+						<Icon name="material-symbols:chevron-left-rounded" size="24" />
 					</RangeCalendarPrev>
-					<RangeCalendarHeading/>
+					<RangeCalendarHeading />
 					<RangeCalendarNext class="flex cursor-pointer">
-						<Icon name="material-symbols:chevron-right-rounded" size="24"/>
+						<Icon name="material-symbols:chevron-right-rounded" size="24" />
 					</RangeCalendarNext>
 				</div>
 			</RangeCalendarHeader>

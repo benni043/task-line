@@ -61,10 +61,10 @@
 					data-testid="add-label-button"
 					class="border-secondary flex cursor-pointer items-center gap-1 rounded border px-1"
 				>
-					<Icon name="material-symbols:add-2-rounded" size="20"/>
+					<Icon name="material-symbols:add-2-rounded" size="20" />
 					{{ t("create") }}
 				</div>
-				<slot name="display"/>
+				<slot name="display" />
 			</PopoverTrigger>
 			<PopoverPortal>
 				<PopoverContent
@@ -104,7 +104,7 @@
 
 		<div>
 			<div v-for="key in keys" class="flex gap-2">
-				{{key.name ?? "Unnamed"}}
+				{{ key.name ?? "Unnamed" }}
 				<span class="text-muted-text"> - {{ key.id }}</span>
 				<div>
 					<button
@@ -118,7 +118,7 @@
 						/>
 					</button>
 					<button @click="onDeleteKey(key.id)" class="h-6 cursor-pointer">
-						<Icon name="material-symbols:delete-outline-rounded" size="20"/>
+						<Icon name="material-symbols:delete-outline-rounded" size="20" />
 					</button>
 				</div>
 			</div>

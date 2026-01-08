@@ -19,15 +19,15 @@
 	<Sheet :is-open="isOpen" title="Filter Sheet" @close="close">
 		<div class="p-1 pt-0">
 			<h2 class="text-muted-text text-lg">{{ t("categories") }}</h2>
-			<CategorySelect v-model:category="filter.category"/>
+			<CategorySelect v-model:category="filter.category" />
 		</div>
 		<div class="p-1 pt-0">
 			<h2 class="text-muted-text text-lg">{{ t("tags") }}</h2>
-			<TagSelect v-model:tags="filter.tags" :show-all="false"/>
+			<TagSelect v-model:tags="filter.tags" :show-all="false" />
 		</div>
 		<div class="p-1">
 			<h2 class="text-muted-text text-lg">{{ t("time") }}</h2>
-			<TimeSelect v-model:time="filter.time"/>
+			<TimeSelect v-model:time="filter.time" />
 		</div>
 	</Sheet>
 </template>

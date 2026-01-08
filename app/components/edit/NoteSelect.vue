@@ -25,8 +25,8 @@
 		@click.prevent="isEditing = !isEditing"
 	>
 		<div class="flex h-full items-center justify-center">
-			<Icon v-if="isEditing" name="material-symbols:visibility"/>
-			<Icon v-else name="material-symbols:edit"/>
+			<Icon v-if="isEditing" name="material-symbols:visibility" />
+			<Icon v-else name="material-symbols:edit" />
 		</div>
 	</button>
 	<div class="w-full flex-1">

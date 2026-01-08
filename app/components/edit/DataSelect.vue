@@ -32,7 +32,7 @@
 			<TabsIndicator
 				class="bg-primary absolute bottom-0 left-0 h-px w-(--reka-tabs-indicator-size) translate-x-(--reka-tabs-indicator-position) translate-y-px rounded-full duration-300"
 			>
-				<div/>
+				<div />
 			</TabsIndicator>
 			<TabsTrigger
 				class="data-[state=active]:text-primary w-24 cursor-pointer transition"
@@ -55,18 +55,18 @@
 		</TabsList>
 
 		<TabsContent value="notes" class="relative flex flex-1 flex-col py-2">
-			<NoteSelect v-model:note="note"/>
+			<NoteSelect v-model:note="note" />
 		</TabsContent>
 
 		<TabsContent value="labels" class="pt-2">
 			<h2 class="text-muted-text text-lg">{{ t("categories") }}</h2>
-			<CategorySelect v-model:category="category"/>
+			<CategorySelect v-model:category="category" />
 			<h2 class="text-muted-text text-lg">{{ t("tags") }}</h2>
-			<TagSelect v-model:tags="tags" :show-all="true"/>
+			<TagSelect v-model:tags="tags" :show-all="true" />
 		</TabsContent>
 
 		<TabsContent class="flex flex-1 flex-col justify-center" value="date">
-			<DateSelect v-model:timeframe="timeframe"/>
+			<DateSelect v-model:timeframe="timeframe" />
 		</TabsContent>
 	</TabsRoot>
 </template>

@@ -20,7 +20,7 @@
 <template>
 	<EditLabel :defaultLabel="defaultLabel" @save="onClick">
 		<template #display>
-			<slot/>
+			<slot />
 		</template>
 		<template #edit>
 			<input

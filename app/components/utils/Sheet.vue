@@ -40,9 +40,9 @@
 							<DrawerTitle>{{ title }}</DrawerTitle>
 							<DrawerDescription>{{ title }}</DrawerDescription>
 						</VisuallyHidden>
-						<DrawerHandle class=""/>
+						<DrawerHandle class="" />
 						<div class="h-full overflow-auto pt-2">
-							<slot/>
+							<slot />
 						</div>
 					</div>
 				</DrawerContent>
@@ -65,7 +65,7 @@
 							<DialogTitle>{{ title }}</DialogTitle>
 							<DialogDescription>{{ title }}</DialogDescription>
 						</VisuallyHidden>
-						<slot/>
+						<slot />
 					</DialogContent>
 				</Transition>
 			</DialogPortal>

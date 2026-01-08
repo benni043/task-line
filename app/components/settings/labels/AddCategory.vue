@@ -23,7 +23,7 @@
 			data-testid="add-label-button"
 			class="border-secondary flex cursor-pointer items-center gap-1 rounded border px-1"
 		>
-			<Icon name="material-symbols:add-2-rounded" size="20"/>
+			<Icon name="material-symbols:add-2-rounded" size="20" />
 			{{ t("new") }}
 		</div>
 	</EditCategory>

@@ -29,7 +29,7 @@
 <template>
 	<div data-testid="add-tag" class="p-1 pt-0">
 		<h2 class="text-muted-text text-lg">{{ t("tags") }}</h2>
-		<AddLabel @add="onAddTag"/>
+		<AddLabel @add="onAddTag" />
 		<div data-testid="tag-list">
 			<div
 				v-for="tag in tagStore.data"

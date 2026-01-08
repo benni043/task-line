@@ -34,10 +34,10 @@
 </script>
 <template>
 	<div>
-		<FilterSheet v-model:is-open="isFilterSheetOpen"/>
-		<SettingsSheet v-model:is-open="isSettingsSheetOpen"/>
-		<EditTodoSheet/>
-		<NewTodoSheet v-model:is-open="isNewSheetOpen"/>
+		<FilterSheet v-model:is-open="isFilterSheetOpen" />
+		<SettingsSheet v-model:is-open="isSettingsSheetOpen" />
+		<EditTodoSheet />
+		<NewTodoSheet v-model:is-open="isNewSheetOpen" />
 
 		<div v-if="!isMobile">
 			<SplitterGroup direction="horizontal">
@@ -52,19 +52,19 @@
 						v-model:is-new-sheet-open="isNewSheetOpen"
 					/>
 				</SplitterPanel>
-				<SplitterResizeHandle class="w-2"/>
+				<SplitterResizeHandle class="w-2" />
 				<SplitterPanel :default-size="90">
 					<div class="overflow-x-hidden">
-						<TimeHeader/>
-						<Todos/>
+						<TimeHeader />
+						<Todos />
 					</div>
 				</SplitterPanel>
 			</SplitterGroup>
 		</div>
 
 		<div v-if="isMobile">
-			<TimeHeader/>
-			<Todos/>
+			<TimeHeader />
+			<Todos />
 			<HorizontalNav
 				v-model:is-settings-sheet-open="isSettingsSheetOpen"
 				v-model:is-filter-sheet-open="isFilterSheetOpen"

@@ -19,12 +19,12 @@
 <template>
 	<div>
 		<div class="text-nowrap flex">
-			<slot/>
+			<slot />
 		</div>
 		<PopoverRoot>
 			<PopoverTrigger class="h-6">
 				<div class="cursor-pointer">
-					<Icon name="material-symbols:delete-outline-rounded" size="24"/>
+					<Icon name="material-symbols:delete-outline-rounded" size="24" />
 				</div>
 			</PopoverTrigger>
 			<PopoverPortal>
@@ -34,7 +34,7 @@
 					:side-offset="5"
 				>
 					<span v-if="isUsed" class="flex gap-1">
-						<Icon name="material-symbols:warning-outline-rounded" size="24"/>
+						<Icon name="material-symbols:warning-outline-rounded" size="24" />
 						still used
 					</span>
 					<button
@@ -42,7 +42,7 @@
 						class="h-6 cursor-pointer"
 						@click="onDeleteLabel"
 					>
-						<Icon name="material-symbols:delete-outline-rounded" size="24"/>
+						<Icon name="material-symbols:delete-outline-rounded" size="24" />
 					</button>
 
 					<PopoverArrow

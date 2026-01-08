@@ -68,7 +68,11 @@
 		<div
 			class="absolute top-1/2 flex h-2 w-full -translate-y-1/2 justify-evenly"
 		>
-			<div v-for="n in 6" :key="n" class="bg-secondary h-2 w-0.5 rounded-full"/>
+			<div
+				v-for="n in 6"
+				:key="n"
+				class="bg-secondary h-2 w-0.5 rounded-full"
+			/>
 		</div>
 		<div
 			class="bg-primary absolute top-1/2 h-1 -translate-y-1/2 rounded-full"
@@ -85,6 +89,6 @@
 			v-if="isCappedLeft"
 			class="to-background absolute top-1/2 left-0 h-1 w-12 -translate-y-1/2 bg-linear-to-l from-transparent"
 		/>
-		<div class="bg-secondary h-0.5 w-full rounded-full"/>
+		<div class="bg-secondary h-0.5 w-full rounded-full" />
 	</div>
 </template>

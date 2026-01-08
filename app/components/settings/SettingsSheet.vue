@@ -35,7 +35,7 @@
 			<div class="flex">
 				<div class="p-1 pt-0">
 					<h2 class="text-muted-text text-lg">{{ t("login") }}</h2>
-					<GoogleLogin/>
+					<GoogleLogin />
 				</div>
 
 				<div class="p-1 pt-0">
@@ -65,9 +65,9 @@
 					</select>
 				</div>
 			</div>
-			<Categories/>
-			<Tags/>
-			<ApiKeys/>
+			<Categories />
+			<Tags />
+			<ApiKeys />
 		</div>
 	</Sheet>
 </template>

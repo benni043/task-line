@@ -33,7 +33,7 @@
 					/>
 				</template>
 			</div>
-			<div class="bg-secondary h-0.5"/>
+			<div class="bg-secondary h-0.5" />
 		</div>
 	</div>
 </template>

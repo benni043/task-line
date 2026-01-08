@@ -52,7 +52,7 @@
 <template>
 	<PopoverRoot v-model:open="open">
 		<PopoverTrigger>
-			<slot name="display"/>
+			<slot name="display" />
 		</PopoverTrigger>
 		<PopoverPortal>
 			<PopoverContent
@@ -86,7 +86,7 @@
 						type="color"
 					>
 				</div>
-				<slot name="edit"/>
+				<slot name="edit" />
 				<button
 					data-testid="edit-label-save-button"
 					class="bg-primary hover:bg-primary-hover border-secondary-popover disabled:bg-popover flex h-8 cursor-pointer items-center justify-center rounded border px-0.5 transition-colors"

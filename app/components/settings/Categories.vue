@@ -34,7 +34,7 @@
 <template>
 	<div data-testid="add-category" class="p-1 pt-0">
 		<h2 class="text-muted-text text-lg">{{ t("categories") }}</h2>
-		<AddCategory @add="onAddCategory"/>
+		<AddCategory @add="onAddCategory" />
 		<div data-testid="category-list">
 			<div
 				v-for="category in categoryStore.data"
