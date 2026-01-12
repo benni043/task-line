@@ -25,7 +25,7 @@
 				enter-from-class="max-h-0! opacity-0 scale-y-0"
 			>
 				<div
-					class="transition-all duration-300 relative"
+					class="max-h-18 transition-all duration-300 relative"
 					v-for="todo in filteredTodos"
 					:key="todo.uuid"
 					draggable="true"
