@@ -4,7 +4,7 @@ import { apiKey } from "better-auth/plugins";
 
 export const auth = betterAuth({
 	database: new DatabaseSync("./.data/sqlite.db"),
-	trustedDomains: [...process.env.TRUSTED_DOMAINS!.split(",")],
+	trustedOrigins: [...process.env.TRUSTED_ORIGINS!.split(",")],
 	socialProviders: {
 		google: {
 			clientId: process.env.GOOGLE_CLIENT_ID!,

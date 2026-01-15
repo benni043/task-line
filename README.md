@@ -20,5 +20,5 @@ UPSTASH_TOKEN=<auth_token>
 BETTER_AUTH_SECRET=<secret>
 BETTER_AUTH_URL=http://localhost:3000
 
-TRUSTED_DOMAINS=https://taskline.tobinio.dev,https://todo.tobinio.dev
+TRUSTED_ORIGINS=https://taskline.tobinio.dev,https://todo.tobinio.dev
 ```
