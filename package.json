@@ -19,16 +19,16 @@
 	},
 	"dependencies": {
 		"@internationalized/date": "^3.10.1",
-		"@nuxt/icon": "^2.2.0",
+		"@nuxt/icon": "^2.2.1",
 		"@nuxtjs/i18n": "^10.2.1",
 		"@pinia/nuxt": "^0.11.3",
 		"@tailwindcss/vite": "^4.1.18",
 		"@upstash/redis": "^1.36.1",
-		"better-auth": "^1.4.10",
-		"h3": "^1.15.4",
+		"better-auth": "^1.4.17",
+		"h3": "^1.15.5",
 		"jsonwebtoken": "^9.0.3",
 		"marked": "^17.0.1",
-		"nuxt": "^4.2.2",
+		"nuxt": "4.2.2",
 		"pinia": "^3.0.4",
 		"reka-ui": "^2.7.0",
 		"std-env": "^3.10.0",
@@ -36,20 +36,20 @@
 		"unstorage": "1.17.3",
 		"uuid": "^13.0.0",
 		"vaul-vue": "^0.4.1",
-		"vue": "^3.5.26",
+		"vue": "^3.5.27",
 		"vue-router": "^4.6.4",
-		"zod": "^4.3.5"
+		"zod": "^4.3.6"
 	},
 	"devDependencies": {
-		"@better-auth/cli": "^1.4.10",
-		"@biomejs/biome": "^2.3.11",
-		"@iconify-json/material-symbols": "^1.2.51",
+		"@better-auth/cli": "^1.4.17",
+		"@biomejs/biome": "^2.3.12",
+		"@iconify-json/material-symbols": "^1.2.53",
 		"@nuxt/test-utils": "^3.23.0",
 		"@nuxtjs/device": "^4.0.0",
-		"@playwright/test": "^1.57.0",
+		"@playwright/test": "^1.58.0",
 		"@vueuse/nuxt": "^14.1.0",
 		"cross-env": "^10.1.0",
 		"typescript": "^5.9.3",
-		"vue-tsc": "^3.2.2"
+		"vue-tsc": "^3.2.3"
 	}
 }
