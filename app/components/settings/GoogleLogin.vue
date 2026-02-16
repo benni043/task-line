@@ -20,7 +20,7 @@
 	});
 
 	async function login() {
-		const data = await authClient.signIn.social({
+		await authClient.signIn.social({
 			provider: "google",
 		});
 	}
@@ -33,7 +33,11 @@
 <template>
 	<div v-if="!isLoggedIn" class="flex gap-1">
 		<div class="border-secondary flex h-8 items-center rounded border px-1">
-			<button class="flex cursor-pointer gap-1" @click="() => login()">
+			<button
+				type="button"
+				class="flex cursor-pointer gap-1"
+				@click="() => login()"
+			>
 				{{ t("login") }}
 				<img src="/img/google_logo.svg" alt="Google Logo">
 			</button>
@@ -48,7 +52,11 @@
 					<div class="flex gap-1">
 						<div class="text-nowrap">{{ t("logout") }}</div>
 
-						<img :src="userImage!" class="h-6 w-6 rounded-full object-cover">
+						<img
+							alt="User Avatar"
+							:src="userImage!"
+							class="h-6 w-6 rounded-full object-cover"
+						>
 					</div>
 				</PopoverTrigger>
 
@@ -58,7 +66,7 @@
 						side="top"
 						:side-offset="5"
 					>
-						<button class="h-6 cursor-pointer" @click="logout()">
+						<button type="button" class="h-6 cursor-pointer" @click="logout()">
 							{{ t("logout") }}
 						</button>
 

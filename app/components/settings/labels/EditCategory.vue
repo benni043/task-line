@@ -19,9 +19,7 @@
 </script>
 <template>
 	<EditLabel :defaultLabel="defaultLabel" @save="onClick">
-		<template #display>
-			<slot />
-		</template>
+		<template #display> <slot /> </template>
 		<template #edit>
 			<input
 				v-model="icon"

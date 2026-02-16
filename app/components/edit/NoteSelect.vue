@@ -22,7 +22,7 @@
 	<button
 		class="top 0 hover:bg-secondary-hover bg-secondary absolute right-0 h-7 w-7 cursor-pointer rounded"
 		type="button"
-		@click.prevent="isEditing = !isEditing"
+		@click.prevent="() => isEditing = !isEditing"
 	>
 		<div class="flex h-full items-center justify-center">
 			<Icon v-if="isEditing" name="material-symbols:visibility" />
@@ -34,7 +34,7 @@
 			v-if="isEditing"
 			v-model="note"
 			data-testid="note-input"
-			class="border-secondary h-full w-full resize-none rounded border-1 pl-1"
+			class="border-secondary h-full w-full resize-none rounded border pl-1"
 			:placeholder="t('note')"
 		/>
 		<div ref="render" class="markdown" :hidden="isEditing"></div>

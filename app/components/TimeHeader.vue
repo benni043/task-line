@@ -28,7 +28,7 @@
 						{{ day.text }}
 					</div>
 					<div
-						v-if="index != dayStrings.length - 1"
+						v-if="index !== dayStrings.length - 1"
 						class="bg-secondary h-8 w-0.5"
 					/>
 				</template>

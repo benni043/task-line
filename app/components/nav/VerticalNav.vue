@@ -14,9 +14,7 @@
 <template>
 	<div class="bg-surface left-0 flex h-dvh w-full flex-col justify-between p-1">
 		<div class="flex flex-col gap-2">
-			<div>
-				<TimeSelect v-model:time="filter.time" />
-			</div>
+			<div><TimeSelect v-model:time="filter.time" /></div>
 			<div>
 				<h2 class="text-muted-text flex items-center gap-0.5 text-sm mb-1">
 					<Icon name="material-symbols:grid-view-rounded" />
@@ -34,16 +32,18 @@
 		</div>
 		<div class="flex gap-1">
 			<button
+				type="button"
 				data-testid="settings-button"
 				class="bg-secondary hover:bg-secondary-hover relative flex aspect-square h-10 cursor-pointer items-center justify-center rounded transition-colors"
-				@click="isSettingsSheetOpen = true"
+				@click="() => isSettingsSheetOpen = true"
 			>
 				<Icon name="material-symbols:settings-outline-rounded" size="24" />
 			</button>
 			<button
+				type="button"
 				data-testid="new-todo-button"
 				class="bg-primary hover:bg-primary-hover relative flex flex-1 aspect-square h-10 cursor-pointer items-center justify-center rounded transition-colors"
-				@click="isNewSheetOpen = true"
+				@click="() => isNewSheetOpen = true"
 			>
 				<Icon name="material-symbols:add-2-rounded" size="24" />
 			</button>

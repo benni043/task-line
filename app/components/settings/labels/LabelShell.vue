@@ -18,9 +18,7 @@
 </script>
 <template>
 	<div>
-		<div class="text-nowrap flex">
-			<slot />
-		</div>
+		<div class="text-nowrap flex"><slot /></div>
 		<PopoverRoot>
 			<PopoverTrigger class="h-6">
 				<div class="cursor-pointer">
@@ -41,6 +39,7 @@
 						v-if="!isUsed"
 						class="h-6 cursor-pointer"
 						@click="onDeleteLabel"
+						type="button"
 					>
 						<Icon name="material-symbols:delete-outline-rounded" size="24" />
 					</button>

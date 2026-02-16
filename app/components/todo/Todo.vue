@@ -58,7 +58,12 @@
 <template>
 	<div data-testid="todo" class="relative flex flex-col justify-center">
 		<div class="flex items-center gap-1 pt-2 pb-1">
-			<button class="cursor-pointer" :disabled="checking" @click="onCheck()">
+			<button
+				type="button"
+				class="cursor-pointer"
+				:disabled="checking"
+				@click="onCheck()"
+			>
 				<div
 					class="border-secondary m-1 flex h-8 w-8 items-center justify-center rounded-xl border-2 transition-all"
 					:style="{
@@ -80,11 +85,12 @@
 			</button>
 			<div class="flex w-full flex-col">
 				<button
+					type="button"
 					class="flex cursor-pointer items-center text-left text-lg"
 					@click="onOpenTodo"
 				>
 					<icon
-						v-if="data.note ?? '' != ''"
+						v-if="data.note"
 						data-testid="note-icon"
 						size="20"
 						name="material-symbols:note-outline"

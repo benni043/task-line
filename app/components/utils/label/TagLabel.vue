@@ -22,7 +22,7 @@
 		type="button"
 		class="cursor-pointer rounded border px-1 text-nowrap transition-all"
 		:class="{
-      'border-secondary': type == 'tag',
+      'border-secondary': type === 'tag',
     }"
 		:style="{
       color: fontColor,

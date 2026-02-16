@@ -81,6 +81,7 @@
 						type="text"
 					>
 					<button
+						type="button"
 						data-testid="edit-label-save-button"
 						class="bg-primary hover:bg-primary-hover border-secondary-popover disabled:bg-popover flex h-8 cursor-pointer items-center justify-center rounded border px-0.5 transition-colors"
 						:disabled="!isValid"
@@ -108,6 +109,7 @@
 				<span class="text-muted-text"> - {{ key.id }}</span>
 				<div>
 					<button
+						type="button"
 						v-if="hasTempKey(key.id)"
 						@click="onCopyKey(key.id)"
 						class="h-6 cursor-pointer"
@@ -117,7 +119,11 @@
 							size="20"
 						/>
 					</button>
-					<button @click="onDeleteKey(key.id)" class="h-6 cursor-pointer">
+					<button
+						type="button"
+						@click="onDeleteKey(key.id)"
+						class="h-6 cursor-pointer"
+					>
 						<Icon name="material-symbols:delete-outline-rounded" size="20" />
 					</button>
 				</div>

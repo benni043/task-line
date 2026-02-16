@@ -41,9 +41,7 @@
 							<DrawerDescription>{{ title }}</DrawerDescription>
 						</VisuallyHidden>
 						<DrawerHandle class="" />
-						<div class="h-full overflow-auto pt-2">
-							<slot />
-						</div>
+						<div class="h-full overflow-auto pt-2"><slot /></div>
 					</div>
 				</DrawerContent>
 			</DrawerPortal>
