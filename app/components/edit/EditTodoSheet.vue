@@ -66,7 +66,7 @@
 	<Sheet :is-open="isOpen" title="Edit Todo Sheet" @close="close">
 		<form
 			data-testid="edit-todo-sheet"
-			class="flex h-full flex-col justify-between"
+			class="flex h-full flex-col justify-between pt-1"
 			@submit.prevent="onSaveTodo"
 		>
 			<TitleSelect v-model:title="todoData.title" />

@@ -76,7 +76,7 @@
 			<RangeCalendarHeader class="flex items-center justify-between">
 				<button
 					type="button"
-					class="border-secondary hover:bg-secondary cursor-pointer rounded border-1 px-2 text-center transition"
+					class="border-secondary hover:bg-secondary cursor-pointer rounded border px-2 text-center transition"
 					@click="clear"
 				>
 					{{ t("clear") }}
@@ -120,7 +120,7 @@
 							class="flex-1"
 						>
 							<RangeCalendarCellTrigger
-								class="border-secondary data-[outside-view]:text-muted-text data-[selected]:bg-secondary data-[today]:text-primary data-[selection-end]:bg-secondary-hover data-[selection-start]:bg-secondary-hover flex h-full w-full cursor-pointer items-center justify-center rounded-md border-1"
+								class="border-secondary data-[outside-view]:text-muted-text data-[selected]:bg-secondary data-[today]:text-primary data-[selection-end]:bg-secondary-hover data-[selection-start]:bg-secondary-hover flex h-full w-full cursor-pointer items-center justify-center rounded-md border"
 								:day="weekDate"
 								:month="month.value"
 							/>

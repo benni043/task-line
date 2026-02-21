@@ -25,7 +25,10 @@
 </script>
 
 <template>
-	<TabsRoot class="flex flex-1 flex-col px-2" default-value="notes">
+	<TabsRoot
+		class="flex flex-1 flex-col px-2 overflow-y-auto"
+		default-value="notes"
+	>
 		<TabsList
 			class="border-secondary relative flex justify-around border-b py-1"
 		>
@@ -53,20 +56,21 @@
 				{{ t("date") }}
 			</TabsTrigger>
 		</TabsList>
+		<div class="overflow-scroll h-full">
+			<TabsContent value="notes" class="relative h-full py-2">
+				<NoteSelect v-model:note="note" />
+			</TabsContent>
 
-		<TabsContent value="notes" class="relative flex flex-1 flex-col py-2">
-			<NoteSelect v-model:note="note" />
-		</TabsContent>
+			<TabsContent value="labels" class="pt-2">
+				<h2 class="text-muted-text text-lg">{{ t("categories") }}</h2>
+				<CategorySelect v-model:category="category" />
+				<h2 class="text-muted-text text-lg">{{ t("tags") }}</h2>
+				<TagSelect v-model:tags="tags" :show-all="true" />
+			</TabsContent>
 
-		<TabsContent value="labels" class="pt-2">
-			<h2 class="text-muted-text text-lg">{{ t("categories") }}</h2>
-			<CategorySelect v-model:category="category" />
-			<h2 class="text-muted-text text-lg">{{ t("tags") }}</h2>
-			<TagSelect v-model:tags="tags" :show-all="true" />
-		</TabsContent>
-
-		<TabsContent class="flex flex-1 flex-col justify-center" value="date">
-			<DateSelect v-model:timeframe="timeframe" />
-		</TabsContent>
+			<TabsContent class="flex h-full flex-col justify-center" value="date">
+				<DateSelect v-model:timeframe="timeframe" />
+			</TabsContent>
+		</div>
 	</TabsRoot>
 </template>

@@ -29,7 +29,7 @@
 			<Icon v-else name="material-symbols:edit" />
 		</div>
 	</button>
-	<div class="w-full flex-1">
+	<div class="w-full h-full">
 		<textarea
 			v-if="isEditing"
 			v-model="note"

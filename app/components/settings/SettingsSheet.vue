@@ -31,14 +31,14 @@
 
 <template>
 	<Sheet :is-open="isOpen" title="Settings Sheet" @close="close">
-		<div data-testid="settings-sheet">
-			<div class="flex">
-				<div class="p-1 pt-0">
+		<div data-testid="settings-sheet" class="flex flex-col gap-1">
+			<div class="flex gap-1">
+				<div>
 					<h2 class="text-muted-text text-lg">{{ t("login") }}</h2>
 					<GoogleLogin />
 				</div>
 
-				<div class="p-1 pt-0">
+				<div>
 					<h2 class="text-muted-text text-lg">{{ t("languages") }}</h2>
 					<select
 						data-testid="language-select"
@@ -54,7 +54,7 @@
 					</select>
 				</div>
 
-				<div class="p-1 pt-0">
+				<div>
 					<h2 class="text-muted-text text-lg">{{ t("insertionPoint") }}</h2>
 					<select
 						v-model="settings.insertionPoint"

@@ -33,7 +33,7 @@
 					@click="emit('close')"
 				/>
 				<DrawerContent
-					class="bg-surface fixed bottom-0 z-30 flex h-96 w-dvw flex-col gap-2 rounded-t-lg p-1 pt-2 drop-shadow-lg"
+					class="bg-surface fixed bottom-0 z-30 flex h-96 w-dvw flex-col gap-2 rounded-t-lg pt-2 drop-shadow-lg"
 				>
 					<div class="h-full">
 						<VisuallyHidden>
@@ -41,7 +41,7 @@
 							<DrawerDescription>{{ title }}</DrawerDescription>
 						</VisuallyHidden>
 						<DrawerHandle class="" />
-						<div class="h-full overflow-auto pt-2"><slot /></div>
+						<div class="h-full overflow-auto p-2 pt-0"><slot /></div>
 					</div>
 				</DrawerContent>
 			</DrawerPortal>

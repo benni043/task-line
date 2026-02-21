@@ -32,7 +32,7 @@
 </script>
 
 <template>
-	<div data-testid="add-category" class="p-1 pt-0">
+	<div data-testid="add-category">
 		<h2 class="text-muted-text text-lg">{{ t("categories") }}</h2>
 		<AddCategory @add="onAddCategory" />
 		<div data-testid="category-list">

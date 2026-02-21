@@ -53,7 +53,7 @@
 </script>
 
 <template>
-	<div data-testid="add-tag" class="p-1 pt-0">
+	<div data-testid="add-tag">
 		<h2 class="text-muted-text text-lg">{{ t("apiKeys") }}</h2>
 		<PopoverRoot v-model:open="open">
 			<PopoverTrigger>

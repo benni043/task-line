@@ -27,7 +27,7 @@
 </script>
 
 <template>
-	<div data-testid="add-tag" class="p-1 pt-0">
+	<div data-testid="add-tag">
 		<h2 class="text-muted-text text-lg">{{ t("tags") }}</h2>
 		<AddLabel @add="onAddTag" />
 		<div data-testid="tag-list">
