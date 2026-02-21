@@ -42,7 +42,7 @@
 	},
 	"devDependencies": {
 		"@better-auth/cli": "^1.4.17",
-		"@biomejs/biome": "^2.4.1",
+		"@biomejs/biome": "^2.4.4",
 		"@iconify-json/material-symbols": "^1.2.53",
 		"@nuxt/test-utils": "^3.23.0",
 		"@nuxtjs/device": "^4.0.0",
