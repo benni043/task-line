@@ -1,8 +1,8 @@
+import { betterAuth, BetterAuthOptions } from "better-auth";
 import { DatabaseSync } from "node:sqlite";
-import { betterAuth } from "better-auth";
 import { apiKey } from "better-auth/plugins";
 
-export const auth = betterAuth({
+export const authConfig: BetterAuthOptions = {
 	database: new DatabaseSync("./.data/sqlite.db"),
 	trustedOrigins: [...process.env.TRUSTED_ORIGINS!.split(",")],
 	session: {
@@ -23,4 +23,6 @@ export const auth = betterAuth({
 			},
 		}),
 	],
-});
+};
+
+export const auth = betterAuth(authConfig);
