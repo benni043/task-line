@@ -7,7 +7,7 @@ export const auth = betterAuth({
 	trustedOrigins: [...process.env.TRUSTED_ORIGINS!.split(",")],
 	session: {
 		expiresIn: 3600 * 24 * 30, // 30 days
-		updateAge: 3600 * 24 * 7, // 7 days
+		updateAge: 3600 * 24, // 1 day
 	},
 	socialProviders: {
 		google: {
