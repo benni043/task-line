@@ -1,4 +1,4 @@
-import { getMigrations } from "better-auth/db";
+import { getMigrations } from "better-auth/db/migration";
 
 export default defineNitroPlugin(async () => {
 	const { toBeCreated, toBeAdded, runMigrations } = await getMigrations(

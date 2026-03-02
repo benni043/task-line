@@ -14,8 +14,8 @@
 		"lint:typecheck": "nuxi typecheck",
 		"lint:summary": "biome check --reporter summary",
 		"test": "cross-env NUXT_ENV=test playwright test",
-		"auth:migrate": "better-auth migrate --config=./server/utils/auth.ts",
-		"auth:generate": "better-auth generate --config=./server/utils/auth.ts"
+		"auth:migrate": "pnpx auth migrate --config=./server/utils/auth.ts",
+		"auth:generate": "pnpx auth generate --config=./server/utils/auth.ts"
 	},
 	"dependencies": {
 		"@internationalized/date": "^3.10.1",
@@ -24,7 +24,8 @@
 		"@pinia/nuxt": "^0.11.3",
 		"@tailwindcss/vite": "^4.1.18",
 		"@upstash/redis": "^1.36.1",
-		"better-auth": "^1.4.17",
+		"better-auth": "^1.5.1",
+		"@better-auth/api-key": "^1.5.1",
 		"h3": "^1.15.5",
 		"jsonwebtoken": "^9.0.3",
 		"marked": "^17.0.1",
@@ -41,7 +42,6 @@
 		"zod": "^4.3.6"
 	},
 	"devDependencies": {
-		"@better-auth/cli": "^1.4.17",
 		"@biomejs/biome": "^2.4.5",
 		"@iconify-json/material-symbols": "^1.2.53",
 		"@nuxt/test-utils": "^3.23.0",

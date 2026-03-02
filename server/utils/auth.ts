@@ -1,6 +1,6 @@
 import { DatabaseSync } from "node:sqlite";
+import { apiKey } from "@better-auth/api-key";
 import { betterAuth } from "better-auth";
-import { apiKey } from "better-auth/plugins";
 
 export const auth = betterAuth({
 	database: new DatabaseSync("./.data/sqlite.db"),

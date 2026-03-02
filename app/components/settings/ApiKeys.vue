@@ -11,7 +11,7 @@
 	const { t } = useI18n();
 
 	const { data: keys, refresh } = useAsyncData("apiKeys", async () => {
-		return (await authClient.apiKey.list()).data ?? [];
+		return (await authClient.apiKey.list()).data?.apiKeys ?? [];
 	});
 
 	const open = ref(false);

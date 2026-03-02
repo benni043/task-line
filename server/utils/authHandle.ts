@@ -21,7 +21,7 @@ export const AuthApi = {
 		if (token) {
 			const data = await auth.api.verifyApiKey({ body: { key: token } });
 
-			if (!data.key?.userId) {
+			if (!data.key?.referenceId) {
 				console.warn(data.error, token);
 				return createError({
 					statusCode: 400,
@@ -29,7 +29,7 @@ export const AuthApi = {
 				});
 			}
 
-			return data.key.userId;
+			return data.key.referenceId;
 		} else {
 			const result = await auth.api.getSession(event);
 
