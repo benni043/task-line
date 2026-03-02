@@ -1,4 +1,4 @@
-import type { H3Error } from "h3";
+import type { NuxtError } from "nuxt/app";
 import type { Category, UUID } from "~~/shared/types";
 import { Labels } from "./labels";
 
@@ -13,10 +13,10 @@ export const Categories = {
 	async updateOrAdd(
 		userId: string,
 		category: Category,
-	): Promise<Category | H3Error> {
+	): Promise<Category | NuxtError> {
 		return Labels.updateOrAdd(userId, category, getKey);
 	},
-	async delete(userId: string, uuid: UUID): Promise<Category | H3Error> {
+	async delete(userId: string, uuid: UUID): Promise<Category | NuxtError> {
 		return Labels.delete(userId, uuid, getKey);
 	},
 };

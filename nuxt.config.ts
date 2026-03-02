@@ -1,5 +1,3 @@
-import tailwindcss from "@tailwindcss/vite";
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	future: {
@@ -19,7 +17,7 @@ export default defineNuxtConfig({
 		},
 	},
 	ssr: true,
-	compatibilityDate: "2024-11-01",
+	compatibilityDate: "2026-03-02",
 	devtools: { enabled: true },
 	modules: [
 		"@nuxt/icon",
@@ -28,10 +26,10 @@ export default defineNuxtConfig({
 		"@nuxtjs/i18n",
 		"@pinia/nuxt",
 		"@vueuse/nuxt",
+		"@nuxtjs/tailwindcss",
 	],
 	css: ["~/assets/css/main.css"],
 	vite: {
-		plugins: [tailwindcss()],
 		clearScreen: false,
 		envPrefix: ["VITE_"],
 		server: {

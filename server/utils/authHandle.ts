@@ -1,5 +1,5 @@
 import type { EventHandlerRequest, H3Event } from "h3";
-import { H3Error } from "h3";
+import type { NuxtError } from "nuxt/app";
 import { auth } from "./auth";
 
 export function defineAuthenticatedEventHandler<T>(
@@ -15,7 +15,7 @@ export function defineAuthenticatedEventHandler<T>(
 }
 
 export const AuthApi = {
-	async getUserId(event: H3Event): Promise<string | H3Error> {
+	async getUserId(event: H3Event): Promise<string | NuxtError> {
 		const token = event.headers.get("Authorization")?.split(" ")[1];
 
 		if (token) {
@@ -47,7 +47,7 @@ export const AuthApi = {
 	async getUserIdOrThrow(event: H3Event): Promise<string> {
 		const session = await AuthApi.getUserId(event);
 
-		if (session instanceof H3Error) {
+		if (session instanceof Error) {
 			throw session;
 		}
 

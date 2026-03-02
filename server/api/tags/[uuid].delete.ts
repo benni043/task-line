@@ -1,4 +1,3 @@
-import { H3Error } from "h3";
 import type { Label, UUID } from "~~/shared/types";
 
 export default defineAuthenticatedEventHandler(
@@ -13,7 +12,7 @@ export default defineAuthenticatedEventHandler(
 			});
 
 		const tag = await Tags.delete(userId, uuid);
-		if (tag instanceof H3Error) throw tag;
+		if (tag instanceof Error) throw tag;
 
 		TagEventStream.sendUpdate(userId);
 		return tag;

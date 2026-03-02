@@ -1,4 +1,4 @@
-import type { H3Error } from "h3";
+import type { NuxtError } from "nuxt/app";
 import { updateOrInsertAfterTodo } from "~~/shared/array";
 import type { Todo, UUID } from "~~/shared/types";
 
@@ -16,7 +16,7 @@ export const Todos = {
 		userId: string,
 		toMove: UUID,
 		to: UUID,
-	): Promise<undefined | H3Error> {
+	): Promise<undefined | NuxtError> {
 		const storage = useStorage();
 		const todos = await Todos.getAll(userId);
 
@@ -41,7 +41,7 @@ export const Todos = {
 		todo: Todo,
 		position?: "top" | "bottom",
 		previous?: UUID,
-	): Promise<Todo | H3Error> {
+	): Promise<Todo | NuxtError> {
 		const storage = useStorage();
 		const todos = await Todos.getAll(userId);
 
@@ -52,7 +52,7 @@ export const Todos = {
 		return todo;
 	},
 
-	async delete(userId: string, uuid: UUID): Promise<Todo | H3Error> {
+	async delete(userId: string, uuid: UUID): Promise<Todo | NuxtError> {
 		const storage = useStorage();
 		const todos = await Todos.getAll(userId);
 

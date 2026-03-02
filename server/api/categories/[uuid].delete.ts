@@ -1,4 +1,3 @@
-import { H3Error } from "h3";
 import type { Category, UUID } from "~~/shared/types";
 
 export default defineAuthenticatedEventHandler(
@@ -13,7 +12,7 @@ export default defineAuthenticatedEventHandler(
 			});
 
 		const category = await Categories.delete(userId, uuid);
-		if (category instanceof H3Error) throw category;
+		if (category instanceof Error) throw category;
 
 		CategorieEventStream.sendUpdate(userId);
 		return category;

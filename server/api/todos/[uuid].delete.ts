@@ -1,4 +1,3 @@
-import { H3Error } from "h3";
 import type { Todo, UUID } from "~~/shared/types";
 
 export default defineAuthenticatedEventHandler(
@@ -13,7 +12,7 @@ export default defineAuthenticatedEventHandler(
 			});
 
 		const todo = await Todos.delete(userId, uuid);
-		if (todo instanceof H3Error) throw todo;
+		if (todo instanceof Error) throw todo;
 
 		TodoEventStream.sendUpdate(userId);
 		return todo;

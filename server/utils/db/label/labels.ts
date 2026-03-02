@@ -1,4 +1,4 @@
-import type { H3Error } from "h3";
+import type { NuxtError } from "nuxt/app";
 import type { Label, UUID } from "~~/shared/types";
 
 export const Labels = {
@@ -13,7 +13,7 @@ export const Labels = {
 		userId: string,
 		label: T,
 		getKey: (id: string) => string,
-	): Promise<T | H3Error> {
+	): Promise<T | NuxtError> {
 		const storage = useStorage();
 		const labels = await Labels.getAll(userId, getKey);
 
@@ -33,7 +33,7 @@ export const Labels = {
 		userId: string,
 		uuid: UUID,
 		getKey: (id: string) => string,
-	): Promise<T | H3Error> {
+	): Promise<T | NuxtError> {
 		const storage = useStorage();
 		const labels = await Labels.getAll<T>(userId, getKey);
 

@@ -1,4 +1,3 @@
-import { H3Error } from "h3";
 import z from "zod";
 import { Todo } from "~~/shared/types";
 
@@ -20,7 +19,7 @@ export default defineAuthenticatedEventHandler(
 			body.position,
 			body.previousId,
 		);
-		if (todo instanceof H3Error) throw todo;
+		if (todo instanceof Error) throw todo;
 
 		TodoEventStream.sendUpdate(userId);
 		return todo;

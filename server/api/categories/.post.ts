@@ -1,4 +1,3 @@
-import { H3Error } from "h3";
 import { Category } from "~~/shared/types";
 
 export default defineAuthenticatedEventHandler(
@@ -8,7 +7,7 @@ export default defineAuthenticatedEventHandler(
 		});
 
 		const category = await Categories.updateOrAdd(userId, newCategory);
-		if (category instanceof H3Error) throw category;
+		if (category instanceof Error) throw category;
 
 		CategorieEventStream.sendUpdate(userId);
 		return category;
