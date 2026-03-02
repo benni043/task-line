@@ -120,7 +120,7 @@
 							class="flex-1"
 						>
 							<RangeCalendarCellTrigger
-								class="border-secondary data-[outside-view]:text-muted-text data-[selected]:bg-secondary data-[today]:text-primary data-[selection-end]:bg-secondary-hover data-[selection-start]:bg-secondary-hover flex h-full w-full cursor-pointer items-center justify-center rounded-md border"
+								class="border-secondary data-outside-view:text-muted-text data-selected:bg-secondary data-today:text-primary data-selection-end:bg-secondary-hover data-selection-start:bg-secondary-hover flex h-full w-full cursor-pointer items-center justify-center rounded-md border"
 								:day="weekDate"
 								:month="month.value"
 							/>
