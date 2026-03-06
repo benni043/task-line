@@ -1,10 +1,11 @@
 import { DatabaseSync } from "node:sqlite";
 import { apiKey } from "@better-auth/api-key";
 import { betterAuth } from "better-auth";
+import { testUtils } from "better-auth/plugins";
 
 export const auth = betterAuth({
 	database: new DatabaseSync("./.data/sqlite.db"),
-	trustedOrigins: [...process.env.TRUSTED_ORIGINS!.split(",")],
+	trustedOrigins: [...(process.env.TRUSTED_ORIGINS ?? "localhost").split(",")],
 	session: {
 		expiresIn: 3600 * 24 * 30, // 30 days
 		updateAge: 3600 * 24, // 1 day
@@ -22,5 +23,6 @@ export const auth = betterAuth({
 				enabled: false,
 			},
 		}),
+		testUtils(),
 	],
 });
