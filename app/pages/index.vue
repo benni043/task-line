@@ -19,7 +19,7 @@
 	onMounted(async () => {
 		const session = (await authClient.getSession()).data;
 		if (!session) {
-			isSettingsSheetOpen.value = true;
+			isSettingsSheetOpen.value = false;
 		}
 	});
 
