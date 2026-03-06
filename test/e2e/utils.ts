@@ -1,7 +1,7 @@
-import { url, type NuxtPage } from "@nuxt/test-utils";
-import { auth } from "../../server/utils/auth";
+import { type NuxtPage, url } from "@nuxt/test-utils";
+import type { Locator } from "@playwright/test";
 import { expect } from "vitest";
-import { Locator } from "@playwright/test";
+import { auth } from "../../server/utils/auth";
 
 export async function setAuthCookie(page: NuxtPage) {
 	const ctx = await auth.$context;

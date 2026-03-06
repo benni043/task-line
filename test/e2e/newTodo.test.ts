@@ -1,5 +1,5 @@
-import { describe, expect, test } from "vitest";
 import { createPage, setup, url } from "@nuxt/test-utils/e2e";
+import { describe, expect, test } from "vitest";
 import { addTodo, fillTodo, setAuthCookie } from "./utils";
 
 describe("edit Todo", async () => {
