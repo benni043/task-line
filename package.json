@@ -18,13 +18,13 @@
 		"auth:generate": "pnpx auth generate --config=./server/utils/auth.ts"
 	},
 	"dependencies": {
-		"@better-auth/api-key": "^1.5.1",
+		"@better-auth/api-key": "^1.5.4",
 		"@internationalized/date": "^3.10.1",
 		"@nuxt/icon": "^2.2.1",
 		"@nuxtjs/i18n": "^10.2.1",
 		"@pinia/nuxt": "^0.11.3",
 		"@upstash/redis": "^1.36.1",
-		"better-auth": "^1.5.1",
+		"better-auth": "^1.5.4",
 		"h3": "^1.15.5",
 		"marked": "^17.0.1",
 		"nuxt": "4.3.1",

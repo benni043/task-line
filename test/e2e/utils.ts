@@ -9,11 +9,16 @@ export async function setAuthCookie(page: NuxtPage) {
 
 	const user = test.createUser();
 	const savedUser = await test.saveUser(user);
-	const { cookies } = await test.login({
+	const cookies = await test.getCookies({
 		userId: savedUser.id,
 	});
 
-	await page.context().addCookies(cookies);
+	await page.context().addCookies(
+		cookies.map((cookie) => {
+			cookie.domain = "127.0.0.1";
+			return cookie;
+		}),
+	);
 }
 
 export async function addTodo(page: NuxtPage, title: string, note?: string) {
@@ -28,7 +33,6 @@ export async function addTodo(page: NuxtPage, title: string, note?: string) {
 	await page.getByTestId("submit-new-todo-button").click();
 
 	const response = await responsePromise;
-
 	expect(response.status()).toBe(200);
 }
 
