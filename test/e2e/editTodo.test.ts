@@ -1,6 +1,7 @@
 import { createPage, setup, url } from "@nuxt/test-utils/e2e";
-import { describe, expect, test } from "vitest";
+import { describe, test } from "vitest";
 import { addTodo, editTodo, setAuthCookie } from "./utils";
+import { expect } from "@playwright/test";
 
 describe("edit Todo", async () => {
 	await setup();
@@ -14,9 +15,9 @@ describe("edit Todo", async () => {
 		await addTodo(page, "new Todo");
 
 		const todo = page.getByTestId("todos-container").getByTestId("todo");
-		expect(await todo.textContent()).toContain("new Todo");
+		await expect(todo).toContainText("new Todo");
 
 		await editTodo(page, todo, "edited Todo");
-		expect(await todo.textContent()).toContain("edited Todo");
+		await expect(todo).toContainText("edited Todo");
 	});
 });

@@ -1,6 +1,5 @@
 import { type NuxtPage, url } from "@nuxt/test-utils";
-import type { Locator } from "@playwright/test";
-import { expect } from "vitest";
+import { expect, type Locator } from "@playwright/test";
 import { auth } from "../../server/utils/auth";
 
 export async function setAuthCookie(page: NuxtPage) {
@@ -23,9 +22,7 @@ export async function setAuthCookie(page: NuxtPage) {
 
 export async function addTodo(page: NuxtPage, title: string, note?: string) {
 	await page.getByTestId("new-todo-button").click();
-	expect(await page.getByTestId("new-todo-sheet").first().isVisible()).toBe(
-		true,
-	);
+	await expect(page.getByTestId("new-todo-sheet").first()).toBeVisible();
 
 	await fillTodo(page, title, note);
 
@@ -43,9 +40,7 @@ export async function editTodo(
 	note?: string,
 ) {
 	await todo.click();
-	expect(await page.getByTestId("edit-todo-sheet").first().isVisible()).toBe(
-		true,
-	);
+	await expect(page.getByTestId("edit-todo-sheet").first()).toBeVisible();
 
 	await fillTodo(page, title, note);
 
@@ -56,9 +51,9 @@ export async function editTodo(
 }
 
 export async function fillTodo(page: NuxtPage, title: string, note?: string) {
-	await page.getByTestId("title-input").fill(title);
-
 	if (note) {
 		await page.getByTestId("note-input").fill(note);
 	}
+
+	await page.getByTestId("title-input").fill(title);
 }

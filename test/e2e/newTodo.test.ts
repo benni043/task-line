@@ -1,8 +1,9 @@
 import { createPage, setup, url } from "@nuxt/test-utils/e2e";
-import { describe, expect, test } from "vitest";
+import { describe, test } from "vitest";
 import { addTodo, fillTodo, setAuthCookie } from "./utils";
+import { expect } from "@playwright/test";
 
-describe("edit Todo", async () => {
+describe("new Todo", async () => {
 	await setup();
 
 	test("can add todo", async () => {
@@ -14,12 +15,10 @@ describe("edit Todo", async () => {
 		await addTodo(page, "new Todo");
 
 		// check todo creation
-		expect(await page.getByTestId("todos-container").first().isVisible()).toBe(
-			true,
+		await expect(page.getByTestId("todos-container").first()).toBeVisible();
+		await expect(page.getByTestId("todos-container").first()).toContainText(
+			"new Todo",
 		);
-		expect(
-			await page.getByTestId("todos-container").first().textContent(),
-		).toContain("new Todo");
 	});
 
 	test("can add todo via enter", async () => {
@@ -29,9 +28,7 @@ describe("edit Todo", async () => {
 		await page.goto(url("/"), { waitUntil: "hydration" });
 
 		await page.getByTestId("new-todo-button").click();
-		expect(await page.getByTestId("new-todo-sheet").first().isVisible()).toBe(
-			true,
-		);
+		await expect(page.getByTestId("new-todo-sheet").first()).toBeVisible();
 
 		await fillTodo(page, "new Todo");
 
@@ -41,12 +38,10 @@ describe("edit Todo", async () => {
 		expect(response.status()).toBe(200);
 
 		// check todo creation
-		expect(await page.getByTestId("todos-container").first().isVisible()).toBe(
-			true,
+		await expect(page.getByTestId("todos-container").first()).toBeVisible();
+		await expect(page.getByTestId("todos-container").first()).toContainText(
+			"new Todo",
 		);
-		expect(
-			await page.getByTestId("todos-container").first().textContent(),
-		).toContain("new Todo");
 	});
 
 	test("can add another todo", async () => {
@@ -56,20 +51,14 @@ describe("edit Todo", async () => {
 		await page.goto(url("/"), { waitUntil: "hydration" });
 
 		await page.getByTestId("new-todo-button").click();
-		expect(await page.getByTestId("new-todo-sheet").first().isVisible()).toBe(
-			true,
-		);
+		await expect(page.getByTestId("new-todo-sheet").first()).toBeVisible();
 
 		await page.getByTestId("title-input").fill("new Todo");
 
 		await page.getByTestId("submit-another-new-todo-button").click();
 
-		expect(await page.getByTestId("new-todo-sheet").first().isVisible()).toBe(
-			true,
-		);
-		expect(await page.getByTestId("title-input").first().textContent()).toBe(
-			"",
-		);
+		await expect(page.getByTestId("new-todo-sheet").first()).toBeVisible();
+		await expect(page.getByTestId("title-input").first()).toHaveText("");
 
 		await page.getByTestId("title-input").fill("new Todo 2");
 
@@ -77,11 +66,11 @@ describe("edit Todo", async () => {
 
 		// check todo creation
 		const container = page.getByTestId("todos-container");
-		expect(await container.first().isVisible()).toBe(true);
-		expect(await container.getByTestId("todo").nth(0).textContent()).toContain(
+		await expect(container.first()).toBeVisible();
+		await expect(container.getByTestId("todo").nth(0)).toContainText(
 			"new Todo",
 		);
-		expect(await container.getByTestId("todo").nth(1).textContent()).toContain(
+		await expect(container.getByTestId("todo").nth(1)).toContainText(
 			"new Todo 2",
 		);
 	});
@@ -95,10 +84,10 @@ describe("edit Todo", async () => {
 		await addTodo(page, "new Todo", "some notes");
 
 		// check todo creation
-		expect(await page.getByTestId("todos-container").isVisible()).toBe(true);
+		await expect(page.getByTestId("todos-container")).toBeVisible();
 
 		const todo = page.getByTestId("todos-container").getByTestId("todo");
-		expect(await todo.textContent()).toContain("new Todo");
-		expect(await todo.getByTestId("note-icon").isVisible()).toBe(true);
+		await expect(todo).toContainText("new Todo");
+		await expect(todo.getByTestId("note-icon")).toBeVisible();
 	});
 });
