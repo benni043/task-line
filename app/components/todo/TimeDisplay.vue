@@ -1,8 +1,8 @@
 <script setup lang="ts">
 	import { getLocalTimeZone, parseDate } from "@internationalized/date";
-	import type { Timeframe } from "~~/shared/types";
+	import type { TimeRange } from "~~/shared/types";
 
-	const props = defineProps<{ timeframe: Timeframe }>();
+	const props = defineProps<{ timeframe: TimeRange }>();
 
 	const timeFrameString = computed(() => {
 		return `${props.timeframe.start.toWellFormed()} - ${props.timeframe.end.toWellFormed()}`;

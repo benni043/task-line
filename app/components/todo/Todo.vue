@@ -110,6 +110,6 @@
 				</div>
 			</div>
 		</div>
-		<TimeDisplay v-if="data.timeframe" :timeframe="data.timeframe!" />
+		<TimeDisplay v-if="data.time" :timeframe="data.time!" />
 	</div>
 </template>

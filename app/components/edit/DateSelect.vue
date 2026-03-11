@@ -15,7 +15,7 @@
 		RangeCalendarPrev,
 		RangeCalendarRoot,
 	} from "reka-ui";
-	import type { Timeframe } from "~~/shared/types";
+	import type { TimeRange } from "~~/shared/types";
 
 	const { t } = useI18n();
 
@@ -25,30 +25,30 @@
 		return locale.value === "de" ? 1 : 0;
 	});
 
-	const timeframe = defineModel<Timeframe | undefined>("timeframe");
+	const timeRange = defineModel<TimeRange | undefined>("timeframe");
 
 	const dateRange: Ref<DateRange> = ref({
 		start: undefined,
 		end: undefined,
 	});
 
-	if (timeframe.value) {
+	if (timeRange.value) {
 		dateRange.value = {
-			start: parseDate(timeframe.value.start),
-			end: parseDate(timeframe.value.end),
+			start: parseDate(timeRange.value.start),
+			end: parseDate(timeRange.value.end),
 		};
 	}
 
 	watch(dateRange, (value) => {
 		if (value.end === undefined && value.start === undefined) {
-			timeframe.value = undefined;
+			timeRange.value = undefined;
 		} else if (value.end === undefined) {
-			timeframe.value = {
+			timeRange.value = {
 				start: value.start!.toString(),
 				end: value.start!.toString(),
 			};
 		} else {
-			timeframe.value = {
+			timeRange.value = {
 				start: value.start!.toString(),
 				end: value.end!.toString(),
 			};

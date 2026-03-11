@@ -70,7 +70,8 @@ export function useTodoDragging() {
 			date.getDate(),
 		).toString();
 
-		todo.timeframe = {
+		todo.time = {
+			type: "range",
 			start: dateString,
 			end: dateString,
 		};

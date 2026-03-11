@@ -12,7 +12,7 @@
 		title: "",
 		note: "",
 		tags: [],
-		timeframe: undefined,
+		time: undefined,
 		category: undefined,
 	});
 
@@ -34,7 +34,7 @@
 			todoData.value.note = todo.note;
 			todoData.value.tags = [...todo.tags];
 			todoData.value.category = todo.category;
-			todoData.value.timeframe = todo.timeframe;
+			todoData.value.time = todo.time;
 
 			isOpen.value = true;
 		},
@@ -71,7 +71,7 @@
 		>
 			<TitleSelect v-model:title="todoData.title" />
 			<DataSelect
-				v-model:timeframe="todoData.timeframe"
+				v-model:time="todoData.time"
 				v-model:tags="todoData.tags"
 				v-model:category="todoData.category"
 				v-model:note="todoData.note"

@@ -30,10 +30,10 @@ export function filterTodos(todos: Todo[], filter: Filter) {
 
 		//filter by date
 		if (filter.time === "all") return true;
-		if (!todo.timeframe) return false;
+		if (todo.time?.type !== "range") return false;
 
-		const start = parseDate(todo.timeframe.start);
-		const end = parseDate(todo.timeframe.end);
+		const start = parseDate(todo.time.start);
+		const end = parseDate(todo.time.end);
 
 		if (filter.time === "today") {
 			const now = today(getLocalTimeZone());

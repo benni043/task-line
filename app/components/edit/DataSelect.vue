@@ -6,7 +6,7 @@
 		TabsRoot,
 		TabsTrigger,
 	} from "reka-ui";
-	import type { Timeframe, UUID } from "~~/shared/types";
+	import type { Time, TimeRange, UUID } from "~~/shared/types";
 	import CategorySelect from "../utils/label/CategorySelect.vue";
 	import TagSelect from "../utils/label/TagSelect.vue";
 	import DateSelect from "./DateSelect.vue";
@@ -14,7 +14,7 @@
 
 	const { t } = useI18n();
 
-	const timeframe = defineModel<Timeframe | undefined>("timeframe", {
+	const time = defineModel<Time | undefined>("time", {
 		required: true,
 	});
 	const tags = defineModel<UUID[]>("tags", { required: true });
@@ -22,6 +22,27 @@
 		required: true,
 	});
 	const note = defineModel<string>("note", { required: true });
+
+	const timeRange = computed<TimeRange | undefined>({
+		get(): TimeRange | undefined {
+			if (time.value?.type !== "range") return undefined;
+			return {
+				start: time.value.start,
+				end: time.value.end,
+			};
+		},
+		set(value) {
+			if (!value) {
+				return;
+			}
+
+			time.value = {
+				type: "range",
+				start: value.start,
+				end: value.end,
+			};
+		},
+	});
 </script>
 
 <template>
@@ -69,7 +90,7 @@
 			</TabsContent>
 
 			<TabsContent class="flex h-full flex-col justify-center" value="date">
-				<DateSelect v-model:timeframe="timeframe" />
+				<DateSelect v-model:timeframe="timeRange" />
 			</TabsContent>
 		</div>
 	</TabsRoot>
