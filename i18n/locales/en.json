@@ -24,5 +24,10 @@
 	"top": "Top",
 	"bottom": "Bottom",
 	"apiKeys": "API Keys",
-	"create": "Create"
+	"create": "Create",
+	"date-range": "Date Range",
+	"date-recurring": "Date Recurring",
+	"recurring-none": "None",
+	"recurring-daily": "Daily",
+	"recurring-weekly": "Weekly"
 }

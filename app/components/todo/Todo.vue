@@ -1,20 +1,36 @@
 <script setup lang="ts">
 	import { useCategoryStore } from "~/stores/useCategoryStore";
 	import { useTagStore } from "~/stores/useTagStore";
+	import { getTimeRange, isChecked } from "~~/shared/todo";
 	import type { Label as LabelType, Todo } from "~~/shared/types";
+
 	import TagLabel from "../utils/label/TagLabel.vue";
 	import TimeDisplay from "./TimeDisplay.vue";
 
 	const props = defineProps<{ data: Todo }>();
 
-	const checking = ref(false);
+	watch(
+		() => props.data,
+		(todo) => {
+			if (isChecked(todo)) {
+				checked.value = true;
+			}
+		},
+	);
+
+	const checked = ref(isChecked(props.data));
 	const todoStore = useTodoStore();
 
 	function onCheck() {
-		checking.value = true;
-		setTimeout(() => {
-			todoStore.removeTodo(props.data.uuid);
-		}, 1000);
+		checked.value = true;
+
+		if (props.data.time?.type === "recurring") {
+			todoStore.checkTodo(props.data.uuid);
+		} else {
+			setTimeout(() => {
+				todoStore.removeTodo(props.data.uuid);
+			}, 1000);
+		}
 	}
 
 	const { filter } = useFilter();
@@ -53,6 +69,10 @@
 			localeRoute({ name: "index", query: { uuid: props.data.uuid } }),
 		);
 	}
+
+	const timeRange = computed(() => {
+		return getTimeRange(props.data);
+	});
 </script>
 
 <template>
@@ -61,7 +81,7 @@
 			<button
 				type="button"
 				class="cursor-pointer"
-				:disabled="checking"
+				:disabled="checked"
 				@click="onCheck()"
 			>
 				<div
@@ -76,7 +96,7 @@
 						enter-from-class="opacity-0"
 					>
 						<icon
-							v-if="checking"
+							v-if="checked"
 							size="24"
 							name="material-symbols:check-rounded"
 						/>
@@ -110,6 +130,6 @@
 				</div>
 			</div>
 		</div>
-		<TimeDisplay v-if="data.time" :timeframe="data.time!" />
+		<TimeDisplay v-if="timeRange" :timeframe="timeRange" />
 	</div>
 </template>

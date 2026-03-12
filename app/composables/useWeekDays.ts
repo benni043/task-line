@@ -1,3 +1,5 @@
+import { addDays } from "~~/shared/date";
+
 export function useWeekDays(start: Date) {
 	const { locale } = useI18n();
 

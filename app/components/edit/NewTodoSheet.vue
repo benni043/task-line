@@ -21,6 +21,7 @@
 		tags: [],
 		time: undefined,
 		category: undefined,
+		checks: [],
 	});
 
 	watch(isOpen, () => {

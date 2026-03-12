@@ -14,6 +14,7 @@
 		tags: [],
 		time: undefined,
 		category: undefined,
+		checks: [],
 	});
 
 	const todoStore = useTodoStore();
@@ -35,6 +36,7 @@
 			todoData.value.tags = [...todo.tags];
 			todoData.value.category = todo.category;
 			todoData.value.time = todo.time;
+			todoData.value.checks = [...(todo.checks ?? [])];
 
 			isOpen.value = true;
 		},

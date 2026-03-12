@@ -6,11 +6,12 @@
 		TabsRoot,
 		TabsTrigger,
 	} from "reka-ui";
-	import type { Time, TimeRange, UUID } from "~~/shared/types";
+	import type { Time, TimeRange, TimeRecurring, UUID } from "~~/shared/types";
 	import CategorySelect from "../utils/label/CategorySelect.vue";
 	import TagSelect from "../utils/label/TagSelect.vue";
-	import DateSelect from "./DateSelect.vue";
 	import NoteSelect from "./NoteSelect.vue";
+	import TimeRangeSelect from "./TimeRangeSelect.vue";
+	import TimeRecurringSelect from "./TimeRecurringSelect.vue";
 
 	const { t } = useI18n();
 
@@ -33,6 +34,7 @@
 		},
 		set(value) {
 			if (!value) {
+				time.value = undefined;
 				return;
 			}
 
@@ -43,12 +45,41 @@
 			};
 		},
 	});
+
+	const timeRecurring = computed<TimeRecurring | undefined>({
+		get(): TimeRecurring | undefined {
+			if (time.value?.type !== "recurring") return undefined;
+			return {
+				mode: time.value.mode,
+			};
+		},
+		set(value) {
+			if (!value) {
+				time.value = undefined;
+				return;
+			}
+
+			time.value = {
+				type: "recurring",
+				mode: value.mode,
+			};
+		},
+	});
+
+	const activeTab = ref("notes");
+	const selectedTimeType = ref<"range" | "recurring">(
+		time.value?.type ?? "range",
+	);
+
+	watch(selectedTimeType, (_value) => {
+		time.value = undefined;
+	});
 </script>
 
 <template>
 	<TabsRoot
 		class="flex flex-1 flex-col px-2 overflow-y-auto"
-		default-value="notes"
+		v-model="activeTab"
 	>
 		<TabsList
 			class="border-secondary relative flex justify-around border-b py-1"
@@ -74,7 +105,10 @@
 				class="data-[state=active]:text-primary w-24 cursor-pointer transition"
 				value="date"
 			>
-				{{ t("date") }}
+				<select v-model="selectedTimeType" :disabled="activeTab !== 'date'">
+					<option value="range">{{ t("date-range") }} </option>
+					<option value="recurring">{{ t("date-recurring") }} </option>
+				</select>
 			</TabsTrigger>
 		</TabsList>
 		<div class="overflow-scroll h-full">
@@ -90,7 +124,14 @@
 			</TabsContent>
 
 			<TabsContent class="flex h-full flex-col justify-center" value="date">
-				<DateSelect v-model:timeframe="timeRange" />
+				<TimeRangeSelect
+					v-if="selectedTimeType === 'range'"
+					v-model:timeRange="timeRange"
+				/>
+				<TimeRecurringSelect
+					v-if="selectedTimeType === 'recurring'"
+					v-model:timeRecurring="timeRecurring"
+				/>
 			</TabsContent>
 		</div>
 	</TabsRoot>

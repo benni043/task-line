@@ -25,7 +25,7 @@
 		return locale.value === "de" ? 1 : 0;
 	});
 
-	const timeRange = defineModel<TimeRange | undefined>("timeframe");
+	const timeRange = defineModel<TimeRange | undefined>("timeRange");
 
 	const dateRange: Ref<DateRange> = ref({
 		start: undefined,

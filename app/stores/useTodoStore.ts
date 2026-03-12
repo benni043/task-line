@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { v4 } from "uuid";
 import { filterTodos } from "~/composables/useFilteredTodos";
 import { updateOrInsertAfterTodo } from "~~/shared/array";
+import { toLocalDateString } from "~~/shared/date";
 import type { Todo, TodoData, UUID } from "~~/shared/types";
 
 export const useTodoStore = defineStore("todos", {
@@ -117,6 +118,24 @@ export const useTodoStore = defineStore("todos", {
 				body: {
 					data: todo,
 				},
+				...useFetchOptions(),
+			}).catch(async (err) => {
+				//todo - show in toast
+				console.warn(err);
+				await this.fetch();
+			});
+		},
+
+		async checkTodo(uuid: UUID) {
+			const index = this.data.findIndex((value) => value.uuid === uuid);
+			const todo = this.data[index]!;
+			todo.checks.push(toLocalDateString(new Date()));
+
+			this.data[index] = todo;
+
+			const fetch = useRequestFetch();
+			await fetch(`/api/todos/check/${uuid}`, {
+				method: "POST",
 				...useFetchOptions(),
 			}).catch(async (err) => {
 				//todo - show in toast

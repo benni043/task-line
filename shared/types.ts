@@ -9,7 +9,14 @@ const TimeRange = z.object({
 });
 export type TimeRange = Omit<z.infer<typeof TimeRange>, "type">;
 
-export const Time = z.discriminatedUnion("type", [TimeRange]);
+const TimeRecurringMode = z.enum(["daily", "weekly"]);
+const TimeRecurring = z.object({
+	type: z.literal("recurring"),
+	mode: TimeRecurringMode,
+});
+export type TimeRecurring = Omit<z.infer<typeof TimeRecurring>, "type">;
+
+export const Time = z.discriminatedUnion("type", [TimeRange, TimeRecurring]);
 export type Time = z.infer<typeof Time>;
 
 export const Todo = z.object({
@@ -19,6 +26,7 @@ export const Todo = z.object({
 	time: Time.optional(),
 	tags: z.array(z.uuid()),
 	category: z.uuid().optional(),
+	checks: z.array(z.iso.date()),
 });
 export type Todo = z.infer<typeof Todo>;
 export type TodoData = Omit<Todo, "uuid">;
