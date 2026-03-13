@@ -1,4 +1,4 @@
-export type Settings = {
+type Settings = {
 	insertionPoint: "top" | "bottom";
 };
 
