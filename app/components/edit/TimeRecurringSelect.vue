@@ -14,7 +14,7 @@
 </script>
 
 <template>
-	<div class="w-full h-full">
+	<div class="w-full h-full mt-2">
 		<RadioGroupRoot v-model="state">
 			<RadioGroupItem
 				class="data-active:bg-secondary-hover border-secondary flex-1 cursor-pointer rounded-l border px-1"

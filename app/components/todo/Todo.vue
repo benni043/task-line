@@ -12,9 +12,7 @@
 	watch(
 		() => props.data,
 		(todo) => {
-			if (isChecked(todo)) {
-				checked.value = true;
-			}
+			checked.value = isChecked(todo);
 		},
 	);
 
@@ -73,6 +71,10 @@
 	const timeRange = computed(() => {
 		return getTimeRange(props.data);
 	});
+
+	const isRecurring = computed(() => {
+		return props.data.time?.type === "recurring";
+	});
 </script>
 
 <template>
@@ -85,7 +87,8 @@
 				@click="onCheck()"
 			>
 				<div
-					class="border-secondary m-1 flex h-8 w-8 items-center justify-center rounded-xl border-2 transition-all"
+					:data-isRecurring="isRecurring"
+					class="border-secondary m-1 flex h-8 w-8 items-center justify-center rounded-xl border-2 transition-all  data-[isRecurring=true]:rounded-full"
 					:style="{
             'border-color': category?.color,
           }"
