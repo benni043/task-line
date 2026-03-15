@@ -34,7 +34,12 @@
 
 		<div v-if="!isMobile">
 			<SplitterGroup direction="horizontal">
-				<SplitterPanel :default-size="220" :min-size="220" :size-unit="'px'">
+				<SplitterPanel
+					:default-size="220"
+					:min-size="220"
+					:size-unit="'px'"
+					class="min-w-55"
+				>
 					<VerticalNav
 						v-model:is-settings-sheet-open="isSettingsSheetOpen"
 						v-model:is-filter-sheet-open="isFilterSheetOpen"
@@ -42,7 +47,8 @@
 					/>
 				</SplitterPanel>
 				<SplitterResizeHandle class="w-2" />
-				<SplitterPanel :default-size="90">
+				<!-- workaround to correctly display on ssr -->
+				<SplitterPanel :size-unit="'%'" :default-size="5000">
 					<div class="overflow-x-hidden">
 						<TimeHeader />
 						<Todos />
