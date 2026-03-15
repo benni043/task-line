@@ -38,13 +38,16 @@ export function getTimeRange(todo: Todo): TimeRange | undefined {
 			};
 		}
 
-		if (todo.time.mode === "weekly") {
-			const weekStart = addDays(today, -today.getDay());
-			const start = new Date(weekStart);
+    if (todo.time.mode === "weekly") {
+      //offset so monday is the start of the week
+      const weekDay = (today.getDay() + 6) % 7;
+      const weekStart = addDays(today, -weekDay);
 
-			return {
+      const start = new Date(weekStart);
+
+      return {
 				start: toLocalDateString(start),
-				end: toLocalDateString(addDays(start, 7)),
+				end: toLocalDateString(addDays(start, 6)),
 			};
 		}
 	}
