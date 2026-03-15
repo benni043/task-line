@@ -1,13 +1,10 @@
 <script setup lang="ts">
 	import type { Locale } from "vue-i18n";
-	import { useI18n } from "vue-i18n";
 	import Sheet from "../utils/Sheet.vue";
 	import ApiKeys from "./ApiKeys.vue";
 	import Categories from "./Categories.vue";
 	import GoogleLogin from "./GoogleLogin.vue";
 	import Tags from "./Tags.vue";
-
-	const { t } = useI18n();
 
 	const isOpen = defineModel<boolean>("isOpen", { required: true });
 
@@ -17,7 +14,7 @@
 
 	const { settings } = useSettings();
 
-	const { locale, locales, setLocale } = useI18n();
+	const { t, locale, locales, setLocale } = useI18n();
 	const supportedLocales = locales.value.map((l) => l.code);
 
 	async function onLanguageChange(newLocale: string) {
