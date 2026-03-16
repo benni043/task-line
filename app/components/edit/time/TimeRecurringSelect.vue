@@ -1,6 +1,7 @@
 <script setup lang="ts">
 	import { RadioGroupItem, RadioGroupRoot } from "reka-ui";
 	import type { TimeRecurring } from "~~/shared/types";
+	import WeekSelection from "./WeekSelection.vue";
 
 	const { t } = useI18n();
 
@@ -14,8 +15,8 @@
 </script>
 
 <template>
-	<div class="w-full h-full mt-2">
-		<RadioGroupRoot v-model="state">
+	<div class="w-full h-full mt-2 flex flex-col gap-2">
+		<RadioGroupRoot v-model="state" class="h-10 flex">
 			<RadioGroupItem
 				class="data-active:bg-secondary-hover border-secondary flex-1 cursor-pointer rounded-l border px-1"
 				value="none"
@@ -35,5 +36,7 @@
 				{{ t("recurring-weekly") }}
 			</RadioGroupItem>
 		</RadioGroupRoot>
+
+		<WeekSelection v-if="timeRecurring?.mode === 'weekly'" />
 	</div>
 </template>

@@ -10,8 +10,8 @@
 	import CategorySelect from "../utils/label/CategorySelect.vue";
 	import TagSelect from "../utils/label/TagSelect.vue";
 	import NoteSelect from "./NoteSelect.vue";
-	import TimeRangeSelect from "./TimeRangeSelect.vue";
-	import TimeRecurringSelect from "./TimeRecurringSelect.vue";
+	import TimeRangeSelect from "./time/TimeRangeSelect.vue";
+	import TimeRecurringSelect from "./time/TimeRecurringSelect.vue";
 
 	const { t } = useI18n();
 
