@@ -19,16 +19,35 @@
 	const checked = ref(isChecked(props.data));
 	const todoStore = useTodoStore();
 
-	function onCheck() {
-		checked.value = true;
-
+	function onClickCheck() {
 		if (props.data.time?.type === "recurring") {
-			todoStore.checkTodo(props.data.uuid);
+			if (checked.value) {
+				uncheck();
+			} else {
+				check();
+			}
 		} else {
-			setTimeout(() => {
-				todoStore.removeTodo(props.data.uuid);
-			}, 1000);
+			if (!checked.value) {
+				remove();
+			}
 		}
+	}
+
+	function remove() {
+		checked.value = true;
+		setTimeout(() => {
+			todoStore.removeTodo(props.data.uuid);
+		}, 1000);
+	}
+
+	function check() {
+		checked.value = true;
+		todoStore.checkTodo(props.data.uuid);
+	}
+
+	function uncheck() {
+		checked.value = false;
+		todoStore.uncheckTodo(props.data.uuid);
 	}
 
 	const { filter } = useFilter();
@@ -80,12 +99,7 @@
 <template>
 	<div data-testid="todo" class="relative flex flex-col justify-center">
 		<div class="flex items-center gap-1 pt-2 pb-1">
-			<button
-				type="button"
-				class="cursor-pointer"
-				:disabled="checked"
-				@click="onCheck()"
-			>
+			<button type="button" class="cursor-pointer" @click="onClickCheck()">
 				<div
 					:data-isRecurring="isRecurring"
 					class="border-secondary m-1 flex h-8 w-8 items-center justify-center rounded-xl border-2 transition-all  data-[isRecurring=true]:rounded-full"
@@ -97,6 +111,7 @@
 					<transition
 						class="transition-opacity duration-500"
 						enter-from-class="opacity-0"
+						leave-to-class="opacity-0"
 					>
 						<icon
 							v-if="checked"

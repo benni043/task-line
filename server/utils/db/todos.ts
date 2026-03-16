@@ -89,4 +89,23 @@ export const Todos = {
 
 		return todo;
 	},
+
+	async uncheck(userId: string, uuid: UUID): Promise<Todo | NuxtError> {
+		const storage = useStorage();
+		const todos = await Todos.getAll(userId);
+
+		const index = todos.findIndex((value) => value.uuid === uuid);
+		if (index === -1)
+			return createError({
+				status: 404,
+				statusMessage: "Not Found",
+				message: `Todo with with uuid ${uuid} not found`,
+			});
+
+		const todo = todos[index]!;
+		todo.checks.pop();
+		await storage.set(getKey(userId), todos);
+
+		return todo;
+	},
 };

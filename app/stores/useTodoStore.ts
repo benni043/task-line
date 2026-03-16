@@ -144,6 +144,24 @@ export const useTodoStore = defineStore("todos", {
 			});
 		},
 
+		async uncheckTodo(uuid: UUID) {
+			const index = this.data.findIndex((value) => value.uuid === uuid);
+			const todo = this.data[index]!;
+			todo.checks.pop();
+
+			this.data[index] = todo;
+
+			const fetch = useRequestFetch();
+			await fetch(`/api/todos/check/${uuid}`, {
+				method: "DELETE",
+				...useFetchOptions(),
+			}).catch(async (err) => {
+				//todo - show in toast
+				console.warn(err);
+				await this.fetch();
+			});
+		},
+
 		async moveTodo(toMove: UUID, to: UUID) {
 			const dropIndex = this.data.findIndex((todo) => todo.uuid === to);
 			const dragIndex = this.data.findIndex((todo) => todo.uuid === toMove);
