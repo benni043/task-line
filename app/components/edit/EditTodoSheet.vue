@@ -62,6 +62,11 @@
 	const isValid = computed(() => {
 		return todoData.value.title !== "";
 	});
+
+	function onDeleteTodo() {
+		todoStore.removeTodo(route.query.uuid as UUID);
+		close();
+	}
 </script>
 
 <template>
@@ -78,19 +83,32 @@
 				v-model:category="todoData.category"
 				v-model:note="todoData.note"
 			/>
-			<button
-				type="submit"
-				data-testid="submit-edit-todo-button"
-				:disabled="!isValid"
-				class="bg-primary hover:bg-primary-hover disabled:bg-secondary flex aspect-square h-10 cursor-pointer items-center justify-center rounded transition-colors"
-			>
-				<Icon
-					v-if="showSaveIcon"
-					name="material-symbols:save-rounded"
-					size="24"
-				/>
-				<Icon v-else name="material-symbols:check-rounded" size="24" />
-			</button>
+			<div class="flex h-10 gap-1">
+				<button
+					type="submit"
+					data-testid="submit-edit-todo-button"
+					:disabled="!isValid"
+					class="bg-primary hover:bg-primary-hover disabled:bg-secondary flex aspect-square cursor-pointer items-center justify-center rounded transition-colors flex-1"
+				>
+					<Icon
+						v-if="showSaveIcon"
+						name="material-symbols:save-rounded"
+						size="24"
+					/>
+					<Icon v-else name="material-symbols:check-rounded" size="24" />
+				</button>
+				<button
+					type="button"
+					class="bg-secondary hover:bg-danger flex aspect-square cursor-pointer items-center justify-center rounded transition-colors"
+					@click="onDeleteTodo"
+				>
+					<Icon
+						v-if="showSaveIcon"
+						name="material-symbols:delete-outline-rounded"
+						size="24"
+					/>
+				</button>
+			</div>
 		</form>
 	</Sheet>
 </template>

@@ -14,6 +14,8 @@
 	--secondary-popover-color: var(--color-zinc-300);
 	--secondary-hover-color: var(--color-zinc-500);
 
+	--danger-color: var(--color-rose-900);
+
 	@media (prefers-color-scheme: dark) {
 		--text-color: var(--color-zinc-100);
 		--muted-text-color: var(--color-zinc-400);
@@ -41,6 +43,8 @@
 	--color-secondary: var(--secondary-color);
 	--color-secondary-popover: var(--secondary-popover-color);
 	--color-secondary-hover: var(--secondary-hover-color);
+
+	--color-danger: var(--danger-color);
 }
 
 body {
