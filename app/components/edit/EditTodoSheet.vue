@@ -102,11 +102,7 @@
 					class="bg-secondary hover:bg-danger flex aspect-square cursor-pointer items-center justify-center rounded transition-colors"
 					@click="onDeleteTodo"
 				>
-					<Icon
-						v-if="showSaveIcon"
-						name="material-symbols:delete-outline-rounded"
-						size="24"
-					/>
+					<Icon name="material-symbols:delete-outline-rounded" size="24" />
 				</button>
 			</div>
 		</form>
