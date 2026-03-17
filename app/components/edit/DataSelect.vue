@@ -49,9 +49,9 @@
 	const timeRecurring = computed<TimeRecurring | undefined>({
 		get(): TimeRecurring | undefined {
 			if (time.value?.type !== "recurring") return undefined;
-			return {
-				mode: time.value.mode,
-			};
+
+			const { type, ...rest } = time.value;
+			return rest;
 		},
 		set(value) {
 			if (!value) {
@@ -61,7 +61,7 @@
 
 			time.value = {
 				type: "recurring",
-				mode: value.mode,
+				...value,
 			};
 		},
 	});

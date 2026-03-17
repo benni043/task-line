@@ -88,7 +88,7 @@
 	}
 
 	const timeRange = computed(() => {
-		return getTimeRange(props.data);
+		return getTimeRange(props.data)?.visuel;
 	});
 
 	const isRecurring = computed(() => {

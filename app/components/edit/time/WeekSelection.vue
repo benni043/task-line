@@ -1,28 +1,34 @@
 <script setup lang="ts">
 	const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-	const startDay = defineModel<number>("startDay", { default: 0 });
-	const endDay = defineModel<number>("endDay", { default: 6 });
+	const range = defineModel<{ start: number; end: number }>("range", {
+		default: { start: 0, end: 6 },
+	});
 
 	let selectingStart = true;
 	function onSelectDay(index: number) {
-		if (selectingStart) {
-			startDay.value = index;
+		let start = range.value.start;
+		let end = range.value.end;
 
-			if (endDay.value < index) {
-				endDay.value = index;
+		if (selectingStart) {
+			start = index;
+
+			if (end < index) {
+				end = index;
 			}
 
 			selectingStart = false;
 		} else {
-			endDay.value = index;
+			end = index;
 
-			if (endDay.value < startDay.value) {
-				[startDay.value, endDay.value] = [endDay.value, startDay.value];
+			if (end < start) {
+				[start, end] = [end, start];
 			}
 
 			selectingStart = true;
 		}
+
+		range.value = { start, end };
 	}
 </script>
 
@@ -31,7 +37,7 @@
 		<div
 			v-for="(day, index) in weekDays"
 			:key="day"
-			:data-selected="index >= startDay && index <= endDay"
+			:data-selected="index >= range.start && index <= range.end"
 			:data-first="index === 0"
 			class="data-[first=false]:border-l border-secondary data-[selected=true]:bg-secondary flex cursor-pointer items-center justify-center p-2 flex-1"
 			@click="onSelectDay(index)"

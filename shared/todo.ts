@@ -6,7 +6,7 @@ export function isChecked(todo: Todo): boolean {
 		return false;
 	}
 
-	const timeRange = getTimeRange(todo)!;
+	const timeRange = getTimeRange(todo)!.valid;
 
 	const lastCheck = todo.checks[todo.checks.length - 1];
 	if (!lastCheck) {
@@ -20,11 +20,18 @@ export function isChecked(todo: Todo): boolean {
 	return date >= start && date <= end;
 }
 
-export function getTimeRange(todo: Todo): TimeRange | undefined {
+export function getTimeRange(
+	todo: Todo,
+): { visuel: TimeRange; valid: TimeRange } | undefined {
 	if (todo.time?.type === "range") {
-		return {
+		const range = {
 			start: todo.time.start,
 			end: todo.time.end,
+		};
+
+		return {
+			visuel: range,
+			valid: range,
 		};
 	}
 
@@ -32,9 +39,14 @@ export function getTimeRange(todo: Todo): TimeRange | undefined {
 		const today = sanitizeDate(new Date());
 
 		if (todo.time.mode === "daily") {
-			return {
+			const range = {
 				start: toLocalDateString(today),
 				end: toLocalDateString(today),
+			};
+
+			return {
+				visuel: range,
+				valid: range,
 			};
 		}
 
@@ -46,8 +58,14 @@ export function getTimeRange(todo: Todo): TimeRange | undefined {
 			const start = new Date(weekStart);
 
 			return {
-				start: toLocalDateString(start),
-				end: toLocalDateString(addDays(start, 6)),
+				visuel: {
+					start: toLocalDateString(addDays(start, todo.time.start)),
+					end: toLocalDateString(addDays(start, todo.time.end)),
+				},
+				valid: {
+					start: toLocalDateString(start),
+					end: toLocalDateString(addDays(start, 6)),
+				},
 			};
 		}
 	}

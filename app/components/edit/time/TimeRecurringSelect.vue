@@ -9,7 +9,39 @@
 	const state = computed({
 		get: () => timeRecurring.value?.mode ?? "none",
 		set: (value) => {
-			timeRecurring.value = value === "none" ? undefined : { mode: value };
+			switch (value) {
+				case "none":
+					timeRecurring.value = undefined;
+					break;
+				case "daily":
+					timeRecurring.value = { mode: "daily" };
+					break;
+				case "weekly":
+					console.log("weekly");
+					timeRecurring.value = { mode: "weekly", start: 0, end: 6 };
+					break;
+			}
+		},
+	});
+
+	const range = computed({
+		get: () => {
+			if (timeRecurring.value?.mode === "weekly") {
+				return {
+					start: timeRecurring.value?.start ?? 0,
+					end: timeRecurring.value?.end ?? 6,
+				};
+			}
+			return { start: 0, end: 6 };
+		},
+		set: ({ start, end }) => {
+			if (timeRecurring.value?.mode === "weekly") {
+				timeRecurring.value = {
+					...timeRecurring.value,
+					start,
+					end,
+				};
+			}
 		},
 	});
 </script>
@@ -37,6 +69,9 @@
 			</RadioGroupItem>
 		</RadioGroupRoot>
 
-		<WeekSelection v-if="timeRecurring?.mode === 'weekly'" />
+		<WeekSelection
+			v-if="timeRecurring?.mode === 'weekly'"
+			v-model:range="range"
+		/>
 	</div>
 </template>
