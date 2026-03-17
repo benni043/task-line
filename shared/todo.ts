@@ -59,8 +59,8 @@ export function getTimeRange(
 
 			return {
 				visuel: {
-					start: toLocalDateString(addDays(start, todo.time.start)),
-					end: toLocalDateString(addDays(start, todo.time.end)),
+					start: toLocalDateString(addDays(start, todo.time.start ?? 0)),
+					end: toLocalDateString(addDays(start, todo.time.end ?? 6)),
 				},
 				valid: {
 					start: toLocalDateString(start),

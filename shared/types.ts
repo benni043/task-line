@@ -17,8 +17,8 @@ const TimeRecurringDaily = z.object({
 const TimeRecurringWeekly = z.object({
 	type: z.literal("recurring"),
 	mode: z.literal("weekly"),
-	start: z.number(),
-	end: z.number(),
+	start: z.number().optional(),
+	end: z.number().optional(),
 });
 
 const TimeRecurring = z.discriminatedUnion("mode", [
