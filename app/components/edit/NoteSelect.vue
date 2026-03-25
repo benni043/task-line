@@ -65,9 +65,17 @@
 		}
 		ul {
 			@apply mb-4 list-inside list-disc space-y-1;
+
+			ul {
+				@apply pl-6;
+			}
 		}
 		ol {
 			@apply mb-4 list-inside list-decimal space-y-1;
+
+			ol {
+				@apply pl-6;
+			}
 		}
 		blockquote {
 			@apply text-background border-secondary my-4 border-l-4 pl-4 italic;
