@@ -25,3 +25,6 @@ playwright-report
 .env
 .env.*
 !.env.example
+
+# Added by cargo
+/target

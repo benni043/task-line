@@ -1,9 +1,8 @@
-use chrono::{Date, DateTime, NaiveDate, Utc};
-use clap::{Parser, arg, command};
+use clap::Parser;
+use client::Todo;
 use color_eyre::eyre;
 use futures::stream::StreamExt;
 use reqwest_eventsource::{Event, EventSource};
-use serde::Deserialize;
 use std::{thread, time::Duration};
 use tokio::sync::mpsc::{self, Receiver};
 
@@ -12,19 +11,6 @@ use tokio::sync::mpsc::{self, Receiver};
 struct Args {
     #[arg(short, long)]
     server_url: String,
-}
-
-#[derive(Debug, Deserialize)]
-struct Todo {
-    uuid: String,
-    title: String,
-    timeframe: Option<TimeFrame>,
-}
-
-#[derive(Debug, Deserialize)]
-struct TimeFrame {
-    start: NaiveDate,
-    end: NaiveDate,
 }
 
 #[tokio::main]
@@ -55,7 +41,7 @@ async fn main() {
 fn get_todos(url: String, token: String) -> Receiver<Vec<Todo>> {
     let (tx, rx) = mpsc::channel(8);
 
-    let _ = tokio::spawn(async move {
+    tokio::spawn(async move {
         loop {
             let todos = loop {
                 match fetch_todos(&url, &token).await {
