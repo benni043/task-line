@@ -20,7 +20,9 @@
 	const tempKeyValues = ref<{ id: string; key: string }[]>([]);
 
 	async function onCreateKey() {
-		const key = await authClient.apiKey.create({ name: name.value });
+		const key = await authClient.apiKey.create({
+			name: name.value,
+		});
 
 		if (key.error || !key.data) {
 			console.error(key.error);

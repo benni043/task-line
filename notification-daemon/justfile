@@ -1,2 +1,2 @@
 dev token:
-  TASK_LINE_API_TOKEN={{token}} cargo run -- -s http://localhost:3000
+    TASK_LINE_API_TOKEN={{ token }} cargo run -- -s http://localhost:3000

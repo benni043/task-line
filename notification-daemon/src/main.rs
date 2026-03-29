@@ -22,18 +22,10 @@ async fn main() {
     let mut todos_rx = get_todos(args.server_url, token);
 
     while let Some(todos) = todos_rx.recv().await {
-        let todos: Vec<_> = todos
-            .iter()
-            .filter(|todo| todo.timeframe.is_some())
-            .collect();
+        let todos: Vec<_> = todos.iter().filter(|todo| todo.time.is_some()).collect();
 
         for todo in todos {
-            println!(
-                "{}: {} - {}",
-                todo.title,
-                todo.timeframe.as_ref().unwrap().start,
-                todo.timeframe.as_ref().unwrap().end
-            );
+            println!("{}: {:?}", todo.title, todo.time);
         }
     }
 }
