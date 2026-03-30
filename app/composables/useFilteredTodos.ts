@@ -1,4 +1,5 @@
 import { getLocalTimeZone, parseDate, today } from "@internationalized/date";
+import { getTimeRange } from "~~/shared/todo";
 import type { Todo } from "~~/shared/types";
 
 export function useFilteredTodos() {
@@ -30,10 +31,12 @@ export function filterTodos(todos: Todo[], filter: Filter) {
 
 		//filter by date
 		if (filter.time === "all") return true;
-		if (todo.time?.type !== "range") return false;
 
-		const start = parseDate(todo.time.start);
-		const end = parseDate(todo.time.end);
+		const time = getTimeRange(todo);
+		if (time === undefined) return false;
+
+		const start = parseDate(time.visuel.start);
+		const end = parseDate(time.visuel.end);
 
 		if (filter.time === "today") {
 			const now = today(getLocalTimeZone());
