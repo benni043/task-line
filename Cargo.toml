@@ -1,2 +1,2 @@
 [workspace]
-members = ["libs/client", "notification-daemon"]
+members = ["libs/client", "notification-daemon", "rpi-checker"]

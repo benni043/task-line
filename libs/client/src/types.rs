@@ -1,4 +1,6 @@
-use chrono::NaiveDate;
+use std::ops::Add;
+
+use chrono::{Days, NaiveDate};
 use serde::{Deserialize, Serialize};
 
 pub type UUID = String;
@@ -14,17 +16,40 @@ pub struct Todo {
     pub checks: Vec<NaiveDate>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+impl Todo {
+    pub fn is_today(&self) -> bool {
+        let Some(time) = &self.time else {
+            return false;
+        };
+
+        let range = time.get_time_range();
+
+        for check in &self.checks {
+            if range.start <= *check && *check <= range.end {
+                return false;
+            }
+        }
+
+        let now = chrono::Local::now().naive_local().date();
+        if range.start <= now && now <= range.end {
+            return true;
+        }
+
+        false
+    }
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TimeRange {
     pub start: NaiveDate,
     pub end: NaiveDate,
 }
 
-const fn default_start() -> i64 {
+const fn default_start() -> u64 {
     6
 }
 
-const fn default_end() -> i64 {
+const fn default_end() -> u64 {
     0
 }
 
@@ -37,9 +62,9 @@ pub enum TimeRecurring {
     #[serde(rename = "weekly")]
     Weekly {
         #[serde(default = "default_start")]
-        start: i64,
+        start: u64,
         #[serde(default = "default_end")]
-        end: i64,
+        end: u64,
     },
 }
 
@@ -57,4 +82,30 @@ pub enum Time {
         #[serde(flatten)]
         inner: TimeRecurring,
     },
+}
+
+impl Time {
+    pub fn get_time_range(&self) -> TimeRange {
+        match self {
+            Time::Range { inner } => inner.clone(),
+            Time::Recurring { inner } => match inner {
+                TimeRecurring::Daily {} => {
+                    let now = chrono::Local::now();
+
+                    TimeRange {
+                        start: now.date_naive(),
+                        end: now.date_naive(),
+                    }
+                }
+                TimeRecurring::Weekly { start, end } => {
+                    let now = chrono::Local::now();
+
+                    TimeRange {
+                        start: now.add(Days::new(*start)).date_naive(),
+                        end: now.add(Days::new(*end)).date_naive(),
+                    }
+                }
+            },
+        }
+    }
 }
