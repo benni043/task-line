@@ -8,3 +8,6 @@ client = { path = "../libs/client" }
 
 tokio = { version = "1.48.0", features = ["macros", "rt-multi-thread"] }
 dotenvy = "0.15.7"
+
+rpi-pal = { version = "0.22.3", features = ["embedded-hal"] }
+lcd-lcm1602-i2c = { version = "0.3.0" }
