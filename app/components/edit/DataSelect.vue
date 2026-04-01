@@ -24,50 +24,36 @@
 	});
 	const note = defineModel<string>("note", { required: true });
 
-	const timeRange = computed<TimeRange | undefined>({
-		get(): TimeRange | undefined {
-			if (time.value?.type !== "range") return undefined;
-			return {
-				start: time.value.start,
-				end: time.value.end,
-			};
-		},
-		set(value) {
-			if (!value) {
-				time.value = undefined;
-				return;
-			}
+	function useTimeComputed<T extends Time["type"]>(
+		marker: T,
+	): ComputedRef<Omit<Extract<Time, { type: T }>, "type"> | undefined> {
+		return computed<Omit<Extract<Time, { type: T }>, "type"> | undefined>({
+			get(): Omit<Extract<Time, { type: T }>, "type"> | undefined {
+				if (time.value?.type !== marker) return undefined;
 
-			time.value = {
-				type: "range",
-				start: value.start,
-				end: value.end,
-			};
-		},
-	});
+				const { type, ...rest } = time.value as Extract<Time, { type: T }>;
+				return rest;
+			},
+			set(value) {
+				if (!value) {
+					time.value = undefined;
+					return;
+				}
 
-	const timeRecurring = computed<TimeRecurring | undefined>({
-		get(): TimeRecurring | undefined {
-			if (time.value?.type !== "recurring") return undefined;
+				time.value = {
+					type: marker,
+					...value,
+				} as Extract<Time, { type: T }>;
+			},
+		});
+	}
 
-			const { type, ...rest } = time.value;
-			return rest;
-		},
-		set(value) {
-			if (!value) {
-				time.value = undefined;
-				return;
-			}
-
-			time.value = {
-				type: "recurring",
-				...value,
-			};
-		},
-	});
+	const timeRange = useTimeComputed("range");
+	const timeRecurring = useTimeComputed("recurring");
+	const timePoint = useTimeComputed("point");
 
 	const activeTab = ref("notes");
-	const selectedTimeType = ref<"range" | "recurring">(
+	const selectedTimeType = ref<"range" | "recurring" | "point">(
 		time.value?.type ?? "range",
 	);
 
