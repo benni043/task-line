@@ -88,6 +88,10 @@
 	}
 
 	const timeRange = computed(() => {
+		if (props.data.time?.type === "point") {
+			return props.data.time;
+		}
+
 		return getTimeRange(props.data)?.visuel;
 	});
 

@@ -6,10 +6,11 @@
 		TabsRoot,
 		TabsTrigger,
 	} from "reka-ui";
-	import type { Time, TimeRange, TimeRecurring, UUID } from "~~/shared/types";
+	import type { Time, UUID } from "~~/shared/types";
 	import CategorySelect from "../utils/label/CategorySelect.vue";
 	import TagSelect from "../utils/label/TagSelect.vue";
 	import NoteSelect from "./NoteSelect.vue";
+	import TimePointSelect from "./time/TimePointSelect.vue";
 	import TimeRangeSelect from "./time/TimeRangeSelect.vue";
 	import TimeRecurringSelect from "./time/TimeRecurringSelect.vue";
 
@@ -94,6 +95,7 @@
 				<select v-model="selectedTimeType" :disabled="activeTab !== 'date'">
 					<option value="range">{{ t("date-range") }} </option>
 					<option value="recurring">{{ t("date-recurring") }} </option>
+					<option value="point">{{ t("date-point") }} </option>
 				</select>
 			</TabsTrigger>
 		</TabsList>
@@ -117,6 +119,10 @@
 				<TimeRecurringSelect
 					v-if="selectedTimeType === 'recurring'"
 					v-model:timeRecurring="timeRecurring"
+				/>
+				<TimePointSelect
+					v-if="selectedTimeType === 'point'"
+					v-model:timePoint="timePoint"
 				/>
 			</TabsContent>
 		</div>

@@ -9,6 +9,12 @@ const TimeRange = z.object({
 });
 export type TimeRange = Omit<z.infer<typeof TimeRange>, "type">;
 
+const TimePoint = z.object({
+	type: z.literal("point"),
+	time: z.iso.datetime(),
+});
+export type TimePoint = Omit<z.infer<typeof TimePoint>, "type">;
+
 const TimeRecurringDaily = z.object({
 	type: z.literal("recurring"),
 	mode: z.literal("daily"),
@@ -30,7 +36,11 @@ export type TimeRecurring =
 	| Omit<z.infer<typeof TimeRecurringDaily>, "type">
 	| Omit<z.infer<typeof TimeRecurringWeekly>, "type">;
 
-export const Time = z.discriminatedUnion("type", [TimeRange, TimeRecurring]);
+export const Time = z.discriminatedUnion("type", [
+	TimeRange,
+	TimePoint,
+	TimeRecurring,
+]);
 export type Time = z.infer<typeof Time>;
 
 export const Todo = z.object({

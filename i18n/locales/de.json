@@ -27,6 +27,7 @@
 	"create": "Erstellen",
 	"date-range": "Datumbereich",
 	"date-recurring": "Wiederholung",
+	"date-point": "Zeitpunkt",
 	"recurring-none": "Keine",
 	"recurring-daily": "Täglich",
 	"recurring-weekly": "Wöchentlich"

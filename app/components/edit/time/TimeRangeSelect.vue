@@ -17,9 +17,7 @@
 	} from "reka-ui";
 	import type { TimeRange } from "~~/shared/types";
 
-	const { t } = useI18n();
-
-	const { locale } = useI18n();
+	const { t, locale } = useI18n();
 
 	const firstDayOfWeek = computed(() => {
 		return locale.value === "de" ? 1 : 0;
