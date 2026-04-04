@@ -1,0 +1,35 @@
+when:
+  - event: ["push"]
+    tag: ["v*"]
+
+engine: nixery
+
+dependencies:
+  nixpkgs:
+    - kaniko
+
+environment:
+  DOCKER_CONFIG: "/kaniko/.docker"
+  REGISTRY: "atcr.io"
+  PROJECT: "tobinio.dev/task-line"
+
+steps:
+  - name: Configure Kaniko
+    command: |
+      mkdir -p /kaniko/.docker && mkdir -p /kaniko/tmp
+      echo "{
+        \"auths\": {
+          \"$REGISTRY\": {
+            \"auth\": \"$(echo -n "$USERNAME:$PASSWORD" | base64)\"
+          }
+        }
+      }" > /kaniko/.docker/config.json
+
+  - name: Build and push image
+    command: |
+      executor \
+      --context=/tangled/workspace/ \
+      --dockerfile=/tangled/workspace/Dockerfile \
+      --destination=$REGISTRY/$PROJECT:$TANGLED_REF_NAME \
+      --cache=false \
+      --verbosity=info

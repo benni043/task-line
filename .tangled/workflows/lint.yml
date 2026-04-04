@@ -1,0 +1,22 @@
+when:
+  - event: ["push", "manual"]
+    branch: ["main"]
+  - event: ["pull_request"]
+    branch: ["main"]
+
+engine: nixery
+
+dependencies:
+  nixpkgs:
+    - nodejs
+    - pnpm
+
+steps:
+  - name: Install
+    command: pnpm install --frozen-lockfile
+
+  - name: Lint (Biome)
+    command: node_modules/@biomejs/cli-linux-x64-musl/biome ci
+
+  - name: Lint (Typescript)
+    command: pnpm lint:typecheck
