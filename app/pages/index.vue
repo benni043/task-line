@@ -2,10 +2,10 @@
 	import { SplitterGroup, SplitterPanel, SplitterResizeHandle } from "reka-ui";
 	import { onMounted } from "vue";
 	import { useDevice } from "#imports";
-	import NewTodoSheet from "~/components/edit/NewTodoSheet.vue";
-	import HorizontalNav from "~/components/nav/HorizontalNav.vue";
-	import VerticalNav from "~/components/nav/VerticalNav.vue";
-	import Todos from "~/components/todo/Todos.vue";
+	import NewTodoSheet from "~/components/Edit/NewTodoSheet.vue";
+	import HorizontalNav from "~/components/Nav/HorizontalNav.vue";
+	import VerticalNav from "~/components/Nav/VerticalNav.vue";
+	import Todos from "~/components/Todo/Todos.vue";
 	import { useLoginID } from "~/composables/login/useLoginID";
 	import { useInitdata } from "~/composables/useInitData";
 

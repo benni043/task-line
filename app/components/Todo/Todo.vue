@@ -4,7 +4,7 @@
 	import { getTimeRange, isChecked } from "~~/shared/todo";
 	import type { Label as LabelType, Todo } from "~~/shared/types";
 
-	import TagLabel from "../utils/label/TagLabel.vue";
+	import TagLabel from "../Utils/Label/TagLabel.vue";
 	import TimeDisplay from "./TimeDisplay.vue";
 
 	const props = defineProps<{ data: Todo }>();

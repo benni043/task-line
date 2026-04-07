@@ -7,12 +7,12 @@
 		TabsTrigger,
 	} from "reka-ui";
 	import type { Time, UUID } from "~~/shared/types";
-	import CategorySelect from "../utils/label/CategorySelect.vue";
-	import TagSelect from "../utils/label/TagSelect.vue";
+	import CategorySelect from "../Utils/Label/CategorySelect.vue";
+	import TagSelect from "../Utils/Label/TagSelect.vue";
 	import NoteSelect from "./NoteSelect.vue";
-	import TimePointSelect from "./time/TimePointSelect.vue";
-	import TimeRangeSelect from "./time/TimeRangeSelect.vue";
-	import TimeRecurringSelect from "./time/TimeRecurringSelect.vue";
+	import TimePointSelect from "./Time/TimePointSelect.vue";
+	import TimeRangeSelect from "./Time/TimeRangeSelect.vue";
+	import TimeRecurringSelect from "./Time/TimeRecurringSelect.vue";
 
 	const { t } = useI18n();
 

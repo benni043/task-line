@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import { computed, ref } from "vue";
 	import type { TodoData } from "~~/shared/types";
-	import Sheet from "../utils/Sheet.vue";
+	import Sheet from "../Utils/Sheet.vue";
 	import DataSelect from "./DataSelect.vue";
 	import TitleSelect from "./TitleSelect.vue";
 

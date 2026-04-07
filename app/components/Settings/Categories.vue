@@ -1,8 +1,8 @@
 <script setup lang="ts">
 	import { useCategoryStore } from "~/stores/useCategoryStore";
 	import type { Category as CategoryType } from "~~/shared/types";
-	import AddCategory from "./labels/AddCategory.vue";
-	import Category from "./labels/Category.vue";
+	import AddCategory from "./Labels/AddCategory.vue";
+	import Category from "./Labels/Category.vue";
 
 	const { t } = useI18n();
 

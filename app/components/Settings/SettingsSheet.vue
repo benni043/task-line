@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import type { Locale } from "vue-i18n";
-	import Sheet from "../utils/Sheet.vue";
+	import Sheet from "../Utils/Sheet.vue";
 	import ApiKeys from "./ApiKeys.vue";
 	import Categories from "./Categories.vue";
 	import GoogleLogin from "./GoogleLogin.vue";

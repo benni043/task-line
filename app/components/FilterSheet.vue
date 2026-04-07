@@ -1,8 +1,8 @@
 <script setup lang="ts">
 	import TimeSelect from "./filter/TimeSelect.vue";
-	import CategorySelect from "./utils/label/CategorySelect.vue";
-	import TagSelect from "./utils/label/TagSelect.vue";
-	import Sheet from "./utils/Sheet.vue";
+	import CategorySelect from "./Utils/Label/CategorySelect.vue";
+	import TagSelect from "./Utils/Label/TagSelect.vue";
+	import Sheet from "./Utils/Sheet.vue";
 
 	const isOpen = defineModel<boolean>("isOpen", { required: true });
 
