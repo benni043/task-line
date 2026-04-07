@@ -1,38 +1,18 @@
 <script setup lang="ts">
-	import {
-		getLocalTimeZone,
-		parseAbsolute,
-		parseAbsoluteToLocal,
-		parseDate,
-	} from "@internationalized/date";
+	import { getLocalTimeZone, parseDate } from "@internationalized/date";
 	import { addDays, sanitizeDate } from "~~/shared/date";
-	import type { TimePoint, TimeRange } from "~~/shared/types";
+	import type { TimeRange } from "~~/shared/types";
 
-	const props = defineProps<{ timeframe: TimeRange | TimePoint }>();
+	const { range } = defineProps<{ range: TimeRange }>();
 
 	const timeFrameString = computed(() => {
-		if ("time" in props.timeframe) {
-			return props.timeframe.time;
-		}
-
-		return `${props.timeframe.start.toWellFormed()} - ${props.timeframe.end.toWellFormed()}`;
+		return `${range.start.toWellFormed()} - ${range.end.toWellFormed()}`;
 	});
 
 	const time = computed(() => {
-		if ("time" in props.timeframe) {
-			let time = parseAbsoluteToLocal(props.timeframe.time).toDate().getTime();
-
-			return {
-				start: time - 1000 * 60 * 30,
-				end: time + 1000 * 60 * 30,
-			};
-		}
-
 		return {
-			start: parseDate(props.timeframe.start)
-				.toDate(getLocalTimeZone())
-				.getTime(),
-			end: parseDate(props.timeframe.end)
+			start: parseDate(range.start).toDate(getLocalTimeZone()).getTime(),
+			end: parseDate(range.end)
 				.add({ days: 1 })
 				.toDate(getLocalTimeZone())
 				.getTime(),

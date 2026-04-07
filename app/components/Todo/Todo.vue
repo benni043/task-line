@@ -5,7 +5,7 @@
 	import type { Label as LabelType, Todo } from "~~/shared/types";
 
 	import TagLabel from "../Utils/Label/TagLabel.vue";
-	import TimeDisplay from "./TimeDisplay.vue";
+	import TimeDisplay from "./TimeDisplay/TimeDisplay.vue";
 
 	const props = defineProps<{ data: Todo }>();
 
