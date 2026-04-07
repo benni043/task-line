@@ -2,6 +2,7 @@
 	import {
 		type DateValue,
 		getLocalTimeZone,
+		now,
 		parseAbsoluteToLocal,
 		toZoned,
 	} from "@internationalized/date";
@@ -10,6 +11,10 @@
 
 	const { t, locale } = useI18n();
 	const timePoint = defineModel<TimePoint | undefined>("timePoint");
+
+	if (timePoint.value === undefined) {
+		timePoint.value = { time: now(getLocalTimeZone()).toAbsoluteString() };
+	}
 
 	const dateTime = computed({
 		get: () => {
