@@ -21,9 +21,6 @@ BASE_URL="http://localhost:3000"
 GOOGLE_CLIENT_ID=<google_client_id>
 GOOGLE_CLIENT_SECRET=<google_client_secret>
 
-JWT_SECRET=<jwt_secret>
-JWT_TTL_SECONDS=2592000 // 1Month
-
 UPSTASH_URL=<url>
 UPSTASH_TOKEN=<auth_token>
 
