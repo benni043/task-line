@@ -51,6 +51,12 @@ function defineDevelopmentStorage() {
 		fsDriver({
 			base: ".data/categories",
 		}),
+  );
+	storage.mount(
+		"subscriptions",
+		fsDriver({
+			base: ".data/subscriptions",
+		}),
 	);
 }
 
@@ -79,6 +85,14 @@ function defineProductionStorage() {
 			url: useRuntimeConfig().upstash.url,
 			token: useRuntimeConfig().upstash.token,
 			base: "categories",
+		}),
+  );
+	storage.mount(
+		"subscriptions",
+		upstashDriver({
+			url: useRuntimeConfig().upstash.url,
+			token: useRuntimeConfig().upstash.token,
+			base: "subscriptions",
 		}),
 	);
 }

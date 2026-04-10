@@ -43,6 +43,16 @@ export const Time = z.discriminatedUnion("type", [
 ]);
 export type Time = z.infer<typeof Time>;
 
+export const PushSubscriptionJSON = z.object({
+  endpoint: z.string(),
+  expirationTime: z.number().nullable().optional(),
+  keys: z.object({
+    auth: z.string(),
+    p256dh: z.string(),
+  })
+});
+export type PushSubscriptionJSON = z.infer<typeof PushSubscriptionJSON>;
+
 export const Todo = z.object({
 	uuid: z.uuid(),
 	title: z.string().min(1),

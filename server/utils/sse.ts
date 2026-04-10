@@ -31,9 +31,19 @@ export const CategorieEventStream = {
 	},
 };
 
+export const SubscriptionEventStream = {
+	addStream(userId: string, eventStream: EventStream) {
+		addEventStream(userId, subscriptionsEventStreams, eventStream);
+	},
+	async sendUpdate(userId: string) {
+		await publish(userId, subscriptionsEventStreams, await Subscriptions.getAll(userId));
+	},
+};
+
 const todosEventStreams: Map<string, EventStream[]> = new Map();
 const tagsEventStreams: Map<string, EventStream[]> = new Map();
 const categoriesEventStreams: Map<string, EventStream[]> = new Map();
+const subscriptionsEventStreams: Map<string, EventStream[]> = new Map();
 
 function addEventStream(
 	key: string,
