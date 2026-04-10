@@ -24,7 +24,11 @@ export const Subscriptions = {
 		const storage = useStorage();
     const subscriptions = await Subscriptions.getAll(userId);
 
-    const exists = subscriptions.find(s => s.endpoint === subscription.endpoint);
+    const exists = subscriptions.find((s) =>
+      s.endpoint === subscription.endpoint ||
+      (s.keys.p256dh === subscription.keys.p256dh &&
+       s.keys.auth === subscription.keys.auth)
+    );
 
     if (!exists) {
       subscriptions.push(subscription);
