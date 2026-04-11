@@ -53,13 +53,13 @@ export default defineNuxtConfig({
 			{ code: "de", name: "German", file: "de.json" },
 		],
 		defaultLocale: "en",
-  },
-  nitro: {
-      experimental: {
-        tasks: true,
-      },
-      scheduledTasks: {
-        "* * * * *": ["notify:push"],
-      },
-    },
+	},
+	nitro: {
+		experimental: {
+			tasks: true,
+		},
+		scheduledTasks: {
+			"* * * * *": ["notify:push"],
+		},
+	},
 });

@@ -26,59 +26,59 @@
 	const { isMobile } = useDevice();
 
 	onMounted(async () => {
-    if ("serviceWorker" in navigator) {
-        try {
-            const reg = await navigator.serviceWorker.register("/sw.js");
+		if ("serviceWorker" in navigator) {
+			try {
+				const reg = await navigator.serviceWorker.register("/sw.js");
 
-            await navigator.serviceWorker.ready;
+				await navigator.serviceWorker.ready;
 
-            console.log("SW ist bereit und aktiv:", reg.active);
-        } catch (err) {
-            console.error("SW registration failed", err);
-        }
-    }
-});
+				console.log("SW ist bereit und aktiv:", reg.active);
+			} catch (err) {
+				console.error("SW registration failed", err);
+			}
+		}
+	});
 
-async function send() {
-  const permission = await Notification.requestPermission();
+	async function send() {
+		const permission = await Notification.requestPermission();
 
-  if (permission !== "granted") return;
+		if (permission !== "granted") return;
 
-  const reg = await navigator.serviceWorker.ready;
+		const reg = await navigator.serviceWorker.ready;
 
-  const sub = await reg.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey:
-          "BKkvpMKOQ3wvNUpoohpuZmTUCNe8rH4bZwCbTeLW16F1ZeUm9DDEavdpXOfXIR6PWZpPswiCYte1KMveWMFvslY",
-  });
+		const sub = await reg.pushManager.subscribe({
+			userVisibleOnly: true,
+			applicationServerKey:
+				"BKkvpMKOQ3wvNUpoohpuZmTUCNe8rH4bZwCbTeLW16F1ZeUm9DDEavdpXOfXIR6PWZpPswiCYte1KMveWMFvslY",
+		});
 
-  const fetch = useRequestFetch();
+		const fetch = useRequestFetch();
 
-  const response = await fetch(`/api/subscription/`, {
-    method: "POST",
-    body: sub.toJSON(),
-      ...useFetchOptions(),
-  	}).catch(async (err) => {
-     //todo - show in toast
-     console.warn(err);
-     // await this.fetch();
-    });
+		const response = await fetch(`/api/subscription/`, {
+			method: "POST",
+			body: sub.toJSON(),
+			...useFetchOptions(),
+		}).catch(async (err) => {
+			//todo - show in toast
+			console.warn(err);
+			// await this.fetch();
+		});
 
-  console.log(response)
-}
+		console.log(response);
+	}
 
-async function msg() {
-  const fetch = useRequestFetch();
+	async function msg() {
+		const fetch = useRequestFetch();
 
-  await fetch(`/api/subscription/sendNotification`, {
-    method: "POST",
-    ...useFetchOptions(),
-  	}).catch(async (err) => {
-     //todo - show in toast
-     console.warn(err);
-     // await this.fetch();
-    });
-}
+		await fetch(`/api/subscription/sendNotification`, {
+			method: "POST",
+			...useFetchOptions(),
+		}).catch(async (err) => {
+			//todo - show in toast
+			console.warn(err);
+			// await this.fetch();
+		});
+	}
 </script>
 <template>
 	<div>
@@ -88,13 +88,13 @@ async function msg() {
 		<NewTodoSheet v-model:is-open="isNewSheetOpen" />
 
 		<div>
-		<h1>testing begin</h1>
+			<h1>testing begin</h1>
 
-		<button @click="send()">send</button>
-		<br></br>
-		<button @click="msg()">message</button>
+			<button type="button" @click="send()">send</button>
+			<br>
+			<button type="button" @click="msg()">message</button>
 
-		<h1>testing end</h1>
+			<h1>testing end</h1>
 		</div>
 
 		<div v-if="!isMobile">

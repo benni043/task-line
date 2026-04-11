@@ -36,7 +36,11 @@ export const SubscriptionEventStream = {
 		addEventStream(userId, subscriptionsEventStreams, eventStream);
 	},
 	async sendUpdate(userId: string) {
-		await publish(userId, subscriptionsEventStreams, await Subscriptions.getAll(userId));
+		await publish(
+			userId,
+			subscriptionsEventStreams,
+			await Subscriptions.getAll(userId),
+		);
 	},
 };
 

@@ -1,5 +1,3 @@
-export default defineAuthenticatedEventHandler(
-  async (event, userId) => {
-    await Subscriptions.sendNotification(userId);
-	},
-);
+export default defineAuthenticatedEventHandler(async (_event, userId) => {
+	await Subscriptions.sendNotification(userId);
+});
