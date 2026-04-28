@@ -37,13 +37,12 @@ export const AuthApi = {
 				return createError({
 					statusCode: 400,
 					statusMessage: "No Session set",
-        });
-
+				});
 			}
 
 			return result.session.userId;
 		}
-  },
+	},
 
 	async getUserIdOrThrow(event: H3Event): Promise<string> {
 		const session = await AuthApi.getUserId(event);

@@ -39,6 +39,8 @@ export default defineNuxtConfig({
 	runtimeConfig: {
 		public: {
 			baseURL: process.env.BASE_URL ?? "",
+			subscriptionsPublicKey:
+				process.env.NUXT_PUBLIC_SUBSCRIPTIONS_PUBLIC_KEY ?? "",
 		},
 		upstash: {
 			url: process.env.UPSTASH_URL,

@@ -8,6 +8,8 @@
 
 	const isOpen = defineModel<boolean>("isOpen", { required: true });
 
+	const config = useRuntimeConfig();
+
 	function close() {
 		isOpen.value = false;
 	}
@@ -23,9 +25,9 @@
 		} else {
 			console.error("Unknown locale");
 		}
-  }
+	}
 
-  async function sendPush() {
+	async function sendPush() {
 		const permission = await Notification.requestPermission();
 
 		if (permission !== "granted") return;
@@ -34,13 +36,12 @@
 
 		const sub = await reg.pushManager.subscribe({
 			userVisibleOnly: true,
-			applicationServerKey:
-				process.env.SUBSCRIPTIONS_PUBLIC_KEY,
+			applicationServerKey: config.public.subscriptionsPublicKey,
 		});
 
 		const fetch = useRequestFetch();
 
-		const response = await fetch(`/api/subscription/`, {
+		await fetch(`/api/subscription/`, {
 			method: "POST",
 			body: sub.toJSON(),
 			...useFetchOptions(),
@@ -49,8 +50,6 @@
 			console.warn(err);
 			// await this.fetch();
 		});
-
-		console.log(response);
 	}
 </script>
 
@@ -93,11 +92,12 @@
 				<div>
 					<h2 class="text-muted-text text-lg">{{ t("push") }}</h2>
 					<button
+						type="button"
 						data-testid="add-label-button"
 						class="bg-surface border-secondary h-8 cursor-pointer rounded border px-2 text-white"
 						@click="sendPush()"
 					>
-					{{ t("push") }}
+						{{ t("push") }}
 					</button>
 				</div>
 			</div>
