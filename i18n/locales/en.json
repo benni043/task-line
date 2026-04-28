@@ -30,5 +30,6 @@
 	"date-point": "Date Point",
 	"recurring-none": "None",
 	"recurring-daily": "Daily",
-	"recurring-weekly": "Weekly"
+	"recurring-weekly": "Weekly",
+	"push": "Webpush"
 }

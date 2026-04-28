@@ -23,6 +23,34 @@
 		} else {
 			console.error("Unknown locale");
 		}
+  }
+
+  async function sendPush() {
+		const permission = await Notification.requestPermission();
+
+		if (permission !== "granted") return;
+
+		const reg = await navigator.serviceWorker.ready;
+
+		const sub = await reg.pushManager.subscribe({
+			userVisibleOnly: true,
+			applicationServerKey:
+				process.env.SUBSCRIPTIONS_PUBLIC_KEY,
+		});
+
+		const fetch = useRequestFetch();
+
+		const response = await fetch(`/api/subscription/`, {
+			method: "POST",
+			body: sub.toJSON(),
+			...useFetchOptions(),
+		}).catch(async (err) => {
+			//todo - show in toast
+			console.warn(err);
+			// await this.fetch();
+		});
+
+		console.log(response);
 	}
 </script>
 
@@ -60,6 +88,17 @@
 						<option value="top">{{ t(`top`) }}</option>
 						<option value="bottom">{{ t(`bottom`) }}</option>
 					</select>
+				</div>
+
+				<div>
+					<h2 class="text-muted-text text-lg">{{ t("push") }}</h2>
+					<button
+						data-testid="add-label-button"
+						class="bg-surface border-secondary h-8 cursor-pointer rounded border px-2 text-white"
+						@click="sendPush()"
+					>
+					{{ t("push") }}
+					</button>
 				</div>
 			</div>
 			<Categories />

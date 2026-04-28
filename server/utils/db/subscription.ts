@@ -8,8 +8,8 @@ function getKey(userId: string): string {
 
 webpush.setVapidDetails(
 	"mailto:you@example.com",
-	"BKkvpMKOQ3wvNUpoohpuZmTUCNe8rH4bZwCbTeLW16F1ZeUm9DDEavdpXOfXIR6PWZpPswiCYte1KMveWMFvslY",
-	"wGiryLM_sL1fRZfWhcYeJ_ZgSucqtOn1S_A60lBThnc",
+	process.env.SUBSCRIPTIONS_PUBLIC_KEY,
+	process.env.SUBSCRIPTIONS_PRIVATE_KEY,
 );
 
 export const Subscriptions = {
