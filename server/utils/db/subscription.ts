@@ -8,8 +8,8 @@ function getKey(userId: string): string {
 
 webpush.setVapidDetails(
 	"mailto:you@example.com",
-	process.env.NUXT_PUBLIC_SUBSCRIPTIONS_PUBLIC_KEY,
-	process.env.SUBSCRIPTIONS_PRIVATE_KEY,
+	process.env.NUXT_PUBLIC_SUBSCRIPTIONS_PUBLIC_KEY!,
+	process.env.SUBSCRIPTIONS_PRIVATE_KEY!,
 );
 
 export const Subscriptions = {

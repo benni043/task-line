@@ -46,9 +46,7 @@
 			body: sub.toJSON(),
 			...useFetchOptions(),
 		}).catch(async (err) => {
-			//todo - show in toast
 			console.warn(err);
-			// await this.fetch();
 		});
 	}
 </script>
