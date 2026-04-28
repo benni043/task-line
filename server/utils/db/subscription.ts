@@ -43,12 +43,12 @@ export const Subscriptions = {
 			message: `Subscription already exists`,
 		});
 	},
-	async sendNotification(userId: string) {
+	async sendNotification(userId: string, title: string, body: string) {
 		const subscriptions = await Subscriptions.getAll(userId);
 
 		const payload = JSON.stringify({
-			title: "Erinnerung",
-			body: "Zeit für XYZ",
+			title: title,
+			body: body,
 		});
 
 		for (const sub of subscriptions) {

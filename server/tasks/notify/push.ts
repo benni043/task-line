@@ -1,6 +1,6 @@
 export default defineTask({
 	async run(_event) {
-		console.log("Task running");
+	  await Todos.sendMsg()
 
 		const result = {
 			sent: 10,

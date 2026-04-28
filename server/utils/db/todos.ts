@@ -1,7 +1,7 @@
 import type { NuxtError } from "nuxt/app";
 import { updateOrInsertAfterTodo } from "~~/shared/array";
 import { toLocalDateString } from "~~/shared/date";
-import type { Todo, UUID } from "~~/shared/types";
+import { Time, type Todo, type UUID } from "~~/shared/types";
 
 function getKey(userId: string): string {
 	return `todos:${userId}`;
@@ -11,7 +11,40 @@ export const Todos = {
 	async getAll(userId: string): Promise<Todo[]> {
 		const storage = useStorage();
 		return (await storage.get<Todo[]>(getKey(userId))) ?? [];
-	},
+  },
+
+  async sendMsg(): Promise<void> {
+    const keys = await useStorage().getKeys();
+    const filteredKeys = keys.filter((key) => key.startsWith("todos:"));
+
+    filteredKeys.forEach(async (key) => {
+      const todos = await useStorage().get<Todo[]>(key);
+
+      todos?.forEach(todo => {
+        if (todo.time?.type === "point") {
+          const date = new Date(todo.time.time);
+          const now = new Date();
+
+          const sameMinute =
+            date.getUTCFullYear() === now.getUTCFullYear() &&
+            date.getUTCMonth() === now.getUTCMonth() &&
+            date.getUTCDate() === now.getUTCDate() &&
+            date.getUTCHours() === now.getUTCHours() &&
+            date.getUTCMinutes() === now.getUTCMinutes();
+
+          if (sameMinute) {
+            Subscriptions.sendNotification(key.substring(6), todo.title, todo.note);
+          }
+        }
+      })
+    })
+  },
+
+  async getAllWithTimeStamp(userId: string): Promise<Todo[]> {
+    let todos = await Todos.getAll(userId);
+
+    return todos.filter(todo => todo.time?.type === "range");
+  },
 
 	async move(
 		userId: string,
